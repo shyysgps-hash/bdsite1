@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מפת האתר | אני לא בגיל לזה</title>
+  <meta name="description" content="מפת האתר הרשמית של 'אני לא בגיל לזה' - ניווט מהיר ונגיש לכל 7 העמודים של פרויקט הגמר בימי הולדת נוסטלגיים, הפקולטה לטכנולוגיות למידה, HIT.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* Unique Sitemap Page Styles */
+    .sitemap-tree {
+      margin-top: 20px;
+      text-align: right;
+    }
+    .sitemap-list {
+      list-style-type: none;
+      padding-right: 20px;
+    }
+    .sitemap-list li {
+      position: relative;
+      padding-right: 25px;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    .sitemap-list li::before {
+      content: '📁';
+      position: absolute;
+      right: 0;
+      top: 2px;
+      font-size: 1rem;
+    }
+    .sitemap-sub-list {
+      list-style-type: none;
+      padding-right: 25px;
+      margin-top: 8px;
+      border-right: 2px dashed var(--accent-gray-dark);
+    }
+    .sitemap-sub-list li {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--color-text-muted);
+    }
+    .sitemap-sub-list li::before {
+      content: '📄';
+    }
+    .sitemap-nested-list {
+      list-style-type: none;
+      padding-right: 20px;
+      margin-top: 4px;
+    }
+    .sitemap-nested-list li {
+      font-size: 0.85rem;
+      margin-bottom: 3px;
+    }
+    .sitemap-nested-list li::before {
+      content: '⚡';
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Keyboard Accessibility Skip Link -->
+  <a href="#mainSitemap" class="skip-link">דלג למפה</a>
+
+  <!-- ==========================================
+       1. Aside Skyscrapers advertisements
+       ========================================== -->
+  <aside class="ad-sidebar ad-right" aria-label="פרסומת ימין">
+    <div class="ad-container">
+      <div class="ad-label">פרסומת</div>
+      <img src="images/comm1.gif" alt="פרסומת נוסטלגית מונפשת" class="ad-image">
+    </div>
+  </aside>
+
+  <aside class="ad-sidebar ad-left" aria-label="פרסומת שמאל">
+    <div class="ad-container">
+      <div class="ad-label">פרסומת</div>
+      <img src="images/comm2.gif" alt="פרסומת נוסטלגית מונפשת" class="ad-image">
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       2. Header
+       ========================================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="site-logo">
+        <img src="images/logo.jpeg" alt="לוגו אני לא בגיל לזה" class="site-logo-img">
+        <span class="site-title">אני לא בגיל לזה</span>
+      </div>
+      <nav class="desktop-nav" aria-label="תפריט ראשי">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">בית</a></li>
+          <li><a href="games.html" class="nav-link">משחקים ונהנים</a></li>
+          <li><a href="karaoke-cake.html" class="nav-link">עוגה וקריוקי</a></li>
+          <li><a href="goodie-bags.html" class="nav-link">שקיות הפתעה +18</a></li>
+          <li><a href="about.html" class="nav-link">אודות</a></li>
+          <li><a href="contact.html" class="nav-link">צור קשר</a></li>
+          <li><a href="sitemap.html" class="nav-link active">מפת אתר</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       3. Main Content
+       ========================================== -->
+  <main id="mainSitemap" class="main-content" style="max-width: 800px;">
+    
+    <div class="retro-window">
+      <div class="retro-titlebar">
+        <div class="retro-window-title">
+          <span class="retro-window-icon">🗺️</span>
+          <span>Sitemap_Explorer.exe</span>
+        </div>
+      </div>
+      <div class="retro-window-content">
+        <h2 style="font-family: var(--font-heading); color: var(--accent-dark-blue); font-size: 1.6rem; text-align: center; margin-bottom: 10px;">מפת האתר הרשמית</h2>
+        <p style="text-align: center; margin-bottom: 30px; font-size: 1rem; color: var(--color-text-muted);">ניווט מהיר ונגיש לכל 7 העמודים ומדורי התוכן של הפרויקט:</p>
+
+        <!-- Sitemap Tree -->
+        <nav class="sitemap-tree" aria-label="מפת האתר">
+          <ul class="sitemap-list">
+            
+            <!-- 1. Home -->
+            <li>
+              <a href="index.html" style="font-weight: bold; color: var(--color-text);">דף הבית (עמוד 1 - index.html)</a>
+              <ul class="sitemap-sub-list">
+                <li><a href="index.html">דיאלוג התראת כאבי גב ושעת שינה</a></li>
+                <li><a href="index.html#nostalgiaText">קטע נוסטלגיה: "זוכרים שפעם ימי הולדת היו נראים ככה?"</a></li>
+                <li>שלושה כפתורי ניווט חווייתיים (משחקים, קריוקי ועוגה, שקיות הפתעה)</li>
+              </ul>
+            </li>
+
+            <!-- 2. Games -->
+            <li>
+              <a href="games.html" style="font-weight: bold; color: var(--color-text);">משחקים ונהנים (עמוד 2 - games.html)</a>
+              <ul class="sitemap-sub-list">
+                <li>
+                  <strong>המשחקים הקלאסיים:</strong>
+                  <ul class="sitemap-nested-list">
+                    <li>לפוצץ בלונים בזוגות</li>
+                    <li>כיסאות מוזיקליים</li>
+                    <li>מי אני? (משחק פתקים על המצח)</li>
+                    <li>מרוץ שקים / כף עם ביצה</li>
+                  </ul>
+                </li>
+                <li style="margin-top: 10px;">
+                  <strong>המשחקים המשודרגים (מותאמי גיל):</strong>
+                  <ul class="sitemap-nested-list">
+                    <li>מי שותה יותר מהר? (בירה במקום טרופית)</li>
+                    <li>חבילה עוברת למבוגרים</li>
+                    <li>להכניס נר לבקבוק (פלח לימון לקוקטייל)</li>
+                    <li>מומייה (חשבונות בנק ואשראי)</li>
+                    <li>תוריד אצבע אם... (מורידים צ'ייסר!)</li>
+                    <li>ביר פונג קלאסי</li>
+                    <li>לנשוף על צמר גפן (בגובה שולחן / נרות)</li>
+                    <li>אמת או חובה</li>
+                  </ul>
+                </li>
+                <li><a href="games.html">מחולל הגרלת המשחקים האקראי (משחק אמת או חובה)</a></li>
+              </ul>
+            </li>
+
+            <!-- 3. Karaoke & Cake -->
+            <li>
+              <a href="karaoke-cake.html" style="font-weight: bold; color: var(--color-text);">עוגה וקריוקי (עמוד 3 - karaoke-cake.html)</a>
+              <ul class="sitemap-sub-list">
+                <li>נגן קריוקי רטרו עם **סרטון יוטיוב מוטמע** מתחלף דינמית</li>
+                <li>מתכון לעוגת גן נוסטלגית בריאה (מצרכים ושלבי הכנה אינטראקטיביים)</li>
+                <li>**משחק הכנת עוגה אינטראקטיבי** (בחישה וערבוב בקערה)</li>
+                <li>**פינת ה"נוסטלגוג" (מקשט העוגה):** העלאת תמונה כדף סוכר, גרירת נרות וסוכריות, כיתוב שוקולד</li>
+              </ul>
+            </li>
+
+            <!-- 4. Goodie Bags -->
+            <li>
+              <a href="goodie-bags.html" style="font-weight: bold; color: var(--color-text);">שקיות הפתעה +18 (עמוד 4 - goodie-bags.html)</a>
+              <ul class="sitemap-sub-list">
+                <li>
+                  <a href="goodie-bags.html">מסלול א': העצלן האחראי (שקיות מוכנות מראש)</a>
+                  <ul class="sitemap-nested-list">
+                    <li>ערכת החמרמורת (הפעלת הנפשת זיקוקי Canvas צבעוניים)</li>
+                    <li>ערכת הילד הנצחי (הפעלת הנפשת זיקוקי Canvas צבעוניים)</li>
+                    <li>ערכת הבורגני המפונק (הפעלת הנפשת זיקוקי Canvas צבעוניים)</li>
+                  </ul>
+                </li>
+                <li style="margin-top: 10px;">
+                  <a href="goodie-bags.html">מסלול ב': ההרפתקן (הרכבה עצמית אינטראקטיבית)</a>
+                  <ul class="sitemap-nested-list">
+                    <li>בחירת סוג שקית (3 סגנונות מעוצבים)</li>
+                    <li>מילוי שקית דינמי (חיתוך spritesheet דינמי של 15 מוצרים)</li>
+                    <li>מעקב תכולה דינמי ושמירת השקית האישית</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 5. About -->
+            <li>
+              <a href="about.html" style="font-weight: bold; color: var(--color-text);">אודות הפרויקט (עמוד 5 - about.html)</a>
+              <ul class="sitemap-sub-list">
+                <li>תיאור האתר "אני לא בגיל לזה"</li>
+                <li>פירוט אתגרים טכנולוגיים בבניית הפרויקט האקדמי</li>
+                <li>צוות הסטודנטים ב-HIT, אפיון העיצוב ולוגו HIT פיקסלי מעוצב</li>
+                <li>להלן המסמכים שפותחו באתר</li>
+              </ul>
+            </li>
+
+            <!-- 6. Contact -->
+            <li>
+              <a href="contact.html" style="font-weight: bold; color: var(--color-text);">צור קשר (עמוד 6 - contact.html)</a>
+              <ul class="sitemap-sub-list">
+                <li>ספר האורחים הרשמי - טופס ולידציה נגיש לשליחת ברכות ומשובים</li>
+                <li>שאלות נפוצות (FAQ) - אקורדיון שאלות אינטראקטיבי מתרחב</li>
+              </ul>
+            </li>
+
+            <!-- 7. Sitemap -->
+            <li>
+              <a href="sitemap.html" style="font-weight: bold; color: var(--color-text);">מפת האתר (Sitemap - sitemap.html)</a>
+              <ul class="sitemap-sub-list">
+                <li>עץ הניווט והמיפוי המלא של 7 עמודי הפרויקט</li>
+              </ul>
+            </li>
+
+          </ul>
+        </nav>
+
+        <div style="text-align: center; margin-top: 40px; border-top: 2px dashed var(--color-border); padding-top: 20px;">
+          <a href="index.html" class="retro-btn">➔ חזרה לעמוד הבית</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================
+       3. Footer
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div style="margin-bottom: 10px;">
+        <span class="accessibility-badge">♿ מפת אתר נגישה WCAG 2.1 AA</span>
+      </div>
+      <p class="footer-text">© 2026 אני לא בגיל לזה. הפקולטה לטכנולוגיות למידה HIT.</p>
+    </div>
+  </footer>
+
+  <!-- Core Script File -->
+  <script src="script.js"></script>
+</body>
+</html>

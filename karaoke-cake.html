@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>עוגה וקריוקי | אני לא בגיל לזה</title>
+  <meta name="description" content="שירו קריוקי בטלוויזיית וינטג' ותכינו עוגת גן נוסטלגית בעזרת משחק הבחישה ומקשט העוגה האינטראקטיבי! פרויקט HIT.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="karaokeCakePage">
+
+  <!-- Keyboard Accessibility Skip Link -->
+  <a href="#mainContent" class="skip-link">דלג לתוכן המרכזי</a>
+
+  <!-- ==========================================
+       1. Aside Skyscrapers advertisements
+       ========================================== -->
+  <aside class="ad-sidebar ad-right" aria-label="פרסומת ימין">
+    <div class="ad-container">
+      <div class="ad-label">פרסומת</div>
+      <img src="images/comm1.gif" alt="פרסומת נוסטלגית מונפשת - חוגגים יום הולדת" class="ad-image">
+    </div>
+  </aside>
+
+  <aside class="ad-sidebar ad-left" aria-label="פרסומת שמאל">
+    <div class="ad-container">
+      <div class="ad-label">פרסומת</div>
+      <img src="images/comm2.gif" alt="פרסומת נוסטלגית מונפשת - עוגה והפתעות" class="ad-image">
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       2. Header & Navigation Menu
+       ========================================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="site-logo">
+        <img src="images/logo.jpeg" alt="לוגו אני לא בגיל לזה" class="site-logo-img">
+        <span class="site-title">אני לא בגיל לזה</span>
+      </div>
+      
+      <!-- Desktop Navigation Menu -->
+      <nav class="desktop-nav" aria-label="תפריט ראשי">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">בית</a></li>
+          <li><a href="games.html" class="nav-link">משחקים ונהנים</a></li>
+          <li><a href="karaoke-cake.html" class="nav-link active">עוגה וקריוקי</a></li>
+          <li><a href="goodie-bags.html" class="nav-link">שקיות הפתעה +18</a></li>
+          <li><a href="about.html" class="nav-link">אודות</a></li>
+          <li><a href="contact.html" class="nav-link">צור קשר</a></li>
+          <li><a href="sitemap.html" class="nav-link">מפת אתר</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileNavMenu" aria-label="פתח תפריט ניווט">
+        <span>⚙</span> תפריט
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Menu -->
+  <nav class="mobile-nav-menu" id="mobileNavMenu" aria-label="תפריט ניווט נייד">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">בית</a></li>
+      <li><a href="games.html" class="mobile-nav-link">משחקים ונהנים</a></li>
+      <li><a href="karaoke-cake.html" class="mobile-nav-link active">עוגה וקריוקי</a></li>
+      <li><a href="goodie-bags.html" class="mobile-nav-link">שקיות הפתעה +18</a></li>
+      <li><a href="about.html" class="mobile-nav-link">אודות</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">צור קשר</a></li>
+      <li><a href="sitemap.html" class="mobile-nav-link">מפת אתר</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==========================================
+       3. Main Content (Karaoke & Cake Content Only)
+       ========================================== -->
+  <main id="mainContent" class="main-content">
+
+    <div class="section-title-container">
+      <span class="section-tag">שירה וקינוחים</span>
+      <h1>החגיגה האמיתית מתחילה!</h1>
+      <p style="font-size: 1.15rem; font-weight: bold; color: var(--accent-magenta);">כי אין קריוקי בלי עוגה...</p>
+    </div>
+
+    <!-- Choice Tabs at the top -->
+    <div class="choice-tabs-grid">
+      <button class="choice-tab-btn" id="tabToKaraoke" style="background-color: var(--accent-cyan);" type="button">
+        <span style="font-size: 2.2rem;">🎤</span>
+        <strong>לקריוקי</strong>
+      </button>
+      
+      <button class="choice-tab-btn" id="tabToCake" style="background-color: var(--accent-pink);" type="button">
+        <span style="font-size: 2.2rem;">🍰</span>
+        <strong>לעוגה</strong>
+      </button>
+    </div>
+
+    <!-- A. KARAOKE SECTION -->
+    <section id="sectionKaraoke" class="games-container" aria-label="מדור קריוקי">
+      <h3 class="games-subtitle">מוכנים להרים את האווירה גם בישיבה?</h3>
+      <p style="margin-bottom: 25px; font-size: 1.05rem;">שירו בהנאה עד שכבר לא תוכלו לעמוד בזה, ליטרלי!</p>
+
+      <div class="karaoke-cake-layout">
+        
+        <!-- Embedded CRT TV Monitor -->
+        <article style="flex-grow: 1;">
+          <div class="vintage-crt-tv">
+            <div class="crt-screen-container">
+              <!-- Dynamically embedded YouTube player frame -->
+              <iframe 
+                class="crt-screen-iframe" 
+                id="crtVideoFrame" 
+                src="https://www.youtube.com/embed/H0CclDmsL6g" 
+                title="קריוקי של השיר הנבחר בתוך סרטון יוטיוב מוטמע" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="crt-tv-controls">
+              <div class="crt-dial" title="כפתור תחנות"></div>
+              <div class="crt-dial" title="עוצמת שמע"></div>
+              <div class="crt-vents"></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Playlist Column -->
+        <article class="karaoke-column" style="max-height: 380px;">
+          <div class="karaoke-title-bar">
+            <span>📺</span>
+            <h4 id="playerSongTitle">מנגן: פרפר נחמד - שיר הנושא המקורי</h4>
+          </div>
+          
+          <div class="song-list-container" style="padding-top: 15px;">
+            <ul style="list-style: none;">
+              <li class="song-item active" role="button" tabindex="0">
+                <span>פרפר נחמד - שיר הנושא המקורי</span>
+                <span>01:24</span>
+              </li>
+              <li class="song-item" role="button" tabindex="0">
+                <span>הופה היי - עוזי חיטמן</span>
+                <span>03:10</span>
+              </li>
+              <li class="song-item" role="button" tabindex="0">
+                <span>הלב (מרקו) - שיר פתיחה מורחב</span>
+                <span>02:45</span>
+              </li>
+              <li class="song-item" role="button" tabindex="0">
+                <span>עניין של זמן - גידי גוב</span>
+                <span>03:15</span>
+              </li>
+              <li class="song-item" role="button" tabindex="0">
+                <span>מסיבת כיתה - להיטי ניינטיז סוערים</span>
+                <span>04:50</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- B. CAKE SECTION -->
+    <section id="sectionCake" class="games-container" aria-label="מדור עוגת גן">
+      <h3 class="games-subtitle">עכשיו אחרי שפירקתם את הגרון.. הגיע הזמן להרכיב את העוגה!</h3>
+      <p style="margin-bottom: 25px; font-size: 1.05rem;">אתם השפים האמיתיים של המסיבה! סידרנו לכם מתכון לעוגת הגן הטעימה והמוכרת, הפעם בגרסה שלא תהפוך אתכם לאסון סוכרתי! (טוב, אולי לא לגמרי...)</p>
+
+      <div class="karaoke-cake-layout">
+        
+        <!-- Recipe Metadata & Steps -->
+        <article class="cake-column">
+          <div class="cake-title-bar">
+            <span>📋</span>
+            <h4>מתכון לעוגת גן (בריאה!)</h4>
+          </div>
+          
+          <div class="recipe-container">
+            <!-- Metadata Row -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+              <span class="section-tag" style="background-color: var(--accent-purple);">רמת קושי: קל מאוד</span>
+              <span class="section-tag" style="background-color: var(--accent-cyan); color: #000;">זמן הכנה: 15 דקות גג</span>
+              <span class="section-tag" style="background-color: var(--accent-green); color: #000;">זמן אפייה: 30 דקות בול</span>
+              <span class="section-tag" style="background-color: var(--accent-coral); color: #000;">מצרכים: מדידה בכוס פלסטיק</span>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="recipe-card">
+              <div class="recipe-ingredients-grid">
+                <div>
+                  <h5 style="color: var(--accent-magenta);">לעוגה:</h5>
+                  <ul class="recipe-list">
+                    <li>כוס אחת שוקולית</li>
+                    <li>כוס אחת קמח לבן</li>
+                    <li>חצי כוס סוכר</li>
+                    <li>רבע כוס שמן</li>
+                    <li>3 ביצים (מדיום-לארג')</li>
+                    <li>חצי מיכל שמנת מתוקה 38% (125 גרם)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 style="color: var(--accent-magenta);">לציפוי וקישוט:</h5>
+                  <ul class="recipe-list">
+                    <li>200 גרם שוקולד מריר/חלב/לבן</li>
+                    <li>חצי מיכל שמנת מתוקה 38% (125 גרם)</li>
+                    <li>דף סוכר, סוכריות, קצפת</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instructions steps -->
+            <h5 style="margin-bottom: 10px; font-family: var(--font-heading);">הוראות הכנה (לחצו על שלבים לסימון V):</h5>
+            <ol class="recipe-steps">
+              <li class="recipe-step-item">לחמם תנור ל-180 מעלות.</li>
+              <li class="recipe-step-item">לערבב את כל היבשים בקערה.</li>
+              <li class="recipe-step-item">להוסיף את הרטובים ולאחד את הבלילה.</li>
+              <li class="recipe-step-item">להעביר את הבלילה לתבנית ולהכניס לתנור ל-30 דקות.</li>
+              <li class="recipe-step-item">להכין את הציפוי: להמיס את השוקולד בסיר, להוסיף את השמנת ולערבב.</li>
+              <li class="recipe-step-item">כשהעוגה מוכנה, לצנן אותה ולשים מעל את הציפוי החם.</li>
+              <li class="recipe-step-item">להוסיף קישוטים והעוגה מוכנה!🍰</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- Baking Mixer game -->
+        <article class="baking-bowl-container">
+          <h4 style="font-family: var(--font-heading); margin-bottom: 15px; text-align: center;">נסו בעצמכם: בחישת הבלילה!</h4>
+          <p style="font-size: 0.85rem; text-align: center; margin-bottom: 15px; color: var(--color-text-muted);">לחצו על המוצרים במדף כדי להוסיף אותם לקערה:</p>
+          
+          <div class="baking-ingredients-shelf">
+            <button class="baking-ingredient-item" data-ing="flour" type="button">🌾 קמח</button>
+            <button class="baking-ingredient-item" data-ing="cocoa" type="button">🍫 שוקולית</button>
+            <button class="baking-ingredient-item" data-ing="sugar" type="button">🍬 סוכר</button>
+            <button class="baking-ingredient-item" data-ing="eggs" type="button">🥚 ביצים</button>
+            <button class="baking-ingredient-item" data-ing="cream" type="button">🥛 שמנת</button>
+          </div>
+
+          <div class="baking-bowl">
+            <div class="baking-batter" id="bakingBatter"></div>
+            <div class="baking-spoon" id="bakingSpoon"></div>
+          </div>
+
+          <button class="retro-btn retro-btn-accent" id="btnMixBaking" style="margin-top: 20px; width: 100%;" disabled type="button">🥣 ערבב בלילה! 🥣</button>
+        </article>
+      </div>
+
+      <!-- INTERACTIVE CAKE DECORATOR (נוסטלגוג) -->
+      <article class="cake-decorator-workspace" aria-label="מקשט עוגת גן אינטראקטיבי">
+        <h3 style="font-family: var(--font-pixel); color: var(--accent-dark-blue); font-size: 1.5rem; text-align: center; margin-bottom: 10px;">פינת ה"נוסטלגוג" (נוסטלגיה + עוגת גן)</h3>
+        <p style="text-align: center; margin-bottom: 25px; font-size: 0.95rem; color: var(--color-text-muted);">עצבו את עוגת הגן שלכם! העלו תמונת ילדות מביכה, בחרו צבע קצפת, הוסיפו סוכריות ונרות, וכתבו כיתוב שוקולד נוסטלגי.</p>
+
+        <div class="decorator-grid">
+          
+          <!-- Controls Panel -->
+          <div class="decor-controls-panel">
+            <!-- 1. Sugar sheet upload -->
+            <div class="form-group" style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px;">
+              <span class="form-label" style="font-family: var(--font-pixel);">1. העלאת דף סוכר (תמונת ילדות):</span>
+              <label for="sugarSheetUpload" class="retro-btn retro-btn-secondary" style="margin-top: 8px; width: 100%; font-size: 0.9rem;">📂 בחרו תמונה מהמחשב</label>
+              <input type="file" id="sugarSheetUpload" accept="image/*" style="display: none;">
+            </div>
+
+            <!-- 2. Frosting color -->
+            <div class="form-group" style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px;">
+              <span class="form-label" style="font-family: var(--font-pixel);">2. בחרו צבע קרם ציפוי:</span>
+              <div class="color-circles-picker" style="margin-top: 8px;">
+                <div class="color-circle" data-color="var(--accent-pink)" style="background-color: var(--accent-pink);" title="ורוד בייבי"></div>
+                <div class="color-circle" data-color="#583319" style="background-color: #583319;" title="שוקולד חום"></div>
+                <div class="color-circle" data-color="var(--accent-green)" style="background-color: var(--accent-green);" title="מנטה ירוק"></div>
+                <div class="color-circle" data-color="var(--accent-cyan)" style="background-color: var(--accent-cyan);" title="בננה כחול"></div>
+                <div class="color-circle" data-color="var(--accent-yellow)" style="background-color: var(--accent-yellow);" title="קרם לימון"></div>
+              </div>
+            </div>
+
+            <!-- 3. Add Decorations -->
+            <div class="form-group" style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px; display: flex; gap: 10px;">
+              <button class="retro-btn" id="btnAddSprinkles" style="flex-grow: 1; font-size: 0.85rem;" type="button">🌈 הוסף סוכריות</button>
+              <button class="retro-btn retro-btn-secondary" id="btnAddCandle" style="flex-grow: 1; font-size: 0.85rem;" type="button">🕯️ הוסף נר גיל</button>
+            </div>
+
+            <!-- 4. Icing Text Input -->
+            <div class="form-group" style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px;">
+              <label for="cakeIcingInput" class="form-label" style="font-family: var(--font-pixel);">3. כיתוב שוקולד על העוגה:</label>
+              <input type="text" id="cakeIcingInput" class="form-control" placeholder="מזל טוב! או כיתוב מצחיק..." maxlength="30" style="margin-top: 6px;">
+            </div>
+
+            <!-- Action Bar -->
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+              <button class="retro-btn retro-btn-accent" id="btnSaveDecor" style="flex-grow: 2;" type="button">💾 שמור עוגה מעוצבת!</button>
+              <button class="retro-btn" id="btnClearDecor" style="flex-grow: 1; background-color: var(--accent-coral);" type="button">רוקן ↺</button>
+            </div>
+          </div>
+
+          <!-- Cake Visual Canvas Container -->
+          <div class="cake-canvas-container">
+            <div class="cake-visual-base">
+              <!-- Top frosting layer -->
+              <div class="cake-frosting-top" id="cakeFrosting"></div>
+              
+              <!-- Draggable / scattered decorations layer -->
+              <div class="cake-placed-decorations" id="placedDecorations"></div>
+              
+              <!-- Sugar sheet overlay image -->
+              <div class="sugar-sheet-overlay" id="sugarSheetOverlay">
+                <span style="font-size: 0.7rem; color: var(--color-text-muted); font-family: var(--font-pixel); text-align: center; padding: 10px;">דף סוכר<br>(העלו תמונה)</span>
+                <img src="" alt="תמונת דף הסוכר שלך" class="sugar-sheet-uploaded-img" id="sugarSheetUploadedImg">
+              </div>
+
+              <!-- Icing Text overlay -->
+              <div class="cake-icing-text-overlay" id="cakeIcingText">הכיתוב שלכם כאן</div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <div style="text-align: center; margin-top: 40px; border-top: 2.5px dashed var(--color-border); padding-top: 20px;">
+        <p style="font-weight: 500; margin-bottom: 15px;">רגע לפני שתיגמר המסיבה, עברו לדף הבא כדי לקבל שקית הפתעה!</p>
+        <a href="goodie-bags.html" class="retro-btn">➔ מעבר לעמוד שקיות הפתעה</a>
+      </div>
+    </section>
+
+    <!-- Responsive Fallback Ads -->
+    <div class="mobile-ads-container" aria-label="מדור פרסום">
+      <div class="mobile-ad-card">
+        <div class="ad-label">פרסומת</div>
+        <img src="images/comm1.gif" alt="באנר פרסומת מונפש - בלונים">
+      </div>
+      <div class="mobile-ad-card">
+        <div class="ad-label">פרסומת</div>
+        <img src="images/comm2.gif" alt="באנר פרסומת מונפש - חגיגות">
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================
+       4. Footer Section
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <ul class="footer-nav">
+        <li><a href="index.html">בית</a></li>
+        <li><a href="games.html">משחקים ונהנים</a></li>
+        <li><a href="karaoke-cake.html">עוגה וקריוקי</a></li>
+        <li><a href="goodie-bags.html">שקיות הפתעה +18</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="contact.html">צור קשר</a></li>
+        <li><a href="sitemap.html">מפת אתר</a></li>
+      </ul>
+      
+      <div style="margin: 15px 0;">
+        <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
+      </div>
+      
+      <p class="footer-text">© 2026 אני לא בגיל לזה. הפקולטה לטכנולוגיות למידה HIT.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       5. Accessible Windows 95 System Dialog (Modal)
+       ========================================== -->
+  <div class="retro-modal-overlay" id="retroModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitleText">
+    <div class="retro-modal">
+      <div class="retro-titlebar">
+        <div class="retro-window-title">
+          <span class="retro-window-icon">🎂</span>
+          <span id="modalTitleText">מערכת אפייה</span>
+        </div>
+        <button class="retro-control-btn modal-close-trigger" aria-label="סגור חלונית">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-message" id="modalBodyText">הודעה.</div>
+      </div>
+      <div class="modal-footer">
+        <button class="retro-btn modal-close-trigger" id="modalCloseBtn" style="padding: 5px 15px; font-size: 0.9rem;" type="button">אישור</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Script File -->
+  <script src="script.js"></script>
+</body>
+</html>
