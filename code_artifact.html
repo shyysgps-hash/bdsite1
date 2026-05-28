@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>משחק אפיית עוגת יום הולדת</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            touch-action: none; /* Prevent scroll on touch while dragging */
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .ingredient {
+            transition: transform 0.2s;
+            cursor: grab;
+            touch-action: none;
+        }
+        
+        .ingredient:active {
+            cursor: grabbing;
+        }
+
+        .dragging {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none; /* Let events pass through to drop targets */
+            transform: scale(1.1);
+        }
+
+        /* Target Areas */
+        .bowl {
+            width: 200px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 4px solid #fff;
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+            position: relative;
+            box-shadow: inset 0 -20px 20px rgba(0,0,0,0.1), 0 10px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .bowl-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            background-color: transparent;
+            transition: height 0.5s, background-color 1s;
+        }
+
+        .pan {
+            width: 240px;
+            height: 80px;
+            background: #cbd5e1;
+            border: 4px solid #94a3b8;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2), 0 10px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .pan-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            background-color: #5d4037; /* Batter color */
+            transition: height 1s;
+        }
+
+        .oven {
+            width: 260px;
+            height: 220px;
+            background: #334155;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+            border: 4px solid #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .oven-window {
+            width: 200px;
+            height: 120px;
+            background: #94a3b8;
+            border-radius: 10px;
+            border: 4px solid #475569;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.5s;
+        }
+        
+        .oven.on .oven-window {
+            background: #fca5a5; /* Red glow */
+            box-shadow: inset 0 0 30px #dc2626;
+        }
+
+        .oven-controls {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .knob {
+            width: 15px;
+            height: 15px;
+            background: #1e293b;
+            border-radius: 50%;
+        }
+
+        .timer-display {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            color: #ef4444;
+            font-family: monospace;
+            font-size: 1.2rem;
+            background: #0f172a;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        .pot {
+            width: 160px;
+            height: 100px;
+            background: #64748b;
+            border-radius: 10px;
+            border: 4px solid #475569;
+            position: relative;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2), 0 10px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .pot::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -25px;
+            width: 40px;
+            height: 15px;
+            background: #475569;
+            border-radius: 10px;
+        }
+
+        .pot-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            background-color: transparent;
+            transition: height 0.5s, background-color 1s;
+        }
+
+        .cake-baked {
+            background-color: #4e342e; /* Darker baked color */
+            border-radius: 5px;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .frosting-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            background-color: #3e2723; /* Dark chocolate frosting */
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            transition: height 1.5s;
+        }
+
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .pour-animation {
+            animation: pour 1s forwards;
+        }
+
+        @keyframes pour {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(-45deg); }
+            100% { transform: rotate(0deg); opacity: 0; display: none;}
+        }
+        
+        .stream {
+            position: absolute;
+            width: 20px;
+            height: 0px;
+            background-color: #5d4037;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: height 0.5s;
+            z-index: 10;
+        }
+
+        .decoration {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            pointer-events: none;
+        }
+
+        /* Helper to center content */
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex flex-col">
+
+    <!-- Header / Instructions -->
+    <header class="bg-white/80 shadow-md p-4 text-center rounded-b-3xl z-20 relative">
+        <h1 class="text-3xl font-black text-pink-600 mb-2 drop-shadow-sm">🍰 קונדיטוריית יום ההולדת</h1>
+        <p id="instruction-text" class="text-xl font-bold text-gray-700">בואו נכין עוגה! לחצו על התחל.</p>
+    </header>
+
+    <!-- Main Game Area -->
+    <main class="flex-1 relative flex flex-col items-center p-4">
+        
+        <!-- Top Shelf for Ingredients -->
+        <div id="shelf" class="w-full max-w-2xl h-32 bg-white/50 rounded-2xl p-4 flex justify-center items-center gap-4 flex-wrap shadow-inner mb-8 transition-opacity duration-500 opacity-0 hidden z-10">
+            <!-- Ingredients will be injected here -->
+        </div>
+
+        <!-- Middle Target Area (Bowl, Pan, Oven) -->
+        <div id="target-area" class="flex-1 w-full max-w-2xl flex-center relative">
+            
+            <!-- Items like Bowl, Pan, Oven will be toggled here -->
+            <div id="bowl-container" class="hidden flex-col items-center gap-4">
+                <div class="bowl" id="bowl">
+                    <div class="bowl-content" id="bowl-content"></div>
+                </div>
+                <button id="mix-btn" class="hidden bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transform transition active:scale-95 text-xl">ערבבו!</button>
+            </div>
+
+            <div id="pan-container" class="hidden flex-col items-center gap-4">
+                <div class="pan" id="pan">
+                    <div class="pan-content" id="pan-content"></div>
+                    <div class="frosting-layer" id="frosting-layer"></div>
+                </div>
+            </div>
+
+            <div id="oven-container" class="hidden flex-col items-center gap-4">
+                <div class="oven" id="oven">
+                    <div class="timer-display" id="timer">30:00</div>
+                    <div class="oven-controls">
+                        <div class="knob"></div>
+                        <div class="knob"></div>
+                    </div>
+                    <div class="oven-window flex-center" id="oven-window">
+                        <!-- Pan will go inside here during baking -->
+                    </div>
+                </div>
+                <p id="oven-status" class="text-lg font-bold text-gray-700 hidden">אופה... נא להמתין</p>
+            </div>
+
+            <div id="pot-container" class="hidden flex-col items-center gap-4">
+                <div class="pot" id="pot">
+                    <div class="pot-content" id="pot-content"></div>
+                </div>
+                <button id="melt-btn" class="hidden bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transform transition active:scale-95 text-xl">המסו וערבבו!</button>
+            </div>
+
+            <div id="decoration-tools" class="hidden absolute top-0 right-0 left-0 flex justify-center gap-4 p-4 bg-white/70 rounded-xl shadow-md">
+                <button class="dec-btn bg-white border-2 border-pink-300 p-2 rounded-lg text-2xl hover:bg-pink-50 transition" data-type="sprinkles">🎊 סוכריות</button>
+                <button class="dec-btn bg-white border-2 border-blue-300 p-2 rounded-lg text-2xl hover:bg-blue-50 transition" data-type="cream">🧁 קצפת</button>
+                <button id="finish-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md ml-4">סיימתי!</button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Start Overlay -->
+    <div id="start-overlay" class="absolute inset-0 bg-pink-100/90 z-50 flex flex-col items-center justify-center backdrop-blur-sm">
+        <h2 class="text-4xl font-black text-pink-600 mb-6 drop-shadow-md text-center px-4">הכנת עוגת יום הולדת</h2>
+        <div class="bg-white p-6 rounded-2xl shadow-xl max-w-md text-center mb-8 mx-4">
+            <h3 class="text-xl font-bold mb-4">המתכון שלנו להיום:</h3>
+            <ul class="text-right list-disc list-inside text-gray-700 space-y-1">
+                <li>כוס אחת קמח וכוס שוקולית</li>
+                <li>חצי כוס סוכר ורבע כוס שמן</li>
+                <li>3 ביצים וחצי שמנת מתוקה</li>
+                <li>לציפוי: שוקולד ועוד קצת שמנת</li>
+                <li>לקישוט: מלא סוכריות וקצפת!</li>
+            </ul>
+        </div>
+        <button id="start-btn" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-black text-2xl py-4 px-12 rounded-full shadow-2xl transform transition hover:scale-105 active:scale-95">
+            מתחילים לאפות!
+        </button>
+    </div>
+
+    <!-- Celebration Overlay -->
+    <div id="win-overlay" class="absolute inset-0 bg-black/60 z-50 flex-col items-center justify-center hidden backdrop-blur-sm">
+        <h2 class="text-6xl font-black text-white mb-6 drop-shadow-2xl text-center px-4 animate-bounce">מזל טוב! 🥳</h2>
+        <p class="text-2xl text-white font-bold mb-8">הכנתם את העוגה המושלמת!</p>
+        <button id="restart-btn" class="bg-white text-pink-600 font-black text-2xl py-3 px-8 rounded-full shadow-2xl transform transition hover:scale-105 active:scale-95">
+            הכינו עוגה נוספת
+        </button>
+    </div>
+
+    <script>
+        // Game State
+        const state = {
+            phase: 0,
+            addedCount: 0,
+            requiredCount: 0,
+            currentTool: null // for decorations
+        };
+
+        // DOM Elements
+        const instructionText = document.getElementById('instruction-text');
+        const shelf = document.getElementById('shelf');
+        const bowlContainer = document.getElementById('bowl-container');
+        const panContainer = document.getElementById('pan-container');
+        const ovenContainer = document.getElementById('oven-container');
+        const potContainer = document.getElementById('pot-container');
+        const decorationTools = document.getElementById('decoration-tools');
+        
+        const bowl = document.getElementById('bowl');
+        const bowlContent = document.getElementById('bowl-content');
+        const mixBtn = document.getElementById('mix-btn');
+        
+        const pan = document.getElementById('pan');
+        const panContent = document.getElementById('pan-content');
+        
+        const oven = document.getElementById('oven');
+        const ovenWindow = document.getElementById('oven-window');
+        const timerDisplay = document.getElementById('timer');
+        
+        const pot = document.getElementById('pot');
+        const potContent = document.getElementById('pot-content');
+        const meltBtn = document.getElementById('melt-btn');
+        const frostingLayer = document.getElementById('frosting-layer');
+
+        // Ingredients Data
+        const ingredients = {
+            dry: [
+                { id: 'flour', name: 'קמח', icon: '🥡', color: '#fef3c7' },
+                { id: 'sugar', name: 'סוכר', icon: '🍚', color: '#ffffff' },
+                { id: 'shokolit', name: 'שוקולית', icon: '🟤', color: '#8b5a2b' }
+            ],
+            wet: [
+                { id: 'oil', name: 'שמן', icon: '🍾', color: '#fde047' },
+                { id: 'eggs', name: 'ביצים', icon: '🥚', color: '#fef08a' },
+                { id: 'cream1', name: 'שמנת', icon: '🥛', color: '#f8fafc' }
+            ],
+            frosting: [
+                { id: 'chocolate', name: 'שוקולד', icon: '🍫', color: '#3e2723' },
+                { id: 'cream2', name: 'שמנת', icon: '🥛', color: '#f8fafc' }
+            ]
+        };
+
+        // Drag and Drop Logic (Touch & Mouse Support via Pointer Events)
+        let draggedItem = null;
+        let startX, startY, initialX, initialY;
+
+        function makeDraggable(element, targetElement, onSuccess) {
+            element.addEventListener('pointerdown', (e) => {
+                draggedItem = element;
+                const rect = element.getBoundingClientRect();
+                
+                // Create a clone for dragging to avoid layout jumping
+                const clone = element.cloneNode(true);
+                clone.classList.add('dragging');
+                clone.style.left = rect.left + 'px';
+                clone.style.top = rect.top + 'px';
+                clone.style.width = rect.width + 'px';
+                clone.style.height = rect.height + 'px';
+                clone.style.margin = '0';
+                
+                document.body.appendChild(clone);
+                
+                element.style.opacity = '0.3'; // Dim original
+                
+                startX = e.clientX;
+                startY = e.clientY;
+                initialX = rect.left;
+                initialY = rect.top;
+
+                clone.setPointerCapture(e.pointerId);
+
+                clone.addEventListener('pointermove', (ev) => {
+                    const dx = ev.clientX - startX;
+                    const dy = ev.clientY - startY;
+                    clone.style.left = initialX + dx + 'px';
+                    clone.style.top = initialY + dy + 'px';
+                });
+
+                clone.addEventListener('pointerup', (ev) => {
+                    clone.releasePointerCapture(ev.pointerId);
+                    
+                    // Check collision
+                    const targetRect = targetElement.getBoundingClientRect();
+                    const cloneRect = clone.getBoundingClientRect();
+                    
+                    const isOverlapping = !(
+                        cloneRect.right < targetRect.left || 
+                        cloneRect.left > targetRect.right || 
+                        cloneRect.bottom < targetRect.top || 
+                        cloneRect.top > targetRect.bottom
+                    );
+
+                    clone.remove(); // Remove ghost
+
+                    if (isOverlapping) {
+                        element.style.display = 'none'; // Success, hide original
+                        onSuccess(element.dataset.color);
+                    } else {
+                        element.style.opacity = '1'; // Revert dim
+                    }
+                    
+                    draggedItem = null;
+                });
+            });
+        }
+
+        function renderShelf(items, targetElement, dropCallback) {
+            shelf.innerHTML = '';
+            shelf.classList.remove('hidden');
+            setTimeout(() => shelf.classList.remove('opacity-0'), 50);
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'ingredient flex flex-col items-center bg-white p-3 rounded-xl shadow cursor-grab';
+                div.dataset.id = item.id;
+                div.dataset.color = item.color;
+                
+                const icon = document.createElement('div');
+                icon.className = 'text-4xl drop-shadow-md';
+                icon.innerText = item.icon;
+                
+                const name = document.createElement('span');
+                name.className = 'text-sm font-bold mt-1 text-gray-700';
+                name.innerText = item.name;
+
+                div.appendChild(icon);
+                div.appendChild(name);
+                shelf.appendChild(div);
+
+                makeDraggable(div, targetElement, dropCallback);
+            });
+        }
+
+        function hideShelf() {
+            shelf.classList.add('opacity-0');
+            setTimeout(() => shelf.classList.add('hidden'), 500);
+        }
+
+        function updateInstruction(text) {
+            instructionText.style.opacity = 0;
+            setTimeout(() => {
+                instructionText.innerText = text;
+                instructionText.style.opacity = 1;
+            }, 300);
+        }
+
+        // --- Game Phases ---
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            document.getElementById('start-overlay').style.display = 'none';
+            startPhase1();
+        });
+
+        function startPhase1() {
+            state.phase = 1;
+            state.addedCount = 0;
+            state.requiredCount = ingredients.dry.length;
+            
+            updateInstruction('שלב 1: גררו את המצרכים היבשים לתוך הקערה.');
+            bowlContainer.classList.remove('hidden');
+            bowlContainer.classList.add('flex');
+            
+            renderShelf(ingredients.dry, bowl, (color) => {
+                state.addedCount++;
+                bowlContent.style.height = (state.addedCount * 15) + '%';
+                bowlContent.style.backgroundColor = color; // Last color added
+                
+                if (state.addedCount === state.requiredCount) {
+                    setTimeout(() => {
+                        mixBtn.classList.remove('hidden');
+                        updateInstruction('מצוין! עכשיו לחצו על הכפתור כדי לערבב.');
+                    }, 500);
+                }
+            });
+        }
+
+        mixBtn.addEventListener('click', () => {
+            if (state.phase === 1) {
+                bowl.classList.add('shake');
+                mixBtn.disabled = true;
+                setTimeout(() => {
+                    bowl.classList.remove('shake');
+                    bowlContent.style.backgroundColor = '#d2b48c'; // Light brown powder
+                    mixBtn.classList.add('hidden');
+                    mixBtn.disabled = false;
+                    startPhase2();
+                }, 1500);
+            } else if (state.phase === 2) {
+                bowl.classList.add('shake');
+                mixBtn.disabled = true;
+                setTimeout(() => {
+                    bowl.classList.remove('shake');
+                    bowlContent.style.backgroundColor = '#5d4037'; // Dark brown batter
+                    mixBtn.classList.add('hidden');
+                    mixBtn.disabled = false;
+                    startPhase3();
+                }, 1500);
+            }
+        });
+
+        function startPhase2() {
+            state.phase = 2;
+            state.addedCount = 0;
+            state.requiredCount = ingredients.wet.length;
+            
+            updateInstruction('שלב 2: הוסיפו את המצרכים הרטובים לקערה.');
+            
+            renderShelf(ingredients.wet, bowl, (color) => {
+                state.addedCount++;
+                bowlContent.style.height = (45 + (state.addedCount * 15)) + '%'; // Fill up to 90%
+                
+                if (state.addedCount === state.requiredCount) {
+                    setTimeout(() => {
+                        mixBtn.classList.remove('hidden');
+                        updateInstruction('מעולה! בואו נערבב כדי ליצור את הבלילה.');
+                    }, 500);
+                }
+            });
+        }
+
+        function startPhase3() {
+            state.phase = 3;
+            hideShelf();
+            updateInstruction('שלב 3: גררו את הקערה אל התבנית כדי למזוג את הבלילה.');
+
+            panContainer.classList.remove('hidden');
+            panContainer.classList.add('flex');
+
+            // Make bowl draggable to pan
+            bowl.classList.add('cursor-grab', 'hover:scale-105', 'transition');
+
+            makeDraggable(bowlContainer, pan, () => {
+                bowl.classList.add('pour-animation');
+
+                // Animate pouring
+                setTimeout(() => {
+                    bowlContent.style.height = '0%';
+                    panContent.style.height = '90%';
+                }, 500);
+
+                setTimeout(() => {
+                    bowlContainer.style.display = 'none';
+                    bowl.classList.remove('pour-animation', 'cursor-grab', 'hover:scale-105');
+                    startPhase4();
+                }, 1500);
+            });
+        }
+
+        function startPhase4() {
+            state.phase = 4;
+            updateInstruction('שלב 4: הכניסו את התבנית לתנור האפייה (180 מעלות).');
+
+            ovenContainer.classList.remove('hidden');
+            ovenContainer.classList.add('flex');
+
+            pan.classList.add('cursor-grab', 'hover:scale-105', 'transition');
+
+            makeDraggable(panContainer, oven, () => {
+                // Move pan inside oven
+                pan.classList.remove('cursor-grab', 'hover:scale-105');
+                ovenWindow.appendChild(pan);
+                pan.style.transform = 'scale(0.7)';
+
+                updateInstruction('אופה... חכו שהטיימר יסתיים.');
+                document.getElementById('oven-status').classList.remove('hidden');
+                oven.classList.add('on');
+
+                // Timer Logic (Visual 30 mins, actual ~6 seconds)
+                let time = 30;
+                timerDisplay.innerText = `${time}:00`;
+
+                const timerInterval = setInterval(() => {
+                    time -= 5;
+                    timerDisplay.innerText = time < 10 ? `0${time}:00` : `${time}:00`;
+
+                    if (time <= 0) {
+                        clearInterval(timerInterval);
+                        oven.classList.remove('on');
+                        timerDisplay.innerText = "00:00";
+                        document.getElementById('oven-status').innerText = 'צפצוף! העוגה מוכנה!';
+
+                        setTimeout(() => {
+                            finishBaking();
+                        }, 1000);
+                    }
+                }, 1000);
+            });
+        }
+
+        function finishBaking() {
+            state.phase = 5;
+            document.getElementById('oven-status').classList.add('hidden');
+            ovenContainer.classList.add('hidden');
+            ovenContainer.classList.remove('flex');
+
+            // Bring pan back to main area
+            panContainer.appendChild(pan);
+            pan.style.transform = 'none';
+            pan.style.display = 'block';
+            panContainer.style.display = 'flex';
+            panContainer.classList.remove('hidden');
+            panContainer.classList.add('flex');
+            panContent.classList.add('cake-baked');
+
+            updateInstruction('העוגה נאפתה! תנו לה להתקרר, ובינתיים נכין את הציפוי. גררו שוקולד ושמנת לסיר.');
+
+            potContainer.classList.remove('hidden');
+            potContainer.classList.add('flex');
+
+            state.addedCount = 0;
+            state.requiredCount = ingredients.frosting.length;
+
+            renderShelf(ingredients.frosting, pot, (color) => {
+                state.addedCount++;
+                potContent.style.height = (state.addedCount * 40) + '%';
+
+                if (state.addedCount === state.requiredCount) {
+                    setTimeout(() => {
+                        meltBtn.classList.remove('hidden');
+                        updateInstruction('לחצו כדי להמיס ולערבב את הציפוי.');
+                    }, 500);
+                }
+            });
+        }
+
+        meltBtn.addEventListener('click', () => {
+            pot.classList.add('shake');
+            meltBtn.disabled = true;
+            setTimeout(() => {
+                pot.classList.remove('shake');
+                potContent.style.backgroundColor = '#3e2723'; // Melted chocolate
+                meltBtn.classList.add('hidden');
+                startPhase6();
+            }, 1500);
+        });
+
+        function startPhase6() {
+            state.phase = 6;
+            hideShelf();
+            updateInstruction('שלב 6: העוגה התקררה. גררו את הסיר ושפכו את הציפוי על העוגה.');
+
+            pot.classList.add('cursor-grab', 'hover:scale-105', 'transition');
+
+            makeDraggable(potContainer, pan, () => {
+                pot.classList.add('pour-animation');
+
+                setTimeout(() => {
+                    potContent.style.height = '0%';
+                    frostingLayer.style.height = '8px';
+                    frostingLayer.style.opacity = '0.7';
+                }, 500);
+
+                setTimeout(() => {
+                    potContainer.style.display = 'none';
+                    startPhase7();
+                }, 1500);
+            });
+        }
+
+        function startPhase7() {
+            state.phase = 7;
+            updateInstruction('שלב אחרון: קישוטים! בחרו קישוט ולחצו על העוגה.');
+            
+            decorationTools.classList.remove('hidden');
+            decorationTools.classList.add('flex');
+
+            // Setup decoration buttons
+            document.querySelectorAll('.dec-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.dec-btn').forEach(b => b.classList.remove('ring-4', 'ring-pink-400'));
+                    e.target.classList.add('ring-4', 'ring-pink-400');
+                    state.currentTool = e.target.dataset.type;
+                });
+            });
+
+            // Make cake clickable for decorations
+            pan.style.cursor = 'crosshair';
+            pan.addEventListener('click', (e) => {
+                if (!state.currentTool) return;
+                
+                const rect = pan.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const dec = document.createElement('div');
+                dec.className = 'decoration animate-bounce';
+                dec.style.left = x + 'px';
+                dec.style.top = y + 'px';
+                
+                if (state.currentTool === 'sprinkles') {
+                    const colors = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#d946ef'];
+                    dec.innerHTML = '•';
+                    dec.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    dec.style.fontSize = '2rem';
+                    // small random offset for scatter
+                    dec.style.left = (x + (Math.random()*20-10)) + 'px';
+                    dec.style.top = (y + (Math.random()*20-10)) + 'px';
+                } else if (state.currentTool === 'cream') {
+                    dec.innerHTML = '🧁';
+                    dec.style.fontSize = '1.5rem';
+                }
+                
+                pan.appendChild(dec);
+            });
+        }
+
+        document.getElementById('finish-btn').addEventListener('click', () => {
+            document.getElementById('win-overlay').classList.remove('hidden');
+            document.getElementById('win-overlay').classList.add('flex');
+            createConfetti();
+        });
+
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            location.reload(); // Simple reload to restart the game
+        });
+
+        function createConfetti() {
+            const colors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7'];
+            for (let i = 0; i < 100; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'absolute';
+                conf.style.width = '10px';
+                conf.style.height = '10px';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.top = '-10px';
+                conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                conf.style.zIndex = '100';
+                conf.style.pointerEvents = 'none';
+                
+                document.body.appendChild(conf);
+
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+
+                conf.animate([
+                    { transform: `translate3d(0,0,0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate3d(${Math.random()*200 - 100}px, 100vh, 0) rotate(${Math.random()*720}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    delay: delay * 1000,
+                    easing: 'cubic-bezier(.37,0,.63,1)',
+                    fill: 'forwards'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
