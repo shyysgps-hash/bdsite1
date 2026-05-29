@@ -208,7 +208,7 @@ aside.ad-sidebar.ad-left {
 .ad-image {
   flex-grow: 1;
   width: 100%;
-  height: calc(100% - 20px);
+  height: 0; /* Managed by flexbox to leave space for button below */
   object-fit: cover;
 }
 
@@ -236,7 +236,8 @@ aside.ad-sidebar.ad-left {
 }
 
 .mobile-ad-card img {
-  height: calc(100% - 16px);
+  flex-grow: 1;
+  height: 0; /* Managed by flexbox to leave space for button below */
   object-fit: cover;
 }
 
@@ -520,11 +521,11 @@ header.site-header {
   font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;
-  color: #00ffff;
+  color: var(--accent-dark-blue); /* High-contrast dark blue for full accessibility */
   text-shadow:
-    3px 3px 0 var(--accent-magenta),
-    6px 6px 0 var(--accent-dark-blue),
-    9px 9px 0 #000;
+    3px 3px 0 var(--accent-pink),
+    6px 6px 0 var(--accent-yellow),
+    9px 9px 0 #000000;
   transform: skew(-10deg) rotate(-2deg);
   display: inline-block;
   letter-spacing: 2px;
@@ -623,8 +624,9 @@ header.site-header {
 }
 
 .quick-nav-icon {
-  width: 64px;
-  height: 64px;
+  width: 300px; /* Enlarged to occupy the upper third of the card */
+  height: 300px; /* Enlarged to occupy the upper third of the card */
+  object-fit: contain;
   margin-bottom: 15px;
   image-rendering: pixelated;
   transition: transform var(--transition-normal);
@@ -753,8 +755,8 @@ header.site-header {
 }
 
 .flip-card-front-icon {
-  width: 50px;
-  height: 50px;
+  width: 200px;
+  height: 100px;
   image-rendering: pixelated;
 }
 
@@ -2531,10 +2533,9 @@ header.site-header {
 }
 
 .ad-pause-btn {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin: 6px auto 4px auto;
+  display: block;
   padding: 4px 10px;
   font-size: 0.75rem;
   font-family: var(--font-heading);
@@ -2546,25 +2547,25 @@ header.site-header {
   z-index: 15;
   transition: all var(--transition-fast);
   white-space: nowrap;
+  width: fit-content;
 }
 
 .ad-pause-btn:hover {
   background-color: var(--accent-pink);
-  transform: translateX(-50%) translateY(-1px);
+  transform: translateY(-1px);
   box-shadow: 3px 3px 0 var(--color-border);
 }
 
 .ad-pause-btn:active {
-  transform: translateX(-50%) translateY(1px);
+  transform: translateY(1px);
   box-shadow: 1px 1px 0 var(--color-border);
 }
 
 .ad-paused-placeholder {
-  position: absolute;
-  top: 20px; /* Below "פרסומת" banner label */
-  left: 0;
-  right: 0;
-  bottom: 40px; /* Above the pause button */
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  height: 0; /* Managed by flexbox to leave space for button below */
   background-color: var(--accent-gray);
   border: 2px dashed var(--accent-gray-dark);
   display: flex;
@@ -2608,21 +2609,28 @@ header.site-header {
 
 @media (max-width: 768px) {
   .ad-pause-btn {
-    bottom: 2px !important;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 2px auto !important;
     padding: 2px 6px !important;
-    font-size: 0.6rem !important;
+    font-size: 0.60rem !important;
     border: 1px solid var(--color-border) !important;
     box-shadow: 1px 1px 0 var(--color-border) !important;
   }
   .ad-pause-btn:hover {
-    transform: translateX(-50%) !important;
+    transform: none !important;
     box-shadow: 1px 1px 0 var(--color-border) !important;
   }
   .ad-paused-placeholder {
-    top: 0 !important;
-    bottom: 0 !important;
-    gap: 2px !important;
+    position: relative !important;
+    height: 100% !important;
+    width: auto !important;
+    flex-grow: 1 !important;
+    max-height: 48px !important;
     padding: 2px !important;
+    gap: 2px !important;
   }
   .ad-paused-icon {
     font-size: 0.9rem !important;
@@ -2633,5 +2641,17 @@ header.site-header {
   .ad-paused-subtext {
     display: none !important;
   }
+}
+
+/* Category Description for Games sections */
+.games-category-desc {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.5;
 }
 

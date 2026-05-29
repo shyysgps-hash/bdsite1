@@ -157,19 +157,18 @@ function initHomePage() {
     warningOverlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
-    // Age confirm (Yes I am aware / Yes I enter)
+    // Age confirm (Yes I am aware / Yes I enter) - Shows warning dialog instead
     btnAgeConfirm.addEventListener('click', () => {
-      warningOverlay.style.display = 'none';
-      document.body.style.overflow = '';
-      // Optional: Play dynamic audio greeting
+      showSystemModal(
+        'התראה נוסטלגית ⚠️',
+        'על מי אנחנו עובדים? אנחנו לא בגיל לזה. מגיע לנו יום הולדת בסגנון אחר!'
+      );
     });
 
-    // Age deny (I'm not at the age for this)
+    // Age deny (I'm not at the age for this) - Activates and opens the website!
     btnAgeDeny.addEventListener('click', () => {
-      showSystemModal(
-        'הפניה לעזרה רפואית 🚑',
-        'החלטה נבונה! הבנו ששעת השינה שלך היא 21:30. הנפקנו עבורך אישור פטור מסירוק בלונים ומשיכה בחבל. אנא פנה לקופת החולים הקרובה לקבלת מרשם לאטמי אוזניים ומשחת וולטרן לגב!'
-      );
+      warningOverlay.style.display = 'none';
+      document.body.style.overflow = '';
     });
   }
 }
