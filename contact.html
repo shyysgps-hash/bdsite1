@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>צור קשר | אני לא בגיל לזה</title>
-  <meta name="description" content="כתבו לנו ברכות ומשובים בספר האורחים הרשמי של 'אני לא בגיל לזה'! פרויקט אקדמי ב-HIT.">
-  
+  <meta name="description"
+    content="כתבו לנו ברכות ומשובים בספר האורחים הרשמי של 'אני לא בגיל לזה'! פרויקט אקדמי ב-HIT.">
+
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body id="contactPage">
 
   <!-- Keyboard Accessibility Skip Link -->
@@ -37,10 +40,10 @@
   <header class="site-header">
     <div class="header-container">
       <div class="site-logo">
-        <img src="images/logo.jpeg" alt="לוגו אני לא בגיל לזה" class="site-logo-img">
+        <a href="index.html"><img src="images/logo.png" alt="לוגו אני לא בגיל לזה" class="site-logo-img"></a>
         <span class="site-title">אני לא בגיל לזה</span>
       </div>
-      
+
       <!-- Desktop Navigation Menu -->
       <nav class="desktop-nav" aria-label="תפריט ראשי">
         <ul class="nav-list">
@@ -55,7 +58,8 @@
       </nav>
 
       <!-- Mobile Hamburger Toggle Button -->
-      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileNavMenu" aria-label="פתח תפריט ניווט">
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileNavMenu"
+        aria-label="פתח תפריט ניווט">
         <span>⚙</span> תפריט
       </button>
     </div>
@@ -82,7 +86,8 @@
     <div class="section-title-container">
       <span class="section-tag">ספר אורחים</span>
       <h1>צור קשר</h1>
-      <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto;">נשמח לשמוע מכם ברכות יום הולדת, חוויות נוסטלגיות משעשעות או משובים על האתר. כתבו לנו ישירות בספר האורחים הרשמי שלנו!</p>
+      <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto;">נשמח לשמוע מכם ברכות יום הולדת, חוויות נוסטלגיות
+        משעשעות או משובים על האתר. כתבו לנו ישירות בספר האורחים הרשמי שלנו!</p>
     </div>
 
     <div class="contact-faq-layout">
@@ -103,23 +108,28 @@
           <form id="guestbookForm" class="guestbook-form" novalidate>
             <div class="form-group">
               <label for="name" class="form-label">השם שלכם:</label>
-              <input type="text" id="name" class="form-control" placeholder="ישראל ישראלי" required aria-describedby="nameError">
+              <input type="text" id="name" class="form-control" placeholder="ישראל ישראלי" required
+                aria-describedby="nameError">
               <span class="error-message" id="nameError" role="alert">נא להזין את שמכם</span>
             </div>
-            
+
             <div class="form-group">
               <label for="email" class="form-label">כתובת אימייל:</label>
-              <input type="email" id="email" class="form-control" placeholder="israel@gmail.com" required aria-describedby="emailError">
+              <input type="email" id="email" class="form-control" placeholder="israel@gmail.com" required
+                aria-describedby="emailError">
               <span class="error-message" id="emailError" role="alert">נא להזין כתובת מייל תקינה</span>
             </div>
 
             <div class="form-group">
               <label for="message" class="form-label">הברכה/משוב שלכם:</label>
-              <textarea id="message" class="form-control" rows="5" placeholder="מזל טוב! איזה יופי של אתר, הגב שלי כבר כואב מהתרגשות..." required aria-describedby="messageError"></textarea>
+              <textarea id="message" class="form-control" rows="5"
+                placeholder="מזל טוב! איזה יופי של אתר, הגב שלי כבר כואב מהתרגשות..." required
+                aria-describedby="messageError"></textarea>
               <span class="error-message" id="messageError" role="alert">נא לכתוב ברכה או משוב</span>
             </div>
 
-            <button class="retro-btn retro-btn-accent" type="submit" style="margin-top: 10px; width: 100%;">שלחו ברכה! ✉</button>
+            <button class="retro-btn retro-btn-accent" type="submit" style="margin-top: 10px; width: 100%;">שלחו ברכה!
+              ✉</button>
           </form>
         </div>
       </article>
@@ -127,14 +137,16 @@
       <!-- FAQ Section (Side-by-side) -->
       <article class="faq-container" style="display: flex; flex-direction: column; justify-content: flex-start;">
         <h4 style="font-family: var(--font-heading); margin-bottom: 20px; text-align: center;">שאלות נפוצות</h4>
-        
+
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false" aria-controls="faq1">
             האם המשחקים באתר באמת מסוכנים לגב שלי?
           </button>
           <div class="faq-answer" id="faq1">
             <div class="faq-answer-content">
-              אנחנו ממליצים בחום לעשות חימום קל (סיבובי אגן ומתיחות ברכיים) לפני תחילת המשחקים. המשחקים המשודרגים שלנו (כמו נשיפת צמר גפן על שולחן במקום התכופפות לרצפה) נועדו במיוחד כדי לשמור על גב זקוף ויציב. שתו צ'ייסר, תשמרו על הגב ותיהנו!
+              אנחנו ממליצים בחום לעשות חימום קל (סיבובי אגן ומתיחות ברכיים) לפני תחילת המשחקים. המשחקים המשודרגים שלנו
+              (כמו נשיפת צמר גפן על שולחן במקום התכופפות לרצפה) נועדו במיוחד כדי לשמור על גב זקוף ויציב. שתו צ'ייסר,
+              תשמרו על הגב ותיהנו!
             </div>
           </div>
         </div>
@@ -145,7 +157,8 @@
           </button>
           <div class="faq-answer" id="faq2">
             <div class="faq-answer-content">
-              מכיוון שהשקיות מכילות רכיבי הישרדות למבוגרים כמו בקבוקוני אלכוהול מיניאטוריים, כדורי אקמול/אדוויל לבוקר שאחרי החגיגה ומסכות פנים מפנקות לעור עייף מחשבונות. זוהי שקית יום הולדת שמתאימה לצרכים האמיתיים של גילנו!
+              מכיוון שהשקיות מכילות רכיבי הישרדות למבוגרים כמו בקבוקוני אלכוהול מיניאטוריים, כדורי אקמול/אדוויל לבוקר
+              שאחרי החגיגה ומסכות פנים מפנקות לעור עייף מחשבונות. זוהי שקית יום הולדת שמתאימה לצרכים האמיתיים של גילנו!
             </div>
           </div>
         </div>
@@ -156,7 +169,8 @@
           </button>
           <div class="faq-answer" id="faq3">
             <div class="faq-answer-content">
-              הנגן פועל ישירות בדפדפן בשיטת Vanilla JS! כל שעליכם לעשות הוא ללחוץ על אחד משירי הנוסטלגיה ברשימה, או ללחוץ על כפתור ה-Play בנגן. הטקסט יתחיל לגלול במסך הנגן והטיימר יתעדכן בהתאם.
+              הנגן פועל ישירות בדפדפן בשיטת Vanilla JS! כל שעליכם לעשות הוא ללחוץ על אחד משירי הנוסטלגיה ברשימה, או
+              ללחוץ על כפתור ה-Play בנגן. הטקסט יתחיל לגלול במסך הנגן והטיימר יתעדכן בהתאם.
             </div>
           </div>
         </div>
@@ -181,47 +195,52 @@
        4. Footer Section
        ========================================== -->
   <footer class="site-footer">
-    <div class="footer-container">
-      <ul class="footer-nav">
-        <li><a href="index.html">בית</a></li>
-        <li><a href="games.html">משחקים ונהנים</a></li>
-        <li><a href="karaoke-cake.html">עוגה וקריוקי</a></li>
-        <li><a href="goodie-bags.html">שקיות הפתעה +18</a></li>
-        <li><a href="about.html">אודות</a></li>
-        <li><a href="contact.html">צור קשר</a></li>
-        <li><a href="sitemap.html">מפת אתר</a></li>
-      </ul>
-      
-      <div style="margin: 15px 0;">
-        <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
-      </div>
-      
-      <p class="footer-text">© 2026 אני לא בגיל לזה. הפקולטה לטכנולוגיות למידה HIT.</p>
-    </div>
-  </footer>
-
-  <!-- ==========================================
+    <!-- ==========================================
        5. Accessible Windows 95 System Dialog (Modal)
        ========================================== -->
-  <div class="retro-modal-overlay" id="retroModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitleText">
-    <div class="retro-modal">
-      <div class="retro-titlebar">
-        <div class="retro-window-title">
-          <span class="retro-window-icon">✉</span>
-          <span id="modalTitleText">ספר אורחים</span>
+    <div class="retro-modal-overlay" id="retroModalOverlay" role="dialog" aria-modal="true"
+      aria-labelledby="modalTitleText">
+      <div class="retro-modal">
+        <div class="retro-titlebar">
+          <div class="retro-window-title">
+            <span id="modalTitleText">מערכת קשר</span>
+            <span class="retro-window-icon">✉</span>
+          </div>
+          <button class="retro-control-btn modal-close-trigger" aria-label="סגור חלונית">✕</button>
         </div>
-        <button class="retro-control-btn modal-close-trigger" aria-label="סגור חלונית">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-message" id="modalBodyText">הודעה.</div>
-      </div>
-      <div class="modal-footer">
-        <button class="retro-btn modal-close-trigger" id="modalCloseBtn" style="padding: 5px 15px; font-size: 0.9rem;" type="button">אישור</button>
+
+        <div class="footer-container">
+          <ul class="footer-nav">
+            <a href="index.html">בית | </a>
+            <a href="games.html">משחקים ונהנים | </a>
+            <a href="karaoke-cake.html">עוגה וקריוקי | </a>
+            <a href="goodie-bags.html">שקיות הפתעה +18 | </a>
+            <a href="about.html">אודות | </a>
+            <a href="contact.html">צור קשר | </a>
+            <a href="sitemap.html">מפת אתר </a>
+          </ul>
+
+          <div style="margin: 15px 0;">
+            <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
+          </div>
+
+          <p class="footer-text">© 2026 אני לא בגיל לזה. הפקולטה לטכנולוגיות למידה HIT.</p>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-message" id="modalBodyText">הודעה.</div>
+        </div>
+        <div class="modal-footer">
+          <button class="retro-btn modal-close-trigger" id="modalCloseBtn" style="padding: 5px 15px; font-size: 0.9rem;"
+            type="button">אישור</button>
+        </div>
       </div>
     </div>
-  </div>
+
+  </footer>
 
   <!-- Core Script File -->
   <script src="script.js"></script>
 </body>
+
 </html>

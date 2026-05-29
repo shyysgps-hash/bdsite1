@@ -11,12 +11,17 @@
 
 :root {
   /* Color Palette (Decor.jpeg & Icons.png) */
-  --bg-primary: #FFFDF0;      /* Warm off-white/cream */
-  --bg-secondary: #FFFFFA;    /* Brighter cream */
-  --color-text: #2B2B2B;      /* Soft dark charcoal */
-  --color-text-muted: #555555;/* Medium gray */
-  --color-border: #000000;    /* Solid black borders */
-  
+  --bg-primary: #FFFDF0;
+  /* Warm off-white/cream */
+  --bg-secondary: #FFFFFA;
+  /* Brighter cream */
+  --color-text: #2B2B2B;
+  /* Soft dark charcoal */
+  --color-text-muted: #555555;
+  /* Medium gray */
+  --color-border: #000000;
+  /* Solid black borders */
+
   /* Retro Accent Pastels */
   --accent-yellow: #FFF89A;
   --accent-cyan: #9DF1FC;
@@ -24,16 +29,20 @@
   --accent-pink: #FFADF2;
   --accent-green: #9EF7C1;
   --accent-coral: #FFAAA6;
-  --accent-gray: #DCDCDC;      /* Classic Windows 95 light gray */
-  --accent-gray-dark: #808080; /* Windows 95 dark gray shadow */
-  --accent-dark-blue: #000080; /* Windows 95 active title bar blue */
-  --accent-magenta: #FF4B91;   /* Vibrant magenta/pink */
-  
+  --accent-gray: #DCDCDC;
+  /* Classic Windows 95 light gray */
+  --accent-gray-dark: #808080;
+  /* Windows 95 dark gray shadow */
+  --accent-dark-blue: #000080;
+  /* Windows 95 active title bar blue */
+  --accent-magenta: #FF4B91;
+  /* Vibrant magenta/pink */
+
   /* Fonts */
   --font-main: 'Rubik', sans-serif;
   --font-heading: 'Varela Round', sans-serif;
   --font-pixel: 'Chava', sans-serif;
-  
+
   /* Animations & Transitions */
   --transition-fast: 0.1s ease;
   --transition-normal: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -60,7 +69,7 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   direction: rtl;
-  text-align: right;
+  text-align: center;
   overflow-x: hidden;
 }
 
@@ -71,7 +80,13 @@ body {
 }
 
 /* Typography Defaults */
-h1, h2, h3, h4, h5, h6 {
+h1 h2 h3 {
+  text-align: center;
+}
+
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   margin-bottom: 1rem;
@@ -149,7 +164,8 @@ img {
 
 /* Semantic aside elements for advertisements */
 aside.ad-sidebar {
-  display: none; /* Hidden on smaller screens */
+  display: none;
+  /* Hidden on smaller screens */
   position: fixed;
   top: 100px;
   width: 120px;
@@ -254,10 +270,10 @@ header.site-header {
 }
 
 .site-logo-img {
-  height: 50px;
-  width: 50px;
+  height: 70px;
+  width: 70px;
   border: 2px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .site-title {
@@ -288,7 +304,8 @@ header.site-header {
   transition: all var(--transition-fast);
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   background-color: var(--accent-yellow);
   border-color: var(--color-border);
   box-shadow: 2px 2px 0px var(--color-border);
@@ -325,7 +342,7 @@ header.site-header {
   z-index: 999;
   transition: right var(--transition-normal);
   padding: 30px 20px;
-  box-shadow: -10px 0 20px rgba(0,0,0,0.05);
+  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .mobile-nav-menu.open {
@@ -352,7 +369,8 @@ header.site-header {
   transition: all var(--transition-fast);
 }
 
-.mobile-nav-link:hover, .mobile-nav-link.active {
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
   background-color: var(--accent-yellow);
   transform: translateY(-2px);
   box-shadow: 5px 5px 0 var(--color-border);
@@ -467,6 +485,7 @@ header.site-header {
 .retro-btn-secondary {
   background-color: var(--accent-cyan);
 }
+
 .retro-btn-secondary:hover {
   background-color: var(--accent-purple);
 }
@@ -476,6 +495,7 @@ header.site-header {
   color: #ffffff;
   text-shadow: 1px 1px 0 var(--color-border);
 }
+
 .retro-btn-accent:hover {
   background-color: var(--accent-yellow);
   color: #000000;
@@ -498,9 +518,9 @@ header.site-header {
   font-weight: 900;
   text-transform: uppercase;
   color: #00ffff;
-  text-shadow: 
-    3px 3px 0 var(--accent-magenta), 
-    6px 6px 0 var(--accent-dark-blue), 
+  text-shadow:
+    3px 3px 0 var(--accent-magenta),
+    6px 6px 0 var(--accent-dark-blue),
     9px 9px 0 #000;
   transform: skew(-10deg) rotate(-2deg);
   display: inline-block;
@@ -587,9 +607,17 @@ header.site-header {
   box-shadow: 7px 7px 0 var(--color-border);
 }
 
-.quick-nav-card.card-games { border-color: var(--accent-purple); }
-.quick-nav-card.card-karaoke { border-color: var(--accent-cyan); }
-.quick-nav-card.card-bags { border-color: var(--accent-pink); }
+.quick-nav-card.card-games {
+  border-color: var(--accent-purple);
+}
+
+.quick-nav-card.card-karaoke {
+  border-color: var(--accent-cyan);
+}
+
+.quick-nav-card.card-bags {
+  border-color: var(--accent-pink);
+}
 
 .quick-nav-icon {
   width: 64px;
@@ -608,9 +636,19 @@ header.site-header {
    ========================================== */
 .section-title-container {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   padding-bottom: 15px;
   border-bottom: 3px solid var(--color-border);
+}
+
+.section-title-container h1 {
+  font-size: 4rem;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.section-title-container p {
+  margin-bottom: 17px;
 }
 
 .section-tag {
@@ -619,14 +657,22 @@ header.site-header {
   font-size: 0.9rem;
   background-color: var(--accent-magenta);
   color: #ffffff;
-  padding: 4px 10px;
+  padding: 3px 9px;
   border: 2px solid var(--color-border);
   border-radius: 20px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .games-container {
   margin-bottom: 60px;
+}
+
+.games-container h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 .games-subtitle {
@@ -674,7 +720,8 @@ header.site-header {
   transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -755,6 +802,7 @@ header.site-header {
 .upgraded-card .flip-card-front {
   background-color: var(--accent-green);
 }
+
 .upgraded-card .flip-card-back {
   background-color: var(--accent-pink);
 }
@@ -782,10 +830,41 @@ header.site-header {
    8. Karaoke & Cake Section (Vintage CRT & Mix/Decor)
    ========================================== */
 .karaoke-cake-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
   margin-bottom: 60px;
+  width: 100%;
+}
+
+.karaoke-cake-layout>article {
+  flex: 1 1 350px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.recipe-columns {
+  display: flex;
+  gap: 50px;
+  align-items: stretch;
+  margin-top: 20px;
+}
+
+.recipe-columns .recipe-card {
+  flex: 1;
+  min-width: 210px;
+}
+
+.recipe-ingredients-grid h5 {
+  margin: 0 0 2px 0;
+}
+
+.recipe-list {
+  margin: 0 0 8px 0;
+  padding-right: 20px;
 }
 
 /* Choice Tabs at the top of page 3 */
@@ -826,14 +905,15 @@ header.site-header {
   background-color: #3e3a39;
   border: 8px solid #231f20;
   border-radius: 20px;
-  box-shadow: 
-    inset 0 0 20px #000, 
-    0 10px 0 #1b1918, 
+  box-shadow:
+    inset 0 0 20px #000,
+    0 10px 0 #1b1918,
     8px 8px 0 var(--color-border);
   position: relative;
-  padding: 15px 45px 15px 15px; /* Extra room on right for controls dial */
-  margin-bottom: 30px;
-  min-height: 240px;
+  padding: 40px 45px 15px 15px;
+  /* Extra room on right for controls dial */
+  margin-bottom: 60px;
+  min-height: 350px;
 }
 
 .crt-screen-container {
@@ -843,8 +923,9 @@ header.site-header {
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  box-shadow: inset 0 0 30px rgba(0,255,0,0.15);
+  padding-top: 56.25%;
+  /* 16:9 Aspect Ratio */
+  box-shadow: inset 0 0 30px rgba(0, 255, 0, 0.15);
 }
 
 /* Dynamic Embedded YouTube Iframe */
@@ -884,6 +965,70 @@ header.site-header {
   height: 60px;
   background: repeating-linear-gradient(#222, #222 2px, #444 2px, #444 4px);
   border: 1px solid #1a1a1a;
+}
+
+/* Playlist Styling */
+.song-list-container {
+  max-height: 290px;
+  overflow-y: auto;
+  direction: ltr;
+  border: 2px solid var(--color-border);
+  background-color: #ffffff;
+  box-shadow: inset 2.5px 2.5px 0px var(--accent-gray-dark), 1.5px 1.5px 0px #fff;
+  padding: 8px;
+}
+
+.song-list-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+  color: var(--color-text);
+  direction: ltr;
+  /* Keeps English song names reading beautifully left-to-right */
+  text-align: left;
+}
+
+.song-item:hover {
+  background-color: var(--accent-yellow);
+  border: 2px solid var(--color-border);
+  box-shadow: 2px 2px 0 var(--color-border);
+}
+
+.song-item.active {
+  background-color: var(--accent-dark-blue);
+  color: #ffffff;
+  border: 2px solid var(--color-border);
+  box-shadow: 2px 2px 0 var(--color-border);
+}
+
+.song-item span:first-child {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 12px;
+}
+
+.song-item span:last-child {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  opacity: 0.8;
+  white-space: nowrap;
 }
 
 /* Interactive Baking Mixer Game */
@@ -931,7 +1076,7 @@ header.site-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 8px 0 rgba(0,0,0,0.1), 3px 3px 0 var(--color-border);
+  box-shadow: inset 0 8px 0 rgba(0, 0, 0, 0.1), 3px 3px 0 var(--color-border);
 }
 
 .baking-batter {
@@ -939,7 +1084,8 @@ header.site-header {
   bottom: 0;
   width: 152px;
   height: 0px;
-  background-color: #583319; /* Chocolate brown */
+  background-color: #583319;
+  /* Chocolate brown */
   border-radius: 0 0 76px 76px;
   transition: height var(--transition-normal);
   z-index: 5;
@@ -1014,7 +1160,8 @@ header.site-header {
 .cake-visual-base {
   width: 280px;
   height: 200px;
-  background-color: #583319; /* Chocolate brown */
+  background-color: #583319;
+  /* Chocolate brown */
   border: 6px solid var(--color-border);
   border-radius: 12px;
   position: relative;
@@ -1062,7 +1209,8 @@ header.site-header {
   right: 10px;
   font-family: var(--font-pixel);
   font-size: 1.1rem;
-  color: #3e2211; /* Chocolate brown text */
+  color: #3e2211;
+  /* Chocolate brown text */
   text-align: center;
   z-index: 20;
   font-weight: bold;
@@ -1100,8 +1248,10 @@ header.site-header {
 /* ==========================================
    9. Goodie Bags (+18) & Fireworks Canvas
    ========================================== */
-.pre-made-bags-container, .custom-bag-builder-container {
-  display: block; /* Controlled differently in multi-page */
+.pre-made-bags-container,
+.custom-bag-builder-container {
+  display: block;
+  /* Controlled differently in multi-page */
 }
 
 /* Fireworks Overlay Canvas */
@@ -1159,35 +1309,80 @@ header.site-header {
    11. Animations
    ========================================== */
 @keyframes scrollText {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes modalSlide {
-  from { opacity: 0; transform: translateY(-50px) scale(0.9); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes bagBounce {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08) translateY(-5px); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08) translateY(-5px);
+  }
 }
 
 @keyframes popIn {
-  0% { transform: scale(0) rotate(-15deg); opacity: 0; }
-  70% { transform: scale(1.2) rotate(10deg); opacity: 1; }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  0% {
+    transform: scale(0) rotate(-15deg);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.2) rotate(10deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 @keyframes mixSpoon {
-  0% { transform: rotate(-15deg); }
-  50% { transform: rotate(15deg) translateX(10px); }
-  100% { transform: rotate(-15deg); }
+  0% {
+    transform: rotate(-15deg);
+  }
+
+  50% {
+    transform: rotate(15deg) translateX(10px);
+  }
+
+  100% {
+    transform: rotate(-15deg);
+  }
 }
 
 /* ==========================================
@@ -1203,23 +1398,23 @@ header.site-header {
   .quick-nav-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .games-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .pre-made-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .builder-main-workspace {
     grid-template-columns: 1.2fr 1fr;
   }
-  
+
   .decorator-grid {
     grid-template-columns: 0.9fr 1.1fr;
   }
-  
+
   .recipe-ingredients-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1229,17 +1424,15 @@ header.site-header {
   .desktop-nav {
     display: block;
   }
+
   .mobile-nav-toggle {
     display: none;
   }
+
   .mobile-nav-menu {
     display: none;
   }
-  
-  .karaoke-cake-layout {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-  
+
   .contact-faq-layout {
     grid-template-columns: 1fr 1fr;
   }
@@ -1249,12 +1442,19 @@ header.site-header {
   aside.ad-sidebar {
     display: block;
   }
-  
+
   .mobile-ads-container {
     display: none;
   }
-  
+
   .main-content {
     max-width: 1000px;
   }
+
+  @media (max-width: 768px) {
+    .recipe-columns {
+      flex-direction: column;
+    }
+  }
+
 }

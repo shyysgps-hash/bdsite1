@@ -1,65 +1,77 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>מפת האתר | אני לא בגיל לזה</title>
-  <meta name="description" content="מפת האתר הרשמית של 'אני לא בגיל לזה' - ניווט מהיר ונגיש לכל 7 העמודים של פרויקט הגמר בימי הולדת נוסטלגיים, הפקולטה לטכנולוגיות למידה, HIT.">
-  
+  <meta name="description"
+    content="מפת האתר הרשמית של 'אני לא בגיל לזה' - ניווט מהיר ונגיש לכל 7 העמודים של פרויקט הגמר בימי הולדת נוסטלגיים, הפקולטה לטכנולוגיות למידה, HIT.">
+
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
+
   <style>
     /* Unique Sitemap Page Styles */
     .sitemap-tree {
       margin-top: 20px;
       text-align: right;
     }
+
     .sitemap-list {
       list-style-type: none;
       padding-right: 20px;
     }
+
     .sitemap-list li {
       position: relative;
       padding-right: 25px;
       margin-bottom: 12px;
       font-size: 1.1rem;
     }
+
     .sitemap-list li::before {
-      content: '📁';
+      content: '';
       position: absolute;
       right: 0;
       top: 2px;
       font-size: 1rem;
     }
+
     .sitemap-sub-list {
       list-style-type: none;
       padding-right: 25px;
       margin-top: 8px;
       border-right: 2px dashed var(--accent-gray-dark);
     }
+
     .sitemap-sub-list li {
       font-size: 0.95rem;
       margin-bottom: 6px;
       color: var(--color-text-muted);
     }
+
     .sitemap-sub-list li::before {
-      content: '📄';
+      content: '';
     }
+
     .sitemap-nested-list {
       list-style-type: none;
       padding-right: 20px;
       margin-top: 4px;
     }
+
     .sitemap-nested-list li {
       font-size: 0.85rem;
       margin-bottom: 3px;
     }
+
     .sitemap-nested-list li::before {
       content: '⚡';
     }
   </style>
 </head>
+
 <body>
 
   <!-- Keyboard Accessibility Skip Link -->
@@ -88,7 +100,7 @@
   <header class="site-header">
     <div class="header-container">
       <div class="site-logo">
-        <img src="images/logo.jpeg" alt="לוגו אני לא בגיל לזה" class="site-logo-img">
+        <a href="index.html"><img src="images/logo.png" alt="לוגו אני לא בגיל לזה" class="site-logo-img"> </a>
         <span class="site-title">אני לא בגיל לזה</span>
       </div>
       <nav class="desktop-nav" aria-label="תפריט ראשי">
@@ -109,7 +121,7 @@
        3. Main Content
        ========================================== -->
   <main id="mainSitemap" class="main-content" style="max-width: 800px;">
-    
+
     <div class="retro-window">
       <div class="retro-titlebar">
         <div class="retro-window-title">
@@ -118,16 +130,20 @@
         </div>
       </div>
       <div class="retro-window-content">
-        <h2 style="font-family: var(--font-heading); color: var(--accent-dark-blue); font-size: 1.6rem; text-align: center; margin-bottom: 10px;">מפת האתר הרשמית</h2>
-        <p style="text-align: center; margin-bottom: 30px; font-size: 1rem; color: var(--color-text-muted);">ניווט מהיר ונגיש לכל 7 העמודים ומדורי התוכן של הפרויקט:</p>
+        <h2
+          style="font-family: var(--font-heading); color: var(--accent-dark-blue); font-size: 1.6rem; text-align: center; margin-bottom: 10px;">
+          מפת האתר הרשמית</h2>
+        <p style="text-align: center; margin-bottom: 30px; font-size: 1rem; color: var(--color-text-muted);">ניווט מהיר
+          ונגיש לכל 7 העמודים ומדורי התוכן של הפרויקט:</p>
 
         <!-- Sitemap Tree -->
         <nav class="sitemap-tree" aria-label="מפת האתר">
           <ul class="sitemap-list">
-            
+
             <!-- 1. Home -->
             <li>
-              <a href="index.html" style="font-weight: bold; color: var(--color-text);">דף הבית (עמוד 1 - index.html)</a>
+              <a href="index.html" style="font-weight: bold; color: var(--color-text);">דף הבית (עמוד 1 -
+                index.html)</a>
               <ul class="sitemap-sub-list">
                 <li><a href="index.html">דיאלוג התראת כאבי גב ושעת שינה</a></li>
                 <li><a href="index.html#nostalgiaText">קטע נוסטלגיה: "זוכרים שפעם ימי הולדת היו נראים ככה?"</a></li>
@@ -137,7 +153,8 @@
 
             <!-- 2. Games -->
             <li>
-              <a href="games.html" style="font-weight: bold; color: var(--color-text);">משחקים ונהנים (עמוד 2 - games.html)</a>
+              <a href="games.html" style="font-weight: bold; color: var(--color-text);">משחקים ונהנים (עמוד 2 -
+                games.html)</a>
               <ul class="sitemap-sub-list">
                 <li>
                   <strong>המשחקים הקלאסיים:</strong>
@@ -167,7 +184,8 @@
 
             <!-- 3. Karaoke & Cake -->
             <li>
-              <a href="karaoke-cake.html" style="font-weight: bold; color: var(--color-text);">עוגה וקריוקי (עמוד 3 - karaoke-cake.html)</a>
+              <a href="karaoke-cake.html" style="font-weight: bold; color: var(--color-text);">עוגה וקריוקי (עמוד 3 -
+                karaoke-cake.html)</a>
               <ul class="sitemap-sub-list">
                 <li>נגן קריוקי רטרו עם **סרטון יוטיוב מוטמע** מתחלף דינמית</li>
                 <li>מתכון לעוגת גן נוסטלגית בריאה (מצרכים ושלבי הכנה אינטראקטיביים)</li>
@@ -178,7 +196,8 @@
 
             <!-- 4. Goodie Bags -->
             <li>
-              <a href="goodie-bags.html" style="font-weight: bold; color: var(--color-text);">שקיות הפתעה +18 (עמוד 4 - goodie-bags.html)</a>
+              <a href="goodie-bags.html" style="font-weight: bold; color: var(--color-text);">שקיות הפתעה +18 (עמוד 4 -
+                goodie-bags.html)</a>
               <ul class="sitemap-sub-list">
                 <li>
                   <a href="goodie-bags.html">מסלול א': העצלן האחראי (שקיות מוכנות מראש)</a>
@@ -201,7 +220,8 @@
 
             <!-- 5. About -->
             <li>
-              <a href="about.html" style="font-weight: bold; color: var(--color-text);">אודות הפרויקט (עמוד 5 - about.html)</a>
+              <a href="about.html" style="font-weight: bold; color: var(--color-text);">אודות הפרויקט (עמוד 5 -
+                about.html)</a>
               <ul class="sitemap-sub-list">
                 <li>תיאור האתר "אני לא בגיל לזה"</li>
                 <li>פירוט אתגרים טכנולוגיים בבניית הפרויקט האקדמי</li>
@@ -212,7 +232,8 @@
 
             <!-- 6. Contact -->
             <li>
-              <a href="contact.html" style="font-weight: bold; color: var(--color-text);">צור קשר (עמוד 6 - contact.html)</a>
+              <a href="contact.html" style="font-weight: bold; color: var(--color-text);">צור קשר (עמוד 6 -
+                contact.html)</a>
               <ul class="sitemap-sub-list">
                 <li>ספר האורחים הרשמי - טופס ולידציה נגיש לשליחת ברכות ומשובים</li>
                 <li>שאלות נפוצות (FAQ) - אקורדיון שאלות אינטראקטיבי מתרחב</li>
@@ -221,7 +242,8 @@
 
             <!-- 7. Sitemap -->
             <li>
-              <a href="sitemap.html" style="font-weight: bold; color: var(--color-text);">מפת האתר (Sitemap - sitemap.html)</a>
+              <a href="sitemap.html" style="font-weight: bold; color: var(--color-text);">מפת האתר (Sitemap -
+                sitemap.html)</a>
               <ul class="sitemap-sub-list">
                 <li>עץ הניווט והמיפוי המלא של 7 עמודי הפרויקט</li>
               </ul>
@@ -230,7 +252,8 @@
           </ul>
         </nav>
 
-        <div style="text-align: center; margin-top: 40px; border-top: 2px dashed var(--color-border); padding-top: 20px;">
+        <div
+          style="text-align: center; margin-top: 40px; border-top: 2px dashed var(--color-border); padding-top: 20px;">
           <a href="index.html" class="retro-btn">➔ חזרה לעמוד הבית</a>
         </div>
       </div>
@@ -239,18 +262,55 @@
   </main>
 
   <!-- ==========================================
-       3. Footer
+       4. Footer Section
        ========================================== -->
   <footer class="site-footer">
-    <div class="footer-container">
-      <div style="margin-bottom: 10px;">
-        <span class="accessibility-badge">♿ מפת אתר נגישה WCAG 2.1 AA</span>
+    <!-- ==========================================
+       5. Accessible Windows 95 System Dialog (Modal)
+       ========================================== -->
+    <div class="retro-modal-overlay" id="retroModalOverlay" role="dialog" aria-modal="true"
+      aria-labelledby="modalTitleText">
+      <div class="retro-modal">
+        <div class="retro-titlebar">
+          <div class="retro-window-title">
+            <span id="modalTitleText">מערכת ניווט</span>
+            <span class="retro-window-icon">🗺️</span>
+          </div>
+          <button class="retro-control-btn modal-close-trigger" aria-label="סגור חלונית">✕</button>
+        </div>
+
+        <div class="sitemap-container">
+          <ul class="sitemap-nav">
+            <a href="index.html">בית | </a>
+            <a href="games.html">משחקים ונהנים | </a>
+            <a href="karaoke-cake.html">עוגה וקריוקי | </a>
+            <a href="goodie-bags.html">שקיות הפתעה +18 | </a>
+            <a href="about.html">אודות | </a>
+            <a href="contact.html">צור קשר | </a>
+            <a href="sitemap.html">מפת אתר </a>
+          </ul>
+
+          <div style="margin: 15px 0;">
+            <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
+          </div>
+
+          <p class="sitemap-text">© 2026 אני לא בגיל לזה. הפקולטה לטכנולוגיות למידה HIT.</p>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-message" id="modalBodyText">הודעה.</div>
+        </div>
+        <div class="modal-footer">
+          <button class="retro-btn modal-close-trigger" id="modalCloseBtn" style="padding: 5px 15px; font-size: 0.9rem;"
+            type="button">אישור</button>
+        </div>
       </div>
-      <p class="footer-text">© 2026 אני לא בגיל לזה. הפקולטה לטכנולוגיות למידה HIT.</p>
     </div>
+
   </footer>
 
   <!-- Core Script File -->
   <script src="script.js"></script>
 </body>
+
 </html>

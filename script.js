@@ -52,16 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (document.getElementById('homePage') || pageName === '' || pageName === 'index.html') {
     initHomePage();
-  } 
-  
+  }
+
   if (document.getElementById('gamesPage') || pageName === 'games.html') {
     initGamesPage();
   }
-  
+
   if (document.getElementById('karaokeCakePage') || pageName === 'karaoke-cake.html') {
     initKaraokeCakePage();
   }
-  
+
   if (document.getElementById('goodieBagsPage') || pageName === 'goodie-bags.html') {
     // Dynamic canvas cropping is needed on the goodie bags custom builder
     preloadAndSliceProducts(() => {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       initGoodieBagsPage();
     });
   }
-  
+
   if (document.getElementById('contactPage') || pageName === 'contact.html') {
     initContactPage();
     initFaqAccordion();
@@ -92,8 +92,8 @@ function initGlobalNavigation() {
       const isOpen = mobileMenu.classList.contains('open');
       mobileMenu.classList.toggle('open');
       mobileToggle.setAttribute('aria-expanded', !isOpen);
-      mobileToggle.innerHTML = isOpen 
-        ? '<span>⚙</span> תפריט' 
+      mobileToggle.innerHTML = isOpen
+        ? '<span>⚙</span> תפריט'
         : '<span>✕</span> סגור';
     });
   }
@@ -102,7 +102,7 @@ function initGlobalNavigation() {
 function initGlobalModals() {
   const overlay = document.getElementById('retroModalOverlay');
   if (!overlay) return;
-  
+
   const closeBtns = document.querySelectorAll('.modal-close-trigger');
 
   const closeModal = () => {
@@ -270,11 +270,22 @@ function initKaraokeCakePage() {
   const screenTitle = document.getElementById('playerSongTitle');
 
   const songYoutubeMap = {
-    0: 'https://www.youtube.com/embed/H0CclDmsL6g?autoplay=1', // Parpar Nehmad
-    1: 'https://www.youtube.com/embed/9B_30sMvLCo?autoplay=1', // Hopa Hey
-    2: 'https://www.youtube.com/embed/U9sQjH6d_h0?autoplay=1', // Marco / The Heart
-    3: 'https://www.youtube.com/embed/5a2d_W90N80?autoplay=1', // Inyan Shel Zman
-    4: 'https://www.youtube.com/embed/2uS8qjD3Rhs?autoplay=1'  // Mesibat Kita
+    0: 'https://www.youtube.com/embed/PYpU2TxIzAM?si=ZnedcsWabuJOy4fs&autoplay=1',  // ...Baby One More Time
+    1: 'https://www.youtube.com/embed/CduA0TULnow?autoplay=1',                      // Oops!... I Did It Again
+    2: 'https://www.youtube.com/embed/CvBfHwUxRLk?autoplay=1',  // Umbrella
+    3: 'https://www.youtube.com/embed/bESGLojNYJY?autoplay=1',  // Poker Face
+    4: 'https://www.youtube.com/embed/R7UrFYvl5TE?autoplay=1',  // Since U Been Gone
+    5: 'https://www.youtube.com/embed/ViwtNLUqkMY?autoplay=1',  // Crazy in Love
+    6: 'https://www.youtube.com/embed/5NPBIwQyPFI?autoplay=1',  // Complicated
+    7: 'https://www.youtube.com/embed/M11SvDtPBhA?autoplay=1',  // Party in the U.S.A.
+    8: 'https://www.youtube.com/embed/gJLIiF15wjQ?autoplay=1',  // Wannabe
+    9: 'https://www.youtube.com/embed/4fndeDfaWCg?autoplay=1',  // I Want It That Way
+    10: 'https://www.youtube.com/embed/6hzrDeoppWg?autoplay=1', // Wonderwall
+    11: 'https://www.youtube.com/embed/gGdGFtwCN0c?autoplay=1', // Mr. Brightside
+    12: 'https://www.youtube.com/embed/Sv6dMFF_yts?autoplay=1', // We Are Young
+    13: 'https://www.youtube.com/embed/VYCOg-yglNM?autoplay=1', // Dynamite
+    14: 'https://www.youtube.com/embed/NOubzHCUt48?autoplay=1', // Ke$ha - Die Young
+    15: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'  // Never Gonna Give You Up
   };
 
   songItems.forEach((item, idx) => {
@@ -319,7 +330,7 @@ function initKaraokeCakePage() {
   const btnMix = document.getElementById('btnMixBaking');
   const bakingBatter = document.getElementById('bakingBatter');
   const bakingSpoon = document.getElementById('bakingSpoon');
-  
+
   let addedIngredients = [];
   const totalIngredientsCount = 5;
 
@@ -420,20 +431,20 @@ function initKaraokeCakePage() {
       for (let i = 0; i < 20; i++) {
         const sprinkle = document.createElement('div');
         sprinkle.className = 'placed-sprinkle';
-        
+
         // Random pastel color
         const color = sprinkleColors[Math.floor(Math.random() * sprinkleColors.length)];
         sprinkle.style.backgroundColor = color;
-        
+
         // Random coordinate inside cake (height 200px, width 280px)
         const left = Math.floor(Math.random() * 260) + 10;
         const top = Math.floor(Math.random() * 140) + 40;
         const angle = Math.floor(Math.random() * 360);
-        
+
         sprinkle.style.left = `${left}px`;
         sprinkle.style.top = `${top}px`;
         sprinkle.style.transform = `rotate(${angle}deg)`;
-        
+
         placedDecorations.appendChild(sprinkle);
       }
     });
@@ -450,18 +461,18 @@ function initKaraokeCakePage() {
 
       const candle = document.createElement('div');
       candle.className = 'placed-candle';
-      
+
       // Load one of the pixel clock/floppy/candle icons or draw CSS candle
       candle.style.backgroundImage = "url('images/icons.png')";
       candle.style.backgroundPosition = "-580px -250px"; // Notes pixel icon as placeholder or CSS
-      
+
       // We can also styled candle using raw CSS
       candle.style.width = '12px';
       candle.style.height = '36px';
       candle.style.background = 'linear-gradient(to top, var(--accent-magenta), var(--accent-yellow))';
       candle.style.border = '2.5px solid #000';
       candle.style.boxShadow = '1px 1px 0 #000';
-      
+
       // Create tiny flame on top
       const flame = document.createElement('div');
       flame.style.width = '6px';
@@ -477,11 +488,11 @@ function initKaraokeCakePage() {
       // Random position inside cake center
       const left = Math.floor(Math.random() * 220) + 30;
       const top = Math.floor(Math.random() * 40) + 10; // place near top frosting
-      
+
       candle.style.left = `${left}px`;
       candle.style.top = `${top}px`;
       candle.style.position = 'absolute';
-      
+
       placedDecorations.appendChild(candle);
     });
   }
@@ -513,6 +524,22 @@ function initKaraokeCakePage() {
       const summary = `איזו עוגת פאר נוסטלגית!<br><br><strong>ציפוי:</strong> ${cakeFrosting.style.backgroundColor || 'ורוד פסטל'}<br><strong>כמות נרות גיל:</strong> ${candlesCount}<br><strong>סוכריות צבעוניות:</strong> ${sprinklesCount > 0 ? sprinklesCount : 'אין'}<br><strong>דף סוכר אישי:</strong> ${hasImage ? 'הועלה בהצלחה' : 'ללא תמונה'}<br><strong>כיתוב השוקולד שלך:</strong> "${icingInput.value || 'הכיתוב שלכם כאן'}"<br><br>העוגה נשמרה בגלריה בהצלחה! היא מוכנה כעת להגשה במרכז השולחן!`;
       showSystemModal('עוגת גן נוסטלגית מוכנה! 🍰', summary);
     });
+  }
+
+  // F. Detect file:// protocol and show helpful system warning modal
+  if (window.location.protocol === 'file:') {
+    setTimeout(() => {
+      showSystemModal(
+        'מערכת אבטחה ⚠️ (הרצה מקומית)',
+        `זיהינו שהפעלת את האתר ישירות מהקבצים במחשב (כתובת file://).<br><br>` +
+        `<strong>במצב זה, דפדפנים מודרניים חוסמים לעיתים את הטעינה של נגני יוטיוב מוטמעים</strong> עקב מגבלות אבטחת מקור.<br><br>` +
+        `כדי שהסרטון יופיע בטלוויזיה בצורה מושלמת, יש להריץ את האתר דרך שרת מקומי. למשל:<br><br>` +
+        `1. פתיחת התיקייה בתוך <strong>VS Code</strong> והפעלה עם התוסף <strong>Live Server</strong>.<br>` +
+        `2. או פתיחת הטרמינל בתיקייה זו והרצת הפקודה הבאה:<br>` +
+        `<code style="background:#000; color:#0f0; padding:6px 10px; border-radius:4px; font-family:monospace; display:block; margin:10px 0; direction:ltr; text-align:left; font-size:0.9rem; border:2px solid var(--color-border);">npx http-server ./</code>` +
+        `לאחר מכן פתחו את הכתובת השרת שקיבלתם (למשל: <code style="font-family:monospace; font-weight:bold;">http://localhost:8080</code>) והכל יעבוד חלק!`
+      );
+    }, 1500);
   }
 }
 
@@ -782,11 +809,11 @@ function scatterProductIcon(productId) {
 function updateBuilderCounter() {
   const countSpan = document.getElementById('builderItemsCount');
   const liveRegion = document.getElementById('builderAriaLive');
-  
+
   if (countSpan) {
     countSpan.innerText = selectedItems.length;
   }
-  
+
   if (liveRegion) {
     liveRegion.innerText = `השקית כעת מכילה ${selectedItems.length} פריטים.`;
   }
@@ -801,7 +828,7 @@ function triggerCanvasFireworks() {
 
   canvas.style.display = 'block';
   const ctx = canvas.getContext('2d');
-  
+
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
 
@@ -818,10 +845,10 @@ function triggerCanvasFireworks() {
       this.x = x;
       this.y = y;
       this.color = color;
-      
+
       const angle = Math.random() * Math.PI * 2;
       const speed = Math.random() * 6 + 2;
-      
+
       this.vx = Math.cos(angle) * speed;
       this.vy = Math.sin(angle) * speed;
       this.gravity = 0.08;
@@ -909,7 +936,7 @@ function initContactPage() {
     fields.forEach(fieldId => {
       const field = document.getElementById(fieldId);
       const error = document.getElementById(`${fieldId}Error`);
-      
+
       if (!field.value.trim()) {
         isValid = false;
         field.classList.add('invalid');
@@ -931,7 +958,7 @@ function initContactPage() {
     if (isValid) {
       const name = document.getElementById('name').value;
       showSystemModal(
-        'הברכה נרשמה בהצלחה! ✉', 
+        'הברכה נרשמה בהצלחה! ✉',
         `תודה רבה לך <strong>${name}</strong>!<br><br>ברכת יום ההולדת והמשוב המקסים שלך נשמרו בספר האורחים הרשמי של 'אני לא בגיל לזה'!<br>אנו נשמח לקרוא אותה בהקדם האפשרי.`
       );
       form.reset();
@@ -961,14 +988,14 @@ function validateEmail(email) {
 // ==========================================
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
-  
+
   faqItems.forEach(item => {
     const btn = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
 
     btn.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
-      
+
       faqItems.forEach(otherItem => {
         if (otherItem !== item && otherItem.classList.contains('active')) {
           otherItem.classList.remove('active');
@@ -979,7 +1006,7 @@ function initFaqAccordion() {
 
       item.classList.toggle('active');
       btn.setAttribute('aria-expanded', !isActive);
-      
+
       if (!isActive) {
         answer.style.maxHeight = `${answer.scrollHeight}px`;
       } else {
