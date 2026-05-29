@@ -111,31 +111,39 @@
       </div>
     </div>
 
-    <!-- Nostalgia Description Card -->
-    <article id="nostalgiaText" class="nostalgia-panel">
-      <h3 class="nostalgia-title">זוכרים שפעם ימי הולדת היו נראים ככה?</h3>
-      <div class="nostalgia-text">
-        <p>זוכרים שפעם ימי הולדת היו נראים ככה: שרשרת בלונים שתלויה באלכסון בסלון, שלטים שהכנו בעצמנו, ערמה של מתנות
-          עטופות יפה בצד החדר, סלסלה עם שקיות הפתעה, שולחן עמוס בכל החטיפים כמו אפרופו במבה תפוצ׳יפס בפלות. תמיד הייתה
-          תחרות סמויה בין ילדי הפיתה עם חומוס לילדי הפיתה עם שוקולד.</p>
-        <p style="margin-top: 15px;">במרכז השולחן כמובן הייתה עוגת שוקולד מלבנית ענקית מעוטרת בדף סוכר עם מיטב הגיבורים
-          שלנו. האטרקציה המרכזית הייתה תחרויות משוך בחבל, מי מפוצץ יותר בלונים ומי שותה יותר מהר טרופית. הכל היה פשוט
-          יותר, כיף יותר ומרגש יותר...</p>
-      </div>
+   
 
-      <div class="nostalgia-contrast">
-        <p> אבל לאן כל זה נעלם? למה זה התחלף בכאבי גב, חשבונות חשמל, מה זה משכנתא בכלל? שאלות כמו למה לא התחתנת או מתי
-          תביאו ילדים? ואולי קצת באלנו להיות ילדים בעצמנו? איך אפשר לחזור לתקופה ההיא.</p>
-        <p style="margin-top: 10px; font-weight: bold; color: var(--accent-dark-blue);">כאן בדיוק נכנס האתר שלנו – אותה
-          המסיבה רק עם כאבי גב. אם גם אתם קמתם במצב רוח נוסטלגי ורוצים להרים יום הולדת בטעם של פעם הגעתם למקום הנכון!
-        </p>
+    <!-- Video Player Retro Window -->
+    <div class="retro-window retro-window-glass" id="retroVideoWindow" style="margin-top: 25px; margin-bottom: 25px;">
+      <div class="retro-titlebar">
+        <div class="retro-window-title">
+          <span class="retro-window-icon">📹</span>
+          <span>Party_Memory_Player.exe</span>
+          
+        </div>
+        <div class="retro-window-controls">
+          <button class="retro-control-btn" aria-label="מזער">_</button>
+          <button class="retro-control-btn" aria-label="הגדל">■</button>
+          <button class="retro-control-btn" onclick="document.getElementById('retroVideoWindow').style.display='none'" aria-label="סגור">✕</button>
+        </div>
       </div>
-    </article>
+      <div class="retro-window-content" style="text-align: center; padding: 25px;">
+        <div class="retro-video-container">
+          <video src="images/clip.mp4" controls autoplay loop muted style="width: 100%; height: auto; display: block;"></video>
+        </div>
+        <div class="retro-video-description">
+          <p style="margin-bottom: 12px; font-weight: bold; color: var(--accent-dark-blue);">תוכלו למצוא באתר מידע ורעיונות עבור ימי הולדת בטעם של פעם.</p>
+          <p style="margin-bottom: 12px;">בעמוד משחקים תוכלו לראות משחקי יום הולדת נוסטלגיים וחלקם עברו התאמה לגילנו החדש.</p>
+          <p style="margin-bottom: 12px;">בעמוד של קריוקי ועוגה תוכלו למצוא פלייליסט מומלץ לקריוקי ומתכון משובח לעוגת גן נהדרת. בנוסף תוכלו להתנסות בסימולצית עיצוב עוגה.</p>
+          <p style="margin-bottom: 12px;">בעמוד של שקיות הפתעה איגדנו עבורכם מבחר פריטים, שקיות והשראות לחלק הכי כיף בכל מסיבה.</p>
+          <p style="margin-bottom: 0;">מוזמנים לקרוא אודתינו בעמוד האודות ובמידה ותירצו לשלוח לנו הודעה שאלה או רעיון מוזמנים להשתמש בטופס צור קשר בעמוד המתאים.</p>
+        </div>
+      </div>
+    </div>
 
     <!-- Quick Navigation to other pages ("בואו נחגוג") -->
     <section aria-label="בחרו את השלב הבא בהכנות" style="margin-bottom: 40px;">
       <div class="section-title-container">
-        <span class="section-tag">בואו נחגוג</span>
         <h3>כאן תוכלו לבחור מה השלב הבא בהכנות למסיבה שלכם</h3>
       </div>
 
@@ -197,7 +205,7 @@
           style="font-family: var(--font-pixel); font-size: 1.35rem; line-height: 1.6; color: var(--color-text); margin-bottom: 20px; font-weight: bold;">
           האם את/ה בטוח מאשר/ת הגעה למסיבה שתסתיים אחרי השעה 22:00?</p>
         <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
-          <button class="retro-btn" id="btnAgeConfirm" style="flex-grow:1;" type="button">כן, אני לא מודע</button>
+          <button class="retro-btn" id="btnAgeConfirm" style="flex-grow:1;" type="button">כן,אני חסר/ת אחריות</button>
           <button class="retro-btn retro-btn-secondary" id="btnAgeDeny" style="flex-grow:1;" type="button">אני לא בגיל
             לזה</button>
         </div>

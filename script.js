@@ -9,25 +9,24 @@
  */
 
 // ==========================================
-// 1. Spritesheet & Dynamic Slices Configuration
+// 1. Spritesheet & Dynamic Slices Configuration (Bypassed for individual Frame images)
 // ==========================================
-const SPRITESHEET_URI = 'images/products.png';
 const PRODUCTS_METADATA = [
-  { id: 'gummy', name: 'סוכריות גומי ארוכות / נחשים', x: 285, y: 70, w: 280, h: 160 },
-  { id: 'pills', name: 'אקמול פוקוס / אדוויל', x: 25, y: 340, w: 245, h: 155 },
-  { id: 'alcohol', name: 'בקבוקון אלכוהול מיניאטורי', x: 25, y: 555, w: 90, h: 235 },
-  { id: 'eye_pads', name: 'רפידות ג׳ל לעיניים', x: 195, y: 570, w: 200, h: 180 },
-  { id: 'tattoos', name: 'קעקועי מים בעיצובים', x: 610, y: 90, w: 170, h: 190 },
-  { id: 'mask', name: 'מסכה לפנים', x: 50, y: 55, w: 175, h: 195 },
-  { id: 'coffee', name: 'שקיות קפה איכותי', x: 565, y: 340, w: 320, h: 160 },
-  { id: 'opener', name: 'פותחן בקבוקים נוסטלגי', x: 505, y: 620, w: 210, h: 110 },
-  { id: 'socks', name: 'גרביים עם הדפסים', x: 750, y: 730, w: 160, h: 110 },
-  { id: 'tea', name: 'תה צמחים מרגיע', x: 80, y: 835, w: 160, h: 120 },
-  { id: 'coaster', name: 'תחתית לכוס קפה', x: 590, y: 825, w: 130, h: 90 },
-  { id: 'cloth', name: 'מטלית ניקוי למשקפיים', x: 760, y: 550, w: 145, h: 100 },
-  { id: 'glasses', name: 'משקפיים שחורות', x: 360, y: 440, w: 180, h: 70 },
-  { id: 'chocolate', name: 'שוקולד מריר', x: 340, y: 825, w: 155, h: 80 },
-  { id: 'gum_cigs', name: 'מסטיקים בקופסת סיגריות של פעם', x: 790, y: 85, w: 180, h: 220 }
+  { id: 'face_mask', name: 'מסכת פנים', image: 'images/Frame 3.png' },
+  { id: 'gummy', name: 'נחשי גומי', image: 'images/Frame 4.png' },
+  { id: 'tattoos', name: 'קעקועי מים', image: 'images/Frame 5.png' },
+  { id: 'gum', name: 'קופסת מסטיקים בצורת סיגריות', image: 'images/Frame 6.png' },
+  { id: 'coffee', name: 'קפה', image: 'images/Frame 7.png' },
+  { id: 'socks', name: 'גרביים', image: 'images/Frame 8.png' },
+  { id: 'opener', name: 'פותחן', image: 'images/Frame 9.png' },
+  { id: 'glasses', name: 'משקפי ראייה', image: 'images/Frame 10.png' },
+  { id: 'cloth', name: 'מטלית למשקפיים', image: 'images/Frame 11.png' },
+  { id: 'eyes', name: 'רפידות ג׳ל לעיניים', image: 'images/Frame 12.png' },
+  { id: 'pills', name: 'אדוויל/אקמול', image: 'images/Frame 13.png' },
+  { id: 'chocolate', name: 'שוקולד מריר', image: 'images/Frame 14.png' },
+  { id: 'coaster', name: 'תחתית לכוסות', image: 'images/Frame 15.png' },
+  { id: 'tea', name: 'חליטת תה', image: 'images/Frame 16.png' },
+  { id: 'bottle', name: 'בקבוק אלכוהול מיניאטורי', image: 'images/Frame 17.png' }
 ];
 
 const SLICED_IMAGES = {};
@@ -45,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Global components
   initGlobalNavigation();
   initGlobalModals();
+  initAdControls();
 
   // Route page-specific logic
   const path = window.location.pathname;
@@ -567,6 +567,32 @@ function initGoodieBagsPage() {
     });
   }
 
+  // A.1 HTML5 Drag and Drop Target Listeners for Visualizer Bag
+  const dropZoneBag = document.getElementById('dropZoneBag');
+  if (dropZoneBag) {
+    dropZoneBag.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+      dropZoneBag.classList.add('drag-over');
+    });
+
+    dropZoneBag.addEventListener('dragleave', () => {
+      dropZoneBag.classList.remove('drag-over');
+    });
+
+    dropZoneBag.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZoneBag.classList.remove('drag-over');
+      const productId = e.dataTransfer.getData('text/plain');
+      if (productId) {
+        const btnElement = document.querySelector(`.product-item-btn[data-id="${productId}"]`);
+        if (btnElement) {
+          addProductToCustomBag(productId, btnElement);
+        }
+      }
+    });
+  }
+
   // B. Pre-made bags with fireworks overlay trigger!
   const btnPremadeGo = document.querySelectorAll('.btn-premade-go');
   btnPremadeGo.forEach(btn => {
@@ -590,21 +616,11 @@ function initGoodieBagsPage() {
         bagImage = 'images/full_bag_1.png';
       }
 
-      // 1. Play Fireworks animation
+      // 1. Play Fullscreen Canvas Fireworks
       triggerCanvasFireworks();
 
-      // 2. Open Retro Modal with Bag image
-      setTimeout(() => {
-        showSystemModal(
-          `בחרת בהצלחה: ${bagName}!`,
-          `<div style="display:flex; flex-direction:column; align-items:center; gap:15px;">
-            <img src="${bagImage}" alt="${bagName}" style="height:220px; object-fit:contain; border-radius:4px;">
-            <div style="text-align:right; width:100%; font-size:0.95rem;">
-              <strong>תכולת שקית ההישרדות שלך:</strong><br>${bagContent}
-            </div>
-          </div>`
-        );
-      }, 500);
+      // 2. Open Retro Popup exactly at the clicked spot with Confetti exploding around it
+      showSpotPopup(btn, bagName, bagContent, bagImage);
     });
   });
 
@@ -632,7 +648,7 @@ function initGoodieBagsPage() {
     });
   });
 
-  // Custom Builder Actions
+  // Custom Builder Actions - Shows the gorgeous visual bag results modal
   const btnSaveBag = document.getElementById('btnSaveBag');
   if (btnSaveBag) {
     btnSaveBag.addEventListener('click', () => {
@@ -645,13 +661,7 @@ function initGoodieBagsPage() {
         return;
       }
 
-      const itemsNames = selectedItems.map(itemId => {
-        const prod = PRODUCTS_METADATA.find(p => p.id === itemId);
-        return prod ? prod.name : itemId;
-      });
-
-      const summaryText = `השקית החווייתית שלך מוכנה לחלוקה!<br><br><strong>סוג שקית:</strong> סגנון ${activeBagStyle}<br><strong>מספר פריטי הישרדות:</strong> ${selectedItems.length}<br><br><strong>רשימת הפריטים שהרכבת:</strong><br>• ${itemsNames.join('<br>• ')}`;
-      showSystemModal('השקית נשמרה בהצלחה! 🛍️', summaryText);
+      showCustomBagResultModal(activeBagStyle, selectedItems);
     });
   }
 
@@ -670,26 +680,14 @@ function initGoodieBagsPage() {
 }
 
 /**
- * Preloads products.png and cuts out individual items into Base64 URLs using Canvas.
- * Accepts callback to trigger after cropping is finished.
+ * Maps individual items to their Frame image paths in the images folder.
+ * Accepts callback to trigger after mapping is finished.
  */
 function preloadAndSliceProducts(callback) {
-  const img = new Image();
-  img.src = SPRITESHEET_URI;
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    PRODUCTS_METADATA.forEach(prod => {
-      canvas.width = prod.w;
-      canvas.height = prod.h;
-      ctx.clearRect(0, 0, prod.w, prod.h);
-      ctx.drawImage(img, prod.x, prod.y, prod.w, prod.h, 0, 0, prod.w, prod.h);
-      SLICED_IMAGES[prod.id] = canvas.toDataURL('image/png');
-    });
-
-    if (callback) callback();
-  };
+  PRODUCTS_METADATA.forEach(prod => {
+    SLICED_IMAGES[prod.id] = prod.image;
+  });
+  if (callback) callback();
 }
 
 function renderProductGrid() {
@@ -704,6 +702,13 @@ function renderProductGrid() {
     btn.dataset.id = prod.id;
     btn.setAttribute('type', 'button');
     btn.setAttribute('aria-label', `הוסף לשקית: ${prod.name}`);
+
+    // Make products draggable
+    btn.setAttribute('draggable', 'true');
+    btn.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', prod.id);
+      e.dataTransfer.effectAllowed = 'copy';
+    });
 
     const imgContainer = document.createElement('div');
     imgContainer.className = 'product-sprite-container';
@@ -776,31 +781,37 @@ function scatterProductIcon(productId) {
   if (!container) return;
 
   const positions = [
-    { top: '10%', left: '15%' },
-    { top: '18%', left: '70%' },
-    { top: '35%', left: '80%' },
-    { top: '50%', left: '10%' },
-    { top: '65%', left: '78%' },
-    { top: '80%', left: '20%' },
-    { top: '82%', left: '60%' },
-    { top: '25%', left: '12%' },
-    { top: '60%', left: '14%' },
-    { top: '42%', left: '74%' },
-    { top: '5%', left: '45%' },
-    { top: '90%', left: '42%' },
-    { top: '75%', left: '10%' },
-    { top: '12%', left: '78%' },
-    { top: '30%', left: '82%' }
+    // Row 1 (top, widest) - 4 items
+    { top: '25%', left: '10%' },
+    { top: '25%', left: '32%' },
+    { top: '25%', left: '54%' },
+    { top: '25%', left: '76%' },
+    // Row 2 - 3 items
+    { top: '39%', left: '20%' },
+    { top: '39%', left: '45%' },
+    { top: '39%', left: '70%' },
+    // Row 3 - 3 items
+    { top: '53%', left: '15%' },
+    { top: '53%', left: '45%' },
+    { top: '53%', left: '75%' },
+    // Row 4 - 3 items
+    { top: '67%', left: '22%' },
+    { top: '67%', left: '48%' },
+    { top: '67%', left: '74%' },
+    // Row 5 (bottom, narrowest) - 2 items
+    { top: '80%', left: '30%' },
+    { top: '80%', left: '60%' }
   ];
 
   const posIdx = (selectedItems.length - 1) % positions.length;
   const coord = positions[posIdx];
 
-  const scatter = document.createElement('div');
+  const scatter = document.createElement('img');
   scatter.className = 'scatter-item';
-  scatter.style.backgroundImage = `url('${SLICED_IMAGES[productId]}')`;
+  scatter.src = SLICED_IMAGES[productId];
   scatter.style.top = coord.top;
   scatter.style.left = coord.left;
+  scatter.setAttribute('alt', PRODUCTS_METADATA.find(p => p.id === productId).name);
   scatter.setAttribute('title', PRODUCTS_METADATA.find(p => p.id === productId).name);
 
   container.appendChild(scatter);
@@ -1023,5 +1034,359 @@ function scrollToElement(element) {
   window.scrollTo({
     top: element.offsetTop - 80,
     behavior: 'smooth'
+  });
+}
+
+// ==========================================
+// 13. Dynamic Localized Confetti & Bag Popups
+// ==========================================
+
+function spawnConfettiAroundPoint(x, y) {
+  const colors = ['#FFF89A', '#9DF1FC', '#A182F9', '#FFADF2', '#9EF7C1', '#FF4B91'];
+  const confettiCount = 60;
+  const container = document.body;
+
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'custom-confetti-particle';
+    
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.backgroundColor = color;
+    
+    const shape = Math.random();
+    if (shape < 0.33) {
+      confetti.style.borderRadius = '50%';
+    } else if (shape < 0.66) {
+      confetti.style.transform = 'rotate(45deg)';
+    }
+
+    confetti.style.left = `${x}px`;
+    confetti.style.top = `${y}px`;
+
+    const size = Math.floor(Math.random() * 8) + 6;
+    confetti.style.width = `${size}px`;
+    confetti.style.height = `${size}px`;
+
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 120 + 80;
+    const destX = Math.cos(angle) * velocity;
+    const destY = Math.sin(angle) * velocity + (Math.random() * 150 + 100);
+
+    confetti.style.setProperty('--dx', `${destX}px`);
+    confetti.style.setProperty('--dy', `${destY}px`);
+    
+    const rot = Math.random() * 720 - 360;
+    confetti.style.setProperty('--dr', `${rot}deg`);
+
+    const duration = Math.random() * 1.5 + 1.2;
+    confetti.style.animation = `confettiExplodeFall ${duration}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
+
+    container.appendChild(confetti);
+
+    setTimeout(() => {
+      confetti.remove();
+    }, duration * 1000);
+  }
+}
+
+function showSpotPopup(btn, bagName, bagContent, bagImage) {
+  // Remove any existing active spot popups and backdrops to avoid duplicates
+  const existingPopups = document.querySelectorAll('.spot-bag-popup, .spot-popup-backdrop');
+  existingPopups.forEach(p => p.remove());
+
+  const rect = btn.getBoundingClientRect();
+  const clickX = rect.left + window.scrollX + (rect.width / 2);
+  const clickY = rect.top + window.scrollY + (rect.height / 2);
+
+  // Spawn confetti burst first
+  spawnConfettiAroundPoint(clickX, clickY);
+
+  // 1. Create and append the dark overlay backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'spot-popup-backdrop';
+  document.body.appendChild(backdrop);
+
+  // 2. Create and append the popup element
+  const popup = document.createElement('div');
+  popup.className = 'spot-bag-popup';
+  
+  popup.innerHTML = `
+    <div class="retro-titlebar">
+      <div class="retro-window-title">
+        <span class="retro-window-icon">🎁</span>
+        <span>${bagName}</span>
+      </div>
+      <button class="retro-control-btn spot-popup-close" aria-label="סגור">✕</button>
+    </div>
+    <div class="spot-popup-body">
+      <div class="spot-popup-congrats">מזל טוב! השקית שנבחרה היא:</div>
+      <img src="${bagImage}" alt="${bagName}" class="spot-popup-img">
+      <div class="spot-popup-content">
+        <strong class="spot-popup-subtitle">תכולת שקית ההישרדות שלך:</strong>
+        <div class="spot-popup-list">${bagContent}</div>
+      </div>
+      <button class="retro-btn retro-btn-accent spot-popup-close-btn" type="button">מעולה, תודה! 👍</button>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  const popupWidth = 350;
+  let leftPos = clickX - (popupWidth / 2);
+  let topPos = rect.top + window.scrollY - 480;
+
+  const screenWidth = window.innerWidth;
+  if (leftPos < 15) {
+    leftPos = 15;
+  } else if (leftPos + popupWidth > screenWidth - 15) {
+    leftPos = screenWidth - popupWidth - 15;
+  }
+
+  if (topPos < window.scrollY + 10) {
+    topPos = rect.bottom + window.scrollY + 20;
+  }
+
+  popup.style.left = `${leftPos}px`;
+  popup.style.top = `${topPos}px`;
+
+  setTimeout(() => {
+    const closeBtn = popup.querySelector('.spot-popup-close-btn');
+    if (closeBtn) closeBtn.focus();
+  }, 100);
+
+  // Close handlers
+  const closePopup = () => {
+    popup.classList.add('closing');
+    backdrop.classList.add('closing');
+    setTimeout(() => {
+      popup.remove();
+      backdrop.remove();
+    }, 200);
+  };
+
+  popup.querySelectorAll('.spot-popup-close, .spot-popup-close-btn').forEach(c => {
+    c.addEventListener('click', closePopup);
+  });
+  backdrop.addEventListener('click', closePopup);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      closePopup();
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  };
+  document.addEventListener('keydown', handleKeyDown);
+}
+
+function showCustomBagResultModal(bagStyle, items) {
+  // Remove existing modals to avoid overlay issues
+  const existingModals = document.querySelectorAll('.result-bag-modal, .spot-popup-backdrop');
+  existingModals.forEach(m => m.remove());
+
+  // 1. Play full fireworks!
+  triggerCanvasFireworks();
+
+  // 2. Create the dark backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'spot-popup-backdrop';
+  document.body.appendChild(backdrop);
+
+  // Detailed descriptions of products
+  const itemDescriptions = {
+    gummy: "סוכריות גומי ארוכות / נחשים — זריקת סוכר מתוקה שמחזירה אתכם ברגע לילדות.",
+    pills: "אקמול פוקוס / אדוויל — ערכת ההישרדות האמיתית שלכם לבוקר שאחרי המסיבה.",
+    alcohol: "בקבוקון אלכוהול מיניאטורי — לחגוג כמו גדולים, כי כבר מזמן עברתם את גיל 18.",
+    eye_pads: "רפידות ג׳ל לעיניים — להסתרת שקיות העייפות של השגרה והעבודה.",
+    tattoos: "קעקועי מים בעיצובים — האקססורי הכי מגניב שיזכיר לכם איך שיחקתם בהפסקה.",
+    mask: "מסכה לפנים — קצת פינוק לעור הפנים אחרי לילה ארוך של חגיגות.",
+    coffee: "שקיות קפה איכותי — הדרך היחידה לפתוח את היום ולשרוד את יום העבודה הבא.",
+    opener: "פותחן בקבוקים נוסטלגי — שימושי, עמיד ותמיד מגיע בזמן הנכון.",
+    socks: "גרביים עם הדפסים — כי אין כמו להתכרבל בבית בסטייל נוסטלגי.",
+    tea: "תה צמחים מרגיע — להרגעת הגוף והנפש לפני השינה.",
+    coaster: "תחתית לכוס קפה — שתגן על שולחן הפורמייקה היקר שלכם מפני כתמים.",
+    cloth: "מטלית ניקוי למשקפיים — לראות את החיים בבהירות, גם כשמתחילים להזדקן.",
+    glasses: "משקפיים שחורות — להסתיר את עיגולי העייפות בסטייל בלתי מתפשר.",
+    chocolate: "שוקולד מריר — זריקת אנרגיה מרירה ואיכותית ברגעים קשים.",
+    gum_cigs: "מסטיקים בקופסת סיגריות של פעם — הנוסטלגיה הכי מתוקה והכי שנויה במחלוקת."
+  };
+
+  // Get items list for detailed side panel
+  const itemsListHTML = items.map(itemId => {
+    const prod = PRODUCTS_METADATA.find(p => p.id === itemId);
+    const desc = itemDescriptions[itemId] || "פריט נוסטלגי מיוחד שהוספת לשקית ההפתעות שלך.";
+    if (!prod) return '';
+    return `
+      <div class="result-details-item">
+        <img src="${SLICED_IMAGES[itemId]}" class="detail-item-img" alt="${prod.name}">
+        <div class="detail-item-text">
+          <strong class="detail-item-name">${prod.name}</strong>
+          <span class="detail-item-desc">${desc}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // 3. Create the Modal element with Two Columns (and NO bag name style heading)
+  const modal = document.createElement('div');
+  modal.className = 'result-bag-modal';
+  
+  modal.innerHTML = `
+    <div class="retro-titlebar">
+      <div class="retro-window-title">
+        <span class="retro-window-icon">🛍️</span>
+        <span class="result-modal-title">שקית ההפתעה המותאמת אישית שלך!</span>
+      </div>
+      <button class="retro-control-btn result-modal-close" aria-label="סגור">✕</button>
+    </div>
+    <div class="result-modal-body">
+      <div class="spot-popup-congrats" style="margin-bottom: 12px; width: 100%;">מזל טוב! שקית ההפתעה שהרכבת מוכנה:</div>
+      
+      <div class="result-modal-columns">
+        <!-- Left Column: Visual representation (Not compressed/squished) -->
+        <div class="result-modal-left-col">
+          <div class="result-bag-stage">
+            <img src="images/empty_bag_${bagStyle}.png" alt="שקית ההפתעה המוכנה שלך" class="result-bag-img">
+            <div class="result-items-overlay" id="resultItemsOverlay"></div>
+          </div>
+        </div>
+        
+        <!-- Right Column: Detailed item descriptions -->
+        <div class="result-modal-right-col">
+          <div class="result-details-list">
+            ${itemsListHTML}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="result-modal-footer">
+      <button class="retro-btn retro-btn-accent result-modal-close-btn" type="button">וואו, פשוט מדהים! 🎉</button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // 4. Populate and scatter items absolute positioned on the bag in a neat grid!
+  const overlay = modal.querySelector('#resultItemsOverlay');
+  if (overlay) {
+    const gridPositions = [
+      // Row 1 (top, widest) - 4 items
+      { top: '25%', left: '10%' },
+      { top: '25%', left: '32%' },
+      { top: '25%', left: '54%' },
+      { top: '25%', left: '76%' },
+      // Row 2 - 3 items
+      { top: '39%', left: '20%' },
+      { top: '39%', left: '45%' },
+      { top: '39%', left: '70%' },
+      // Row 3 - 3 items
+      { top: '53%', left: '15%' },
+      { top: '53%', left: '45%' },
+      { top: '53%', left: '75%' },
+      // Row 4 - 3 items
+      { top: '67%', left: '22%' },
+      { top: '67%', left: '48%' },
+      { top: '67%', left: '74%' },
+      // Row 5 (bottom, narrowest) - 2 items
+      { top: '80%', left: '30%' },
+      { top: '80%', left: '60%' }
+    ];
+
+    items.forEach((itemId, index) => {
+      const img = document.createElement('img');
+      img.src = SLICED_IMAGES[itemId] || '';
+      img.className = 'result-scatter-img';
+      img.alt = itemId;
+
+      const coord = gridPositions[index % gridPositions.length];
+      img.style.left = coord.left;
+      img.style.top = coord.top;
+
+      const rot = Math.floor(Math.random() * 20) - 10; // slight natural rotation
+      img.style.setProperty('--rot', `${rot}deg`);
+      
+      // Delay the appearance of each item slightly for a beautiful cascading drop effect!
+      img.style.animationDelay = `${index * 0.1}s`;
+
+      overlay.appendChild(img);
+    });
+  }
+
+  // Focus close button
+  setTimeout(() => {
+    const closeBtn = modal.querySelector('.result-modal-close-btn');
+    if (closeBtn) closeBtn.focus();
+  }, 100);
+
+  // Close handlers
+  const closeModal = () => {
+    modal.style.animation = 'resultModalClose 0.2s cubic-bezier(0.4, 0, 1, 1) forwards';
+    backdrop.classList.add('closing');
+    setTimeout(() => {
+      modal.remove();
+      backdrop.remove();
+    }, 200);
+  };
+
+  modal.querySelectorAll('.result-modal-close, .result-modal-close-btn').forEach(c => {
+    c.addEventListener('click', closeModal);
+  });
+  backdrop.addEventListener('click', closeModal);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  };
+  document.addEventListener('keydown', handleKeyDown);
+}
+
+// ==========================================
+// 14. Interactive Responsive Advertisement Pause Controls
+// ==========================================
+function initAdControls() {
+  const adContainers = document.querySelectorAll('aside.ad-sidebar .ad-container, .mobile-ad-card');
+  adContainers.forEach((adContainer) => {
+    // Create pause button
+    const pauseBtn = document.createElement('button');
+    pauseBtn.className = 'ad-pause-btn';
+    pauseBtn.setAttribute('type', 'button');
+    pauseBtn.setAttribute('aria-label', 'עצור פרסומת');
+    pauseBtn.innerHTML = '⏸️ עצור';
+
+    // Create paused placeholder
+    const placeholder = document.createElement('div');
+    placeholder.className = 'ad-paused-placeholder';
+    placeholder.style.display = 'none';
+    placeholder.innerHTML = `
+      <span class="ad-paused-icon">⏸️</span>
+      <span class="ad-paused-text">פרסומת מושהית</span>
+      <span class="ad-paused-subtext">לחצו להפעלה</span>
+    `;
+
+    adContainer.appendChild(placeholder);
+    adContainer.appendChild(pauseBtn);
+
+    const img = adContainer.querySelector('img');
+
+    // Toggle pause state
+    const togglePause = (e) => {
+      e.stopPropagation();
+      const isPaused = adContainer.classList.toggle('paused');
+      if (isPaused) {
+        placeholder.style.display = 'flex';
+        if (img) img.style.display = 'none';
+        pauseBtn.innerHTML = '▶️ הפעל';
+        pauseBtn.setAttribute('aria-label', 'הפעל פרסומת');
+      } else {
+        placeholder.style.display = 'none';
+        if (img) img.style.display = 'block';
+        pauseBtn.innerHTML = '⏸️ עצור';
+        pauseBtn.setAttribute('aria-label', 'עצור פרסומת');
+      }
+    };
+
+    pauseBtn.addEventListener('click', togglePause);
+    placeholder.addEventListener('click', togglePause);
   });
 }
