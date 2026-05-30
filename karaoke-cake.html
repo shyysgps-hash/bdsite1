@@ -219,7 +219,7 @@
         <!-- Recipe Metadata & Steps -->
         <article class="cake-column">
           <div class="cake-title-bar">
-            <h3>מתכון לעוגת גן</h3>
+            <h3>מתכון לעוגת גן</h3> </br>
           </div>
 
           <div class="recipe-container">
@@ -252,7 +252,6 @@
                     <li>חצי מיכל שמנת מתוקה 38% (125 גרם)</li>
                     <li>דף סוכר, סוכריות, קצפת</li>
                   </ul>
-
                 </div>
               </div>
 
@@ -270,6 +269,7 @@
                 </ol>
               </div>
             </div>
+          </div>
         </article>
 
         <!-- Baking Mixer game -->
@@ -290,31 +290,31 @@
             <!-- 1. Sugar sheet upload -->
             <div class="form-group decorator-form-group">
               <span class="form-label pixel-font">1. העלאת דף סוכר (תמונת ילדות):</span>
-              <label for="sugarSheetUpload" class="retro-btn retro-btn-secondary sugar-upload-btn">📂 בחרו תמונה מהמחשב</label>
+              <label for="sugarSheetUpload" class="retro-btn retro-btn-secondary sugar-upload-btn"> בחרו תמונה מהמחשב📂</label>
               <input type="file" id="sugarSheetUpload" accept="image/*" class="hidden-input">
             </div>
 
             <!-- 2. Frosting color -->
-            <div class="form-group decorator-form-group">
+            <div class="form-group decorator-form-group color-picker-row">
               <span class="form-label pixel-font">2. בחרו צבע קרם ציפוי:</span>
-              <div class="color-circles-picker color-circles-picker.margin-top">
+              <div class="color-circles-picker">
                 <div class="color-circle" data-color="var(--accent-pink)"
-                  title="ורוד בייבי"></div>
-                <div class="color-circle" data-color="#583319" title="שוקולד חום">
+                  title="ורוד"></div>
+                <div class="color-circle" data-color="#583319" title="חום">
                 </div>
                 <div class="color-circle" data-color="var(--accent-green)"
-                  title="מנטה ירוק"></div>
+                  title="ירוק"></div>
                 <div class="color-circle" data-color="var(--accent-cyan)"
-                  title="בננה כחול"></div>
+                  title="כחול"></div>
                 <div class="color-circle" data-color="var(--accent-yellow)"
-                  title="קרם לימון"></div>
+                  title="צהוב"></div>
               </div>
             </div>
 
             <!-- 3. Add Decorations -->
             <div class="form-group decorator-form-group decorator-form-group.flex-row">
-              <button class="retro-btn" id="btnAddSprinkles" type="button">🌈 הוסף סוכריות</button>
-              <button class="retro-btn retro-btn-secondary" id="btnAddCandle" type="button">🕯️ הוסף נר גיל</button>
+              <button class="retro-btn" id="btnAddSprinkles" type="button"> הוסף סוכריות🌈</button>
+              <button class="retro-btn retro-btn-secondary" id="btnAddCandle" type="button"> הוסף נר גיל🕯️</button>
             </div>
 
             <!-- 4. Icing Text Input -->
@@ -325,7 +325,7 @@
 
             <!-- Action Bar -->
             <div class="decorator-action-row">
-              <button class="retro-btn retro-btn-accent decor-btn-save" id="btnSaveDecor" type="button">💾 שמור עוגה מעוצבת!</button>
+              <button class="retro-btn retro-btn-accent decor-btn-save" id="btnSaveDecor" type="button"> שמור עוגה מעוצבת!💾</button>
               <button class="retro-btn decor-btn-clear" id="btnClearDecor" type="button">רוקן ↺</button>
             </div>
           </div>
@@ -392,30 +392,9 @@
         <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
       </div>
 
-      <p class="footer-text">© 2026 אני לא בגיל לזה. הפקולטה לטכנולוגיות למידה HIT.</p>
+      <p class="footer-text">© 2026 אני לא בגיל לזה 18+. הפקולטה לטכנולוגיות למידה HIT.</p>
     </div>
-
-    <!-- ==========================================
-       5. Accessible Windows 95 System Dialog (Modal)
-       ========================================== -->
-    <div class="retro-modal-overlay" id="retroModalOverlay" role="dialog" aria-modal="true"
-         aria-labelledby="modalTitleText">
-      <div class="retro-modal">
-        <div class="retro-titlebar">
-          <div class="retro-window-title">
-            <span id="modalTitleText">מערכת משחקים</span>
-            <span class="retro-window-icon">🎲</span>
-          </div>
-          <button class="retro-control-btn modal-close-trigger" aria-label="סגור חלונית">✕</button>
-        </div>
-
-        <div class="modal-body">
-          <div class="modal-message" id="modalBodyText">הודעה.</div>
-        </div>
-        <div class="modal-footer">
-          <button class="retro-btn modal-close-trigger modal-close-trigger-btn" id="modalCloseBtn"
-                  type="button">אישור</button>
-        </div>
+    
       </div>
     </div>
 

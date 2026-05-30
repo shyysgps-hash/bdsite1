@@ -233,7 +233,7 @@
 
     <!-- Header / Instructions -->
     <header class="bg-white/80 shadow-md p-4 text-center rounded-b-3xl z-20 relative">
-        <h1 class="text-3xl font-black text-pink-600 mb-2 drop-shadow-sm">🍰 קונדיטוריית יום ההולדת</h1>
+        <h1 class="text-3xl font-black text-pink-600 mb-2 drop-shadow-sm"> קונדיטוריית יום ההולדת🍰</h1>
         <p id="instruction-text" class="text-xl font-bold text-gray-700">בואו נכין עוגה! לחצו על התחל.</p>
     </header>
 
@@ -400,17 +400,16 @@
                 initialX = rect.left;
                 initialY = rect.top;
 
-                clone.setPointerCapture(e.pointerId);
-
-                clone.addEventListener('pointermove', (ev) => {
+                const handlePointerMove = (ev) => {
                     const dx = ev.clientX - startX;
                     const dy = ev.clientY - startY;
                     clone.style.left = initialX + dx + 'px';
                     clone.style.top = initialY + dy + 'px';
-                });
+                };
 
-                clone.addEventListener('pointerup', (ev) => {
-                    clone.releasePointerCapture(ev.pointerId);
+                const handlePointerUp = (ev) => {
+                    window.removeEventListener('pointermove', handlePointerMove);
+                    window.removeEventListener('pointerup', handlePointerUp);
                     
                     // Check collision
                     const targetRect = targetElement.getBoundingClientRect();
@@ -433,7 +432,10 @@
                     }
                     
                     draggedItem = null;
-                });
+                };
+
+                window.addEventListener('pointermove', handlePointerMove);
+                window.addEventListener('pointerup', handlePointerUp);
             });
         }
 

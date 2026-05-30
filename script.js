@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlobalModals();
   initAdControls();
   initAccessibilityControls();
+  initBackToTopButton();
+  initAdSidebarAdjuster();
 
   // Route page-specific logic
   const path = window.location.pathname;
@@ -169,6 +171,81 @@ function showSystemModal(title, htmlMessage, onClose) {
     const btn = document.getElementById('modalCloseBtn');
     if (btn) btn.focus();
   }, 100);
+}
+
+// ==========================================
+// 4a. Back to Top Button
+// ==========================================
+function initBackToTopButton() {
+  // Create back-to-top button
+  const btn = document.createElement('button');
+  btn.id = 'backToTopBtn';
+  btn.className = 'retro-btn back-to-top-btn';
+  btn.title = 'חזרה לראש הדף';
+  btn.setAttribute('aria-label', 'חזרה לראש הדף');
+  btn.innerHTML = '▲';
+  document.body.appendChild(btn);
+
+  // Show/hide button on scroll
+  const toggleVisibility = () => {
+    if (window.scrollY > 300) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  };
+
+  window.addEventListener('scroll', toggleVisibility);
+
+  // Smooth scroll back to top on click
+  btn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// ==========================================
+// 4b. Scroll-Activated Sidebar Ads Adjuster
+// ==========================================
+function initAdSidebarAdjuster() {
+  const adjustSidebarAds = () => {
+    const footer = document.querySelector('.site-footer');
+    const adSidebars = document.querySelectorAll('aside.ad-sidebar');
+    if (!footer || adSidebars.length === 0) return;
+
+    const footerRect = footer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Check if the top of the footer is visible in the viewport
+    if (footerRect.top < windowHeight) {
+      const adHeight = 500;
+      const adTop = 100;
+      const gap = 30; // 30px gap to ensure no visual overlap
+      const adEnd = adTop + adHeight + gap;
+
+      if (footerRect.top < adEnd) {
+        const overlap = adEnd - footerRect.top;
+        adSidebars.forEach(ad => {
+          ad.style.transform = `translateY(-${overlap}px)`;
+        });
+      } else {
+        adSidebars.forEach(ad => {
+          ad.style.transform = 'none';
+        });
+      }
+    } else {
+      adSidebars.forEach(ad => {
+        ad.style.transform = 'none';
+      });
+    }
+  };
+
+  window.addEventListener('scroll', adjustSidebarAds);
+  window.addEventListener('resize', adjustSidebarAds);
+  // Initial check on load
+  adjustSidebarAds();
 }
 
 // ==========================================
@@ -433,6 +510,10 @@ function initKaraokeCakePage() {
           sugarSheetUploadedImg.style.display = 'block';
           if (decorationImageOverlay) {
             decorationImageOverlay.style.border = 'none';
+            const span = decorationImageOverlay.querySelector('span');
+            if (span) {
+              span.style.display = 'none';
+            }
           }
         };
         reader.readAsDataURL(file);
@@ -548,10 +629,17 @@ function initKaraokeCakePage() {
         sugarSheetUploadedImg.src = '';
         sugarSheetUploadedImg.style.display = 'none';
         decorationImageOverlay.style.border = '2px dashed var(--color-border)';
+        const span = decorationImageOverlay.querySelector('span');
+        if (span) {
+          span.style.display = 'block';
+        }
       }
       if (icingText) icingText.innerText = 'הכיתוב שלכם כאן';
       if (icingInput) icingInput.value = '';
       if (cakeFrosting) cakeFrosting.style.backgroundColor = 'var(--accent-pink)';
+
+      // Clear persisted state
+      localStorage.removeItem('savedBirthdayCake');
     });
   }
 
@@ -563,9 +651,91 @@ function initKaraokeCakePage() {
       const sprinklesCount = placedDecorations.querySelectorAll('.placed-sprinkle').length;
       const hasImage = sugarSheetUploadedImg.style.display === 'block';
 
-      const summary = `איזו עוגת פאר נוסטלגית!<br><br><strong>ציפוי:</strong> ${cakeFrosting.style.backgroundColor || 'ורוד פסטל'}<br><strong>כמות נרות גיל:</strong> ${candlesCount}<br><strong>סוכריות צבעוניות:</strong> ${sprinklesCount > 0 ? sprinklesCount : 'אין'}<br><strong>דף סוכר אישי:</strong> ${hasImage ? 'הועלה בהצלחה' : 'ללא תמונה'}<br><strong>כיתוב השוקולד שלך:</strong> "${icingInput.value || 'הכיתוב שלכם כאן'}"<br><br>העוגה נשמרה בגלריה בהצלחה! היא מוכנה כעת להגשה במרכז השולחן!`;
+      // Save cake state to localStorage
+      const cakeState = {
+        frostingColor: cakeFrosting.style.backgroundColor || 'var(--accent-pink)',
+        candlesCount: candlesCount,
+        sprinklesCount: sprinklesCount,
+        icingText: icingInput.value || '',
+        sugarSheetSrc: hasImage ? sugarSheetUploadedImg.src : ''
+      };
+      localStorage.setItem('savedBirthdayCake', JSON.stringify(cakeState));
+
+      const summary = `איזו עוגת פאר נוסטלגית!<br><br><strong>ציפוי:</strong> ${cakeFrosting.style.backgroundColor || 'ורוד פסטל'}<br><strong>כמות נרות גיל:</strong> ${candlesCount}<br><strong>סוכריות צבעוניות:</strong> ${sprinklesCount > 0 ? sprinklesCount : 'אין'}<br><strong>דף סוכר אישי:</strong> ${hasImage ? 'הועלה בהצלחה' : 'ללא תמונה'}<br><strong>כיתוב השוקולד שלך:</strong> "${icingInput.value || 'הכיתוב שלכם כאן'}"<br><br>העוגה נשמרה בגלריה בהצלחה! היא מוכנה כעת להגשה במרכז השולחן!<br><br><small style="color:var(--color-text-muted);">*העוגה נשמרה גם בזיכרון המקומי של הדפדפן (localStorage) ותיטען מחדש אוטומטית אם תרענן את הדף!</small>`;
       showSystemModal('עוגת גן נוסטלגית מוכנה! 🍰', summary);
     });
+  }
+
+  // Load saved cake from localStorage on page initialization
+  const savedCakeStr = localStorage.getItem('savedBirthdayCake');
+  if (savedCakeStr) {
+    try {
+      const savedCake = JSON.parse(savedCakeStr);
+      if (savedCake.frostingColor && cakeFrosting) {
+        cakeFrosting.style.backgroundColor = savedCake.frostingColor;
+      }
+      if (savedCake.icingText && icingText) {
+        icingText.innerText = savedCake.icingText;
+        if (icingInput) icingInput.value = savedCake.icingText;
+      }
+      if (savedCake.sugarSheetSrc && sugarSheetUploadedImg) {
+        sugarSheetUploadedImg.src = savedCake.sugarSheetSrc;
+        sugarSheetUploadedImg.style.display = 'block';
+        if (decorationImageOverlay) {
+          decorationImageOverlay.style.border = 'none';
+          const span = decorationImageOverlay.querySelector('span');
+          if (span) {
+            span.style.display = 'none';
+          }
+        }
+      }
+      if (savedCake.sprinklesCount > 0 && placedDecorations) {
+        const sprinkleColors = ['#FFF89A', '#9DF1FC', '#FFADF2', '#9EF7C1', '#FFAAA6', '#ffffff'];
+        for (let i = 0; i < savedCake.sprinklesCount; i++) {
+          const sprinkle = document.createElement('div');
+          sprinkle.className = 'placed-sprinkle';
+          sprinkle.style.backgroundColor = sprinkleColors[Math.floor(Math.random() * sprinkleColors.length)];
+          const left = Math.floor(Math.random() * 260) + 10;
+          const top = Math.floor(Math.random() * 140) + 40;
+          const angle = Math.floor(Math.random() * 360);
+          sprinkle.style.left = `${left}px`;
+          sprinkle.style.top = `${top}px`;
+          sprinkle.style.transform = `rotate(${angle}deg)`;
+          placedDecorations.appendChild(sprinkle);
+        }
+      }
+      if (savedCake.candlesCount > 0 && placedDecorations) {
+        for (let i = 0; i < savedCake.candlesCount; i++) {
+          const candle = document.createElement('div');
+          candle.className = 'placed-candle';
+          candle.style.width = '12px';
+          candle.style.height = '36px';
+          candle.style.background = 'linear-gradient(to top, var(--accent-magenta), var(--accent-yellow))';
+          candle.style.border = '2.5px solid #000';
+          candle.style.boxShadow = '1px 1px 0 #000';
+
+          const flame = document.createElement('div');
+          flame.style.width = '6px';
+          flame.style.height = '10px';
+          flame.style.backgroundColor = '#ff8800';
+          flame.style.borderRadius = '50% 50% 50% 50% / 60% 60% 40% 40%';
+          flame.style.position = 'absolute';
+          flame.style.top = '-14px';
+          flame.style.left = '1px';
+          flame.style.border = '1px solid #000';
+          candle.appendChild(flame);
+
+          const left = Math.floor(Math.random() * 220) + 30;
+          const top = Math.floor(Math.random() * 40) + 10;
+          candle.style.left = `${left}px`;
+          candle.style.top = `${top}px`;
+          candle.style.position = 'absolute';
+          placedDecorations.appendChild(candle);
+        }
+      }
+    } catch (e) {
+      console.error('Error loading saved cake', e);
+    }
   }
 
   // F. Detect file:// protocol and show helpful system warning modal
