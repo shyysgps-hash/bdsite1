@@ -153,6 +153,13 @@ function initHomePage() {
   const btnAgeDeny = document.getElementById('btnAgeDeny');
 
   if (warningOverlay) {
+    // Check if user already dismissed warning in this session
+    if (sessionStorage.getItem('seenAgeWarning') === 'true') {
+      warningOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+      return;
+    }
+
     // Force show warning modal immediately on page load
     warningOverlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -169,6 +176,7 @@ function initHomePage() {
     btnAgeDeny.addEventListener('click', () => {
       warningOverlay.style.display = 'none';
       document.body.style.overflow = '';
+      sessionStorage.setItem('seenAgeWarning', 'true');
     });
   }
 }
