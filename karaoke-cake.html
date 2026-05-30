@@ -89,13 +89,13 @@
 
       <!-- Choice Tabs at the top -->
       <div class="choice-tabs-grid">
-        <button class="choice-tab-btn" id="tabToKaraoke" style="background-color: var(--accent-cyan);" type="button">
-          <span style="font-size: 5rem;">🎤</span>
+        <button class="choice-tab-btn" id="tabToKaraoke" type="button">
+          <span>🎤</span>
           <strong>לקריוקי</strong>
         </button>
 
-        <button class="choice-tab-btn" id="tabToCake" style="background-color: var(--accent-pink);" type="button">
-          <span style="font-size: 5rem;">🍰</span>
+        <button class="choice-tab-btn" id="tabToCake" type="button">
+          <span>🍰</span>
           <strong>לעוגה</strong>
         </button>
       </div>
@@ -104,19 +104,19 @@
     <!-- A. KARAOKE SECTION -->
     <section id="sectionKaraoke" class="games-container" aria-label="מדור קריוקי">
       <h2 class="games-subtitle">מוכנים להרים את האווירה גם בישיבה?</h2>
-      <p style="margin-bottom: 25px; font-size: 1.05rem;">שירו בהנאה עד שכבר לא תוכלו לעמוד בזה, ליטרלי!</p>
+      <p class="karaoke-intro">שירו בהנאה עד שכבר לא תוכלו לעמוד בזה, ליטרלי!</p>
 
       <div class="karaoke-cake-layout">
 
         <!-- Playlist Column -->
-        <article class="karaoke-column" style="max-height: 380px;">
+        <article class="karaoke-column">
           <div class="karaoke-title-bar">
             <span>רשימת השירים</span>
             <h4 id="playerSongTitle">מנגן: ...Baby One More Time - Britney Spears</h4>
           </div>
 
           <div class="song-list-container">
-            <ul style="list-style: none;">
+            <ul>
               <li class="song-item active" role="button" tabindex="0">
                 <span>...Baby One More Time - Britney Spears</span>
                 <span>03:30</span>
@@ -211,7 +211,7 @@
     <!-- B. CAKE SECTION -->
     <section id="sectionCake" class="games-container" aria-label="מדור עוגת גן">
       <h2 class="games-subtitle">עכשיו אחרי שפירקתם את הגרון.. הגיע הזמן להרכיב את העוגה!</h2>
-      <p style="margin-bottom: 25px; font-size: 1.05rem;">אתם השפים האמיתיים של המסיבה! </br> סידרנו לכם מתכון לעוגת הגן
+      <p class="karaoke-intro">אתם השפים האמיתיים של המסיבה! </br> סידרנו לכם מתכון לעוגת הגן
         הטעימה והמוכרת, הפעם בגרסה שלא תהפוך אתכם לאסון סוכרתי! (טוב, אולי לא לגמרי...)</p>
 
       <div class="karaoke-cake-layout">
@@ -224,16 +224,11 @@
 
           <div class="recipe-container">
             <!-- Metadata Row -->
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
-              <span class="section-tag" style="background-color: var(--accent-purple);">רמת קושי: <br> קל מאוד</span>
-              <span class="section-tag" style="background-color: var(--accent-cyan); color: #000;">זמן הכנה: <br> 15
-                דקות
-                גג</span>
-              <span class="section-tag" style="background-color: var(--accent-green); color: #000;">זמן אפייה: <br> 30
-                דקות
-                בול</span>
-              <span class="section-tag" style="background-color: var(--accent-coral); color: #000;">מנות: <br> מספיק
-                לכולם!</span>
+            <div class="recipe-meta-row">
+              <span class="section-tag tag-difficulty">רמת קושי: <br> קל מאוד</span>
+              <span class="section-tag tag-prep">זמן הכנה: <br> 15 דקות גג</span>
+              <span class="section-tag tag-bake">זמן אפייה: <br> 30 דקות בול</span>
+              <span class="section-tag tag-servings">מנות: <br> מספיק לכולם!</span>
             </div>
 
             <div class="recipe-columns">
@@ -241,7 +236,7 @@
               <div class="recipe-card">
                 <div class="recipe-ingredients-grid">
 
-                  <h5 style="color: var(--accent-magenta);">לעוגה:</h5>
+                  <h5>לעוגה:</h5>
                   <ul class="recipe-list">
                     <li>כוס אחת שוקולית</li>
                     <li>כוס אחת קמח לבן</li>
@@ -251,7 +246,7 @@
                     <li>חצי מיכל שמנת מתוקה 38% (125 גרם)</li>
                   </ul>
 
-                  <h5 style="color: var(--accent-magenta);">לציפוי וקישוט:</h5>
+                  <h5>לציפוי וקישוט:</h5>
                   <ul class="recipe-list">
                     <li>200 גרם שוקולד מריר/חלב/לבן</li>
                     <li>חצי מיכל שמנת מתוקה 38% (125 גרם)</li>
@@ -263,8 +258,7 @@
 
               <!-- Instructions steps -->
               <div class="recipe-steps">
-                <h5 style="margin-bottom: 10px; font-family: var(--font-heading);">הוראות הכנה:
-                </h5>
+                <h5>הוראות הכנה:</h5>
                 <ol>
                   <li class="recipe-step-item">לחמם תנור ל-180 מעלות.</li>
                   <li class="recipe-step-item">לערבב את כל היבשים בקערה.</li>
@@ -280,74 +274,59 @@
 
         <!-- Baking Mixer game -->
         <article class="baking-bowl-container">
-          <iframe> src="code_artifact.html" </iframe>
+          <iframe src="code_artifact.html"></iframe>
         </article>
       </div>
 
       <!-- INTERACTIVE CAKE DECORATOR (נוסטלעוגן) -->
-      <h3
-        style="font-family: var(--font-pixel); color: var(--accent-dark-blue); font-size: 1.5rem; text-align: center; margin-bottom: 10px;">
-        עכשיו לקישוט!</h3>
+      <h3 class="cake-decorator-title">עכשיו לקישוט!</h3>
       <p>ועל הדרך תוכלו להזכיר לחברים שלכם איזה חמודים הייתם..</p>
       <article class="cake-decorator-workspace" aria-label="מקשט עוגת גן אינטראקטיבי">
-        <h4
-          style="font-family: var(--font-pixel); color: var(--accent-dark-blue); font-size: 1.5rem; text-align: center; margin-bottom: 10px;">
-          פינת ה"נוסטלעוגן" (נוסטלגיה + עוגת גן)</h4>
+        <h4 class="cake-decorator-title">פינת ה"נוסטלעוגן" (נוסטלגיה + עוגת גן)</h4>
         <div class="decorator-grid">
 
           <!-- Controls Panel -->
           <div class="decor-controls-panel">
             <!-- 1. Sugar sheet upload -->
-            <div class="form-group"
-              style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px;">
-              <span class="form-label" style="font-family: var(--font-pixel);">1. העלאת דף סוכר (תמונת ילדות):</span>
-              <label for="sugarSheetUpload" class="retro-btn retro-btn-secondary"
-                style="margin-top: 8px; width: 100%; font-size: 0.9rem;">📂 בחרו תמונה מהמחשב</label>
-              <input type="file" id="sugarSheetUpload" accept="image/*" style="display: none;">
+            <div class="form-group decorator-form-group">
+              <span class="form-label pixel-font">1. העלאת דף סוכר (תמונת ילדות):</span>
+              <label for="sugarSheetUpload" class="retro-btn retro-btn-secondary sugar-upload-btn">📂 בחרו תמונה מהמחשב</label>
+              <input type="file" id="sugarSheetUpload" accept="image/*" class="hidden-input">
             </div>
 
             <!-- 2. Frosting color -->
-            <div class="form-group"
-              style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px;">
-              <span class="form-label" style="font-family: var(--font-pixel);">2. בחרו צבע קרם ציפוי:</span>
-              <div class="color-circles-picker" style="margin-top: 8px;">
-                <div class="color-circle" data-color="var(--accent-pink)" style="background-color: var(--accent-pink);"
+            <div class="form-group decorator-form-group">
+              <span class="form-label pixel-font">2. בחרו צבע קרם ציפוי:</span>
+              <div class="color-circles-picker color-circles-picker.margin-top">
+                <div class="color-circle" data-color="var(--accent-pink)"
                   title="ורוד בייבי"></div>
-                <div class="color-circle" data-color="#583319" style="background-color: #583319;" title="שוקולד חום">
+                <div class="color-circle" data-color="#583319" title="שוקולד חום">
                 </div>
                 <div class="color-circle" data-color="var(--accent-green)"
-                  style="background-color: var(--accent-green);" title="מנטה ירוק"></div>
-                <div class="color-circle" data-color="var(--accent-cyan)" style="background-color: var(--accent-cyan);"
+                  title="מנטה ירוק"></div>
+                <div class="color-circle" data-color="var(--accent-cyan)"
                   title="בננה כחול"></div>
                 <div class="color-circle" data-color="var(--accent-yellow)"
-                  style="background-color: var(--accent-yellow);" title="קרם לימון"></div>
+                  title="קרם לימון"></div>
               </div>
             </div>
 
             <!-- 3. Add Decorations -->
-            <div class="form-group"
-              style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px; display: flex; gap: 10px;">
-              <button class="retro-btn" id="btnAddSprinkles" style="flex-grow: 1; font-size: 0.85rem;" type="button">🌈
-                הוסף סוכריות</button>
-              <button class="retro-btn retro-btn-secondary" id="btnAddCandle" style="flex-grow: 1; font-size: 0.85rem;"
-                type="button">🕯️ הוסף נר גיל</button>
+            <div class="form-group decorator-form-group decorator-form-group.flex-row">
+              <button class="retro-btn" id="btnAddSprinkles" type="button">🌈 הוסף סוכריות</button>
+              <button class="retro-btn retro-btn-secondary" id="btnAddCandle" type="button">🕯️ הוסף נר גיל</button>
             </div>
 
             <!-- 4. Icing Text Input -->
-            <div class="form-group"
-              style="background: var(--accent-gray); padding: 15px; border: 2px solid var(--color-border); border-radius: 4px;">
-              <label for="cakeIcingInput" class="form-label" style="font-family: var(--font-pixel);">3. כיתוב שוקולד על
-                העוגה:</label>
-              <input type="text" id="cakeIcingInput" class="form-control" placeholder="מזל טוב! או כיתוב מצחיק..."
-                maxlength="30" style="margin-top: 6px;">
+            <div class="form-group decorator-form-group">
+              <label for="cakeIcingInput" class="form-label pixel-font">3. כיתוב שוקולד על העוגה:</label>
+              <input type="text" id="cakeIcingInput" class="form-control" placeholder="מזל טוב! או כיתוב מצחיק..." maxlength="30">
             </div>
 
             <!-- Action Bar -->
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <button class="retro-btn retro-btn-accent" id="btnSaveDecor" style="flex-grow: 2;" type="button">💾 שמור
-                עוגה מעוצבת!</button>
-              <button class="retro-btn" id="btnClearDecor" style="flex-grow: 1; background-color: var(--accent-coral);"
-                type="button">רוקן ↺</button>
+            <div class="decorator-action-row">
+              <button class="retro-btn retro-btn-accent decor-btn-save" id="btnSaveDecor" type="button">💾 שמור עוגה מעוצבת!</button>
+              <button class="retro-btn decor-btn-clear" id="btnClearDecor" type="button">רוקן ↺</button>
             </div>
           </div>
 
@@ -362,9 +341,7 @@
 
               <!-- Sugar sheet overlay image -->
               <div class="sugar-sheet-overlay" id="sugarSheetOverlay">
-                <span
-                  style="font-size: 0.7rem; color: var(--color-text-muted); font-family: var(--font-pixel); text-align: center; padding: 10px;">דף
-                  סוכר<br>(העלו תמונה)</span>
+                <span>דף סוכר<br>(העלו תמונה)</span>
                 <img src="" alt="תמונת דף הסוכר שלך" class="sugar-sheet-uploaded-img" id="sugarSheetUploadedImg">
               </div>
 
@@ -376,10 +353,8 @@
         </div>
       </article>
 
-      <div
-        style="text-align: center; margin-top: 40px; border-top: 2.5px dashed var(--color-border); padding-top: 20px;">
-        <p style="font-weight: 500; font-size: x-large; margin-bottom: 15px;">רגע לפני שתיגמר המסיבה, עברו לדף הבא כדי
-          לקבל שקית הפתעה!</p>
+      <div class="cake-footer-nav">
+        <p>רגע לפני שתיגמר המסיבה, עברו לדף הבא כדי לקבל שקית הפתעה!</p>
         <a href="goodie-bags.html" class="retro-btn"> מעבר לעמוד שקיות הפתעה ➔</a>
       </div>
     </section>
@@ -413,7 +388,7 @@
         <a href="sitemap.html">מפת אתר </a>
       </ul>
 
-      <div style="margin: 15px 0;">
+      <div class="footer-badge-wrapper">
         <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
       </div>
 
@@ -438,7 +413,7 @@
           <div class="modal-message" id="modalBodyText">הודעה.</div>
         </div>
         <div class="modal-footer">
-          <button class="retro-btn modal-close-trigger" id="modalCloseBtn" style="padding: 5px 15px; font-size: 0.9rem;"
+          <button class="retro-btn modal-close-trigger modal-close-trigger-btn" id="modalCloseBtn"
                   type="button">אישור</button>
         </div>
       </div>

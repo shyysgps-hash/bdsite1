@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlobalNavigation();
   initGlobalModals();
   initAdControls();
+  initAccessibilityControls();
 
   // Route page-specific logic
   const path = window.location.pathname;
@@ -108,6 +109,10 @@ function initGlobalModals() {
   const closeModal = () => {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
+    const modalContainer = overlay.querySelector('.retro-modal');
+    if (modalContainer) {
+      modalContainer.classList.remove('accessibility-modal');
+    }
   };
 
   closeBtns.forEach(btn => {
@@ -125,7 +130,7 @@ function initGlobalModals() {
   });
 }
 
-function showSystemModal(title, htmlMessage) {
+function showSystemModal(title, htmlMessage, onClose) {
   const overlay = document.getElementById('retroModalOverlay');
   const modalTitle = document.getElementById('modalTitleText');
   const modalBody = document.getElementById('modalBodyText');
@@ -137,6 +142,28 @@ function showSystemModal(title, htmlMessage) {
 
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  // Support onClose callback for custom modal close events
+  if (onClose) {
+    const closeBtns = overlay.querySelectorAll('.modal-close-trigger');
+    const handleClose = () => {
+      onClose();
+      // Clean up local listeners to prevent leaks
+      closeBtns.forEach(btn => btn.removeEventListener('click', handleClose));
+      overlay.removeEventListener('click', handleOverlayClick);
+      document.removeEventListener('keydown', handleEsc);
+    };
+    const handleOverlayClick = (e) => {
+      if (e.target === overlay) handleClose();
+    };
+    const handleEsc = (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) handleClose();
+    };
+
+    closeBtns.forEach(btn => btn.addEventListener('click', handleClose));
+    overlay.addEventListener('click', handleOverlayClick);
+    document.addEventListener('keydown', handleEsc);
+  }
 
   setTimeout(() => {
     const btn = document.getElementById('modalCloseBtn');
@@ -164,11 +191,19 @@ function initHomePage() {
     warningOverlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
-    // Age confirm (Yes I am aware / Yes I enter) - Shows warning dialog instead
+    // Age confirm (Yes I am aware / Yes I enter) - Shows warning dialog instead and restores warning afterwards
     btnAgeConfirm.addEventListener('click', () => {
+      // Temporarily hide warning modal so both overlays don't stack confusingly
+      warningOverlay.style.display = 'none';
+
       showSystemModal(
         'התראה נוסטלגית ⚠️',
-        'על מי אנחנו עובדים? אנחנו לא בגיל לזה. מגיע לנו יום הולדת בסגנון אחר!'
+        'על מי אנחנו עובדים? אנחנו לא בגיל לזה. מגיע לנו יום הולדת בסגנון אחר!',
+        () => {
+          // Restore the warning overlay and keep body locked when the system modal is closed
+          warningOverlay.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
       );
     });
 
@@ -1487,3 +1522,124 @@ function initAdControls() {
     placeholder.addEventListener('click', togglePause);
   });
 }
+
+// ==========================================
+// 12. Accessibility Controls & Full Statement
+// ==========================================
+function initAccessibilityControls() {
+  // 1. Create and inject the floating button dynamically if it doesn't exist
+  if (!document.getElementById('floatingAccessibilityBtn')) {
+    const floatBtn = document.createElement('button');
+    floatBtn.id = 'floatingAccessibilityBtn';
+    floatBtn.className = 'floating-accessibility-btn';
+    floatBtn.setAttribute('aria-label', 'פתח הצהרת נגישות מלאה');
+    floatBtn.setAttribute('title', 'הצהרת נגישות');
+    
+    floatBtn.innerHTML = `
+      <span class="accessibility-icon" aria-hidden="true">♿</span>
+      <span class="accessibility-btn-text">הצהרת נגישות</span>
+    `;
+    
+    document.body.appendChild(floatBtn);
+    
+    // Add event listener to floating button
+    floatBtn.addEventListener('click', showAccessibilityModal);
+  }
+
+  // 2. Add event listeners to all accessibility badges in the footers
+  const badges = document.querySelectorAll('.accessibility-badge');
+  badges.forEach(badge => {
+    badge.setAttribute('role', 'button');
+    badge.setAttribute('tabindex', '0');
+    badge.setAttribute('aria-label', 'פתח הצהרת נגישות מלאה');
+    badge.style.cursor = 'pointer';
+    
+    badge.addEventListener('click', showAccessibilityModal);
+    
+    // Support keyboard accessibility (Enter/Space)
+    badge.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        showAccessibilityModal();
+      }
+    });
+  });
+}
+
+function showAccessibilityModal() {
+  const overlay = document.getElementById('retroModalOverlay');
+  const modalTitle = document.getElementById('modalTitleText');
+  const modalBody = document.getElementById('modalBodyText');
+  if (!overlay) return;
+
+  const modalContainer = overlay.querySelector('.retro-modal');
+  if (modalContainer) {
+    modalContainer.classList.add('accessibility-modal');
+  }
+
+  modalTitle.innerHTML = '♿ הצהרת נגישות מלאה - אני לא בגיל לזה';
+  
+  modalBody.innerHTML = `
+    <div class="accessibility-content" style="text-align: right; direction: rtl; font-family: var(--font-main);">
+      <p style="margin-bottom: 15px; font-weight: bold; color: var(--accent-magenta); font-size: 1.1rem; text-align: center;">
+        אנו בצוות "אני לא בגיל לזה" רואים חשיבות עליונה בהנגשת האתר לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות.
+      </p>
+      
+      <h4 style="color: var(--accent-dark-blue); margin-top: 20px; margin-bottom: 10px; border-bottom: 2px dashed var(--accent-gray-dark); padding-bottom: 5px; font-family: var(--font-pixel); text-align: right;">
+        רמת הנגישות באתר
+      </h4>
+      <p style="margin-bottom: 15px; color: var(--color-text); font-weight: normal; text-align: right;">
+        האתר מונגש ברמת <strong>WCAG 2.1 AA</strong> בהתאם להנחיות הנגישות של ארגון ה-W3C הבינלאומי ובכפוף לחקיקה הישראלית.
+      </p>
+
+      <h4 style="color: var(--accent-dark-blue); margin-top: 20px; margin-bottom: 10px; border-bottom: 2px dashed var(--accent-gray-dark); padding-bottom: 5px; font-family: var(--font-pixel); text-align: right;">
+        התאמות עיקריות שבוצעו באתר:
+      </h4>
+      <ul style="list-style-type: square; list-style-position: inside; margin-bottom: 15px; padding-right: 10px; color: var(--color-text); line-height: 1.7; display: flex; flex-direction: column; gap: 8px; text-align: right; font-weight: normal;">
+        <li style="font-weight: normal;"><strong style="font-weight: bold; color: var(--color-text);">ניווט מקלדת מלא:</strong> כל הרכיבים האינטראקטיביים באתר, כולל כרטיסיות מתהפכות, משחקים, ונגן קריוקי, ניתנים לתפעול מלא באמצעות מקלדת (שימוש ב-Tab, Enter ו-Space).</li>
+        <li style="font-weight: normal;"><strong style="font-weight: bold; color: var(--color-text);">קישור דילוג (Skip Link):</strong> קיים קישור מהיר בראש כל עמוד המאפשר לדלג ישירות לתוכן המרכזי עבור משתמשי מקלדת וקוראי מסך.</li>
+        <li style="font-weight: normal;"><strong style="font-weight: bold; color: var(--color-text);">תמיכה בקוראי מסך:</strong> תגיות סמנטיות, מאפייני ARIA, תוויות כפתורים ברורות ותיאורי תמונות אלטרנטיביים (alt text) הוגדרו עבור כל הרכיבים והפרסומות.</li>
+        <li style="font-weight: normal;"><strong style="font-weight: bold; color: var(--color-text);">ניגודיות צבעים משופרת:</strong> נבחרו שילובי צבעים בעלי ניגודיות גבוהה העומדים בדרישות התקן להקלה על כבדי ראייה.</li>
+        <li style="font-weight: normal;"><strong style="font-weight: bold; color: var(--color-text);">מניעת הבהובים ורכיבים נעים:</strong> כל האנימציות והפרסומות מבוצעות בצורה רגועה ומותאמת, תוך אפשרות לשלוט בהן או לסגור אותן.</li>
+        <li style="font-weight: normal;"><strong style="font-weight: bold; color: var(--color-text);">התאמה למכשירים שונים:</strong> האתר רספונסיבי לחלוטין ומותאם לצפייה במחשבים, טאבלטים וטלפונים ניידים.</li>
+      </ul>
+
+      <h4 style="color: var(--accent-dark-blue); margin-top: 20px; margin-bottom: 10px; border-bottom: 2px dashed var(--accent-gray-dark); padding-bottom: 5px; font-family: var(--font-pixel); text-align: right;">
+        הפעלת התאמות הנגישות
+      </h4>
+      <p style="margin-bottom: 15px; color: var(--color-text); font-weight: normal; text-align: right;">
+        האתר תומך בכל תוכנות הקראת המסך המובילות (כגון NVDA, JAWS, VoiceOver) ובכל הדפדפנים המודרניים. מומלץ להשתמש בדפדפן Google Chrome לקבלת חוויית משתמש מיטבית.
+      </p>
+
+      <h4 style="color: var(--accent-dark-blue); margin-top: 20px; margin-bottom: 10px; border-bottom: 2px dashed var(--accent-gray-dark); padding-bottom: 5px; font-family: var(--font-pixel); text-align: right;">
+        רכיבים אינטראקטיביים מיוחדים שמונגשים:
+      </h4>
+      <p style="margin-bottom: 15px; color: var(--color-text); font-weight: normal; text-align: right;">
+        בפיתוח האתר הושם דגש מיוחד על הנגשת רכיבים מורכבים ב-Vanilla JS ללא שימוש בספריות חיצוניות:<br>
+        • <strong style="font-weight: bold; color: var(--color-text);">סימולטור אפייה וקישוט עוגה (נוסטלעוגן):</strong> נבנה עם פוקוס מובלט ומקלדת מלאה לתפעול שוטף.<br>
+        • <strong style="font-weight: bold; color: var(--color-text);">בונה שקיות הפתעה +18:</strong> תומך בבנייה ובחירה נגישה דרך כפתורים מבוססי מקלדת וכן גרירה ושחרור (Drag and Drop) מונגשת.<br>
+        • <strong style="font-weight: bold; color: var(--color-text);">כרטיסיות משחקים מתהפכות:</strong> תומכות במצב פוקוס ופתיחה/סגירה מונחית מקלדת.
+      </p>
+
+      <h4 style="color: var(--accent-dark-blue); margin-top: 20px; margin-bottom: 10px; border-bottom: 2px dashed var(--accent-gray-dark); padding-bottom: 5px; font-family: var(--font-pixel); text-align: right;">
+        פניות בנושא נגישות
+      </h4>
+      <p style="margin-bottom: 15px; color: var(--color-text); font-weight: normal; text-align: right;">
+        אם נתקלתם בבעיה או בתקלה כלשהי בנושא הנגישות במהלך הגלישה באתר, נשמח אם תפנו אלינו כדי שנוכל לתקן ולשפר. ניתן ליצור קשר דרך <strong><a href="contact.html" style="color: var(--accent-magenta); font-weight: bold; text-decoration: underline;">טופס צור קשר</a></strong> באתר או לפנות לצוות הפרויקט.
+      </p>
+
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); text-align: left; margin-top: 20px; font-weight: normal;">
+        עדכון אחרון להצהרה: מאי 2026
+      </p>
+    </div>
+  `;
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    const btn = document.getElementById('modalCloseBtn');
+    if (btn) btn.focus();
+  }, 100);
+}
+

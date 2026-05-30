@@ -10,66 +10,6 @@
 
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    /* Unique Sitemap Page Styles */
-    .sitemap-tree {
-      margin-top: 20px;
-      text-align: right;
-    }
-
-    .sitemap-list {
-      list-style-type: none;
-      padding-right: 20px;
-    }
-
-    .sitemap-list li {
-      position: relative;
-      padding-right: 25px;
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    .sitemap-list li::before {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 2px;
-      font-size: 1rem;
-    }
-
-    .sitemap-sub-list {
-      list-style-type: none;
-      padding-right: 25px;
-      margin-top: 8px;
-      border-right: 2px dashed var(--accent-gray-dark);
-    }
-
-    .sitemap-sub-list li {
-      font-size: 0.95rem;
-      margin-bottom: 6px;
-      color: var(--color-text-muted);
-    }
-
-    .sitemap-sub-list li::before {
-      content: '';
-    }
-
-    .sitemap-nested-list {
-      list-style-type: none;
-      padding-right: 20px;
-      margin-top: 4px;
-    }
-
-    .sitemap-nested-list li {
-      font-size: 0.85rem;
-      margin-bottom: 3px;
-    }
-
-    .sitemap-nested-list li::before {
-      content: '⚡';
-    }
-  </style>
 </head>
 
 <body>
@@ -199,7 +139,7 @@
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 2px dashed var(--color-border);">
+      <div class="sitemap-footer-nav">
         <a href="index.html" class="retro-btn">➔ חזרה לעמוד הבית</a>
       </div>
     </div>
@@ -220,7 +160,7 @@
         <a href="sitemap.html">מפת אתר </a>
       </ul>
 
-      <div style="margin: 15px 0;">
+      <div class="footer-badge-wrapper">
         <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
       </div>
 
@@ -245,7 +185,7 @@
           <div class="modal-message" id="modalBodyText">הודעה.</div>
         </div>
         <div class="modal-footer">
-          <button class="retro-btn modal-close-trigger" id="modalCloseBtn" style="padding: 5px 15px; font-size: 0.9rem;"
+          <button class="retro-btn modal-close-trigger modal-close-trigger-btn" id="modalCloseBtn"
                   type="button">אישור</button>
         </div>
       </div>

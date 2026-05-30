@@ -89,7 +89,7 @@
     </div>
 
     <!-- Retro Window Panel -->
-    <div class="retro-window retro-window-glass" style="margin-top: 10px;">
+    <div class="retro-window retro-window-glass welcome-window">
       <div class="retro-titlebar">
         <div class="retro-window-title">
           <span class="retro-window-icon">🎈</span>
@@ -101,11 +101,10 @@
           <button class="retro-control-btn modal-close-trigger" aria-label="סגור">✕</button>
         </div>
       </div>
-      <div class="retro-window-content" style="text-align: center;">
-        <img src="images/logo.jpeg" alt="לוגו אני לא בגיל לזה"
-          style="max-width: 240px; margin: 0 auto 20px auto; border-radius: 8px; box-shadow: 3px 3px 0 var(--color-border); border: 2px solid var(--color-border);">
+      <div class="retro-window-content welcome-content">
+        <img src="images/logo.jpeg" alt="לוגו אני לא בגיל לזה" class="welcome-logo">
         <h2 class="hero-subtitle">חוגגים יום הולדת כמו פעם...</h2>
-        <p style="font-size: 1.15rem; margin-bottom: 25px;">מוכנים לחזור אחורה בזמן לתקופה שבה הדאגה הכי גדולה שלכם
+        <p class="welcome-text">מוכנים לחזור אחורה בזמן לתקופה שבה הדאגה הכי גדולה שלכם
           הייתה מי ינצח במשוך בחבל?</p>
         <a href="#retroVideoWindow" class="retro-btn retro-btn-accent">בואו להיזכר! ➔</a>
       </div>
@@ -114,7 +113,7 @@
    
 
     <!-- Video Player Retro Window -->
-    <div class="retro-window retro-window-glass" id="retroVideoWindow" style="margin-top: 25px; margin-bottom: 25px;">
+    <div class="retro-window retro-window-glass" id="retroVideoWindow">
       <div class="retro-titlebar">
         <div class="retro-window-title">
           <span class="retro-window-icon">📹</span>
@@ -124,25 +123,25 @@
         <div class="retro-window-controls">
           <button class="retro-control-btn" aria-label="מזער">_</button>
           <button class="retro-control-btn" aria-label="הגדל">■</button>
-          <button class="retro-control-btn" onclick="document.getElementById('retroVideoWindow').style.display='none'" aria-label="סגור">✕</button>
+          <button class="retro-control-btn" aria-label="סגור">✕</button>
         </div>
       </div>
-      <div class="retro-window-content" style="text-align: center; padding: 25px;">
+      <div class="retro-window-content video-content">
         <div class="retro-video-container">
-          <video src="images/clip.mp4" controls loop style="width: 100%; height: auto; display: block;"></video>
+          <video src="images/clip.mp4" controls loop class="retro-video"></video>
         </div>
         <div class="retro-video-description">
-          <p style="margin-bottom: 12px; font-weight: bold; color: var(--accent-dark-blue);">תוכלו למצוא באתר מידע ורעיונות עבור ימי הולדת בטעם של פעם.</p>
-          <p style="margin-bottom: 12px;">בעמוד משחקים תוכלו לראות משחקי יום הולדת נוסטלגיים וחלקם עברו התאמה לגילנו החדש.</p>
-          <p style="margin-bottom: 12px;">בעמוד של קריוקי ועוגה תוכלו למצוא פלייליסט מומלץ לקריוקי ומתכון משובח לעוגת גן נהדרת. בנוסף תוכלו להתנסות בסימולצית עיצוב עוגה.</p>
-          <p style="margin-bottom: 12px;">בעמוד של שקיות הפתעה איגדנו עבורכם מבחר פריטים, שקיות והשראות לחלק הכי כיף בכל מסיבה.</p>
-          <p style="margin-bottom: 0;">מוזמנים לקרוא אודתינו בעמוד האודות ובמידה ותירצו לשלוח לנו הודעה שאלה או רעיון מוזמנים להשתמש בטופס צור קשר בעמוד המתאים.</p>
+          <p class="video-desc-lead">תוכלו למצוא באתר מידע ורעיונות עבור ימי הולדת בטעם של פעם.</p>
+          <p class="video-desc-p">בעמוד משחקים תוכלו לראות משחקי יום הולדת נוסטלגיים וחלקם עברו התאמה לגילנו החדש.</p>
+          <p class="video-desc-p">בעמוד של קריוקי ועוגה תוכלו למצוא פלייליסט מומלץ לקריוקי ומתכון משובח לעוגת גן נהדרת. בנוסף תוכלו להתנסות בסימולצית עיצוב עוגה.</p>
+          <p class="video-desc-p">בעמוד של שקיות הפתעה איגדנו עבורכם מבחר פריטים, שקיות והשראות לחלק הכי כיף בכל מסיבה.</p>
+          <p class="video-desc-p-last">מוזמנים לקרוא אודתינו בעמוד האודות ובמידה ותירצו לשלוח לנו הודעה שאלה או רעיון מוזמנים להשתמש בטופס צור קשר בעמוד המתאים.</p>
         </div>
       </div>
     </div>
 
     <!-- Quick Navigation to other pages ("בואו נחגוג") -->
-    <section aria-label="בחרו את השלב הבא בהכנות" style="margin-bottom: 40px;">
+    <section aria-label="בחרו את השלב הבא בהכנות" class="quick-nav-section">
       <div class="section-title-container">
         <h3>כאן תוכלו לבחור מה השלב הבא בהכנות למסיבה שלכם</h3>
       </div>
@@ -152,21 +151,21 @@
           aria-label="עבור למשחקים ונהנים">
           <img src="images/party_hat.png" alt="כובע מסיבה צבעוני" class="quick-nav-icon">
           <h4>משחקים ונהנים</h4>
-          <p style="font-size: 0.9rem; margin-top: 8px;">משחקי ילדות משודרגים ומותאמים לגילנו</p>
+          <p>משחקי ילדות משודרגים ומותאמים לגילנו</p>
         </div>
 
         <div class="quick-nav-card card-karaoke" onclick="location.href='karaoke-cake.html'" role="link" tabindex="0"
           aria-label="עבור לקריוקי ועוגה">
           <img src="images/mic.png" alt="מיקרופון זהב רטרו" class="quick-nav-icon">
           <h4>עוגה וקריוקי</h4>
-          <p style="font-size: 0.9rem; margin-top: 8px;">שירים שירימו את האווירה ומתכון לעוגת גן</p>
+          <p>שירים שירימו את האווירה ומתכון לעוגת גן</p>
         </div>
 
         <div class="quick-nav-card card-bags" onclick="location.href='goodie-bags.html'" role="link" tabindex="0"
           aria-label="עבור לשקיות הפתעה +18">
           <img src="images/bag.png" alt="שקית הפתעה נוסטלגית" class="quick-nav-icon">
           <h4>שקיות הפתעה +18</h4>
-          <p style="font-size: 0.9rem; margin-top: 8px;">ערכות הישרדות מוכנות או הרכבה עצמית</p>
+          <p>ערכות הישרדות מוכנות או הרכבה עצמית</p>
         </div>
       </div>
     </section>
@@ -175,7 +174,7 @@
     <div class="mobile-ads-container" aria-label="מדור פרסום">
       <div class="mobile-ad-card">
         <div class="ad-label">פרסומת</div>
-        <img src="images/comm1.gif" alt="באנר פרסומת מונפש - קופסת כדורים">
+        <img src="images/comm1.gif" alt="באנר פרסומת מונפש - קופסת כדורים מחולקת">
       </div>
       <div class="mobile-ad-card">
         <div class="ad-label">פרסומת</div>
@@ -191,21 +190,18 @@
        ========================================== -->
   <div class="retro-modal-overlay" id="entryWarningModalOverlay" role="dialog" aria-modal="true"
     aria-labelledby="entryWarningTitleText">
-    <div class="retro-modal" style="max-width: 480px;">
-      <div class="retro-titlebar" style="background-color: var(--accent-magenta);">
+    <div class="retro-modal">
+      <div class="retro-titlebar">
         <div class="retro-window-title">
           <span class="retro-window-icon">⚠️</span>
           <span id="entryWarningTitleText">התראה לפני ביצוע פעולה מסוכנת ולא אחראית</span>
         </div>
       </div>
-      <div class="modal-body" style="padding: 30px 20px;">
-        <p
-          style="font-family: var(--font-pixel); font-size: 1.35rem; line-height: 1.6; color: var(--color-text); margin-bottom: 20px; font-weight: bold;">
-          האם את/ה בטוח מאשר/ת הגעה למסיבה שתסתיים אחרי השעה 22:00?</p>
-        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
-          <button class="retro-btn" id="btnAgeConfirm" style="flex-grow:1;" type="button">כן,אני חסר/ת אחריות</button>
-          <button class="retro-btn retro-btn-secondary" id="btnAgeDeny" style="flex-grow:1;" type="button">אני לא בגיל
-            לזה</button>
+      <div class="modal-body">
+        <p>האם את/ה בטוח מאשר/ת הגעה למסיבה שתסתיים אחרי השעה 22:00?</p>
+        <div class="warning-buttons-container">
+          <button class="retro-btn" id="btnAgeConfirm" type="button">כן,אני חסר/ת אחריות</button>
+          <button class="retro-btn retro-btn-secondary" id="btnAgeDeny" type="button">אני לא בגיל לזה</button>
         </div>
       </div>
     </div>
@@ -226,7 +222,7 @@
         <a href="sitemap.html">מפת אתר </a>
       </ul>
 
-      <div style="margin: 15px 0;">
+      <div class="footer-badge-wrapper">
         <span class="accessibility-badge">♿ אתר נגיש WCAG 2.1 AA</span>
       </div>
 
@@ -251,7 +247,7 @@
           <div class="modal-message" id="modalBodyText">הודעה.</div>
         </div>
         <div class="modal-footer">
-          <button class="retro-btn modal-close-trigger" id="modalCloseBtn" style="padding: 5px 15px; font-size: 0.9rem;"
+          <button class="retro-btn modal-close-trigger modal-close-trigger-btn" id="modalCloseBtn"
             type="button">אישור</button>
         </div>
       </div>
