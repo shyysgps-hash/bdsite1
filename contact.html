@@ -91,12 +91,12 @@
     </div>
 
     <div class="contact-faq-layout">
-      <!-- Guestbook Form Window -->
-      <article class="guestbook-window">
+      <!-- Contact Form Window -->
+      <article class="contact-form-window retro-window">
         <div class="retro-titlebar">
           <div class="retro-window-title">
-            <span class="retro-window-icon">✍️</span>
-            <span>Write_In_Guestbook.exe</span>
+            <span class="retro-window-icon">✉</span>
+            <span>צור_קשר.exe</span>
           </div>
           <div class="retro-window-controls">
             <button class="retro-control-btn" aria-label="מזער">_</button>
@@ -104,33 +104,66 @@
             <button class="retro-control-btn" aria-label="סגור">✕</button>
           </div>
         </div>
-        <div class="retro-window-content">
-          <form id="guestbookForm" class="guestbook-form" novalidate>
-            <div class="form-group">
-              <label for="name" class="form-label">השם שלכם:</label>
-              <input type="text" id="name" class="form-control" placeholder="ישראל ישראלי" required
-                aria-describedby="nameError">
-              <span class="error-message" id="nameError" role="alert">נא להזין את שמכם</span>
+        
+        <div class="contact-window-content">
+          <div class="contact-form-layout">
+            <!-- Left Side Image -->
+            <div class="contact-image-col">
+              <div class="character-illustration-wrapper">
+                <div class="speech-bubble-retro">נשוחח?</div>
+                <img src="images/retro_contact_char.png" alt="דמות פיקסל ארט רטרו עם בלון" class="contact-decor-img">
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="email" class="form-label">כתובת אימייל:</label>
-              <input type="email" id="email" class="form-control" placeholder="israel@gmail.com" required
-                aria-describedby="emailError">
-              <span class="error-message" id="emailError" role="alert">נא להזין כתובת מייל תקינה</span>
-            </div>
+            <!-- Right Side Form -->
+            <div class="contact-form-col">
+              <h2 class="contact-form-title">טופס יצירת קשר</h2>
+              <p class="contact-form-intro">רוצה לחגוג יום הולדת כמו שצריך? השאירו לנו פרטים ונחזור אליכם!</p>
+              <p class="contact-form-note">* כל השדות שמסומנים בכוכבית הם חובה</p>
 
-            <div class="form-group">
-              <label for="message" class="form-label">הברכה/משוב שלכם:</label>
-              <textarea id="message" class="form-control" rows="5"
-                placeholder="מזל טוב! איזה יופי של אתר, הגב שלי כבר כואב מהתרגשות..." required
-                aria-describedby="messageError"></textarea>
-              <span class="error-message" id="messageError" role="alert">נא לכתוב ברכה או משוב</span>
-            </div>
+              <form id="contactForm" class="contact-form" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName" class="form-label">שם פרטי *</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="יש לציין שם פרטי" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName" class="form-label">שם משפחה *</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="יש לציין שם משפחה" required>
+                  </div>
+                </div>
 
-            <button class="retro-btn retro-btn-accent" type="submit" style="margin-top: 10px; width: 100%;">שלחו ברכה!
-              ✉</button>
-          </form>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="birthDate" class="form-label">תאריך היום הולדת *</label>
+                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="form-label">כתובת דואל אלקטרוני *</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="dogma@mail.com" required>
+                    <div id="emailInlineError" class="inline-error-msg" aria-live="polite"></div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="packageSelect" class="form-label">בחירת מסלול לשקית הפתעה</label>
+                  <select id="packageSelect" name="packageSelect" class="form-control">
+                    <option value="" disabled selected>יש לבחור מסלול</option>
+                    <option value="1">מסלול א׳: הצללן האחראי</option>
+                    <option value="2">מסלול ב׳: ההרפתקן</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label">מתלבט/ת על מסלול לשקית ההפתעה או רוצה לציין דבר נוסף? כתוב/י לנו בחופשיות בפסקה מתחת לא חובה :)</label>
+                  <textarea id="message" name="message" class="form-control" rows="4" placeholder="במידה ותרצו יש לציין משהו נוסף. ניתן לדלג על שלב זה"></textarea>
+                </div>
+
+                <div id="contactFormError" class="contact-error-msg" aria-live="assertive" role="alert"></div>
+                <button type="submit" class="retro-btn retro-btn-accent form-submit-btn">שליחת הטופס ונעזור לחגוג לך בהקדם</button>
+              </form>
+            </div>
+          </div>
         </div>
       </article>
 

@@ -933,58 +933,148 @@ function triggerCanvasFireworks() {
 // ==========================================
 // 10. CONTACT PAGE LOGIC (contact.html)
 // ==========================================
+function playRetroErrorBeep() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+    
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(150, ctx.currentTime); // Low retro error buzz
+    osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.15);
+    
+    gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+    
+    osc.connect(gainNode);
+    gainNode.connect(ctx.destination);
+    
+    osc.start();
+    osc.stop(ctx.currentTime + 0.15);
+  } catch(e) {
+    console.warn('Web Audio API not supported', e);
+  }
+}
+
 function initContactPage() {
-  const form = document.getElementById('guestbookForm');
+  const form = document.getElementById('contactForm');
   if (!form) return;
 
-  const fields = ['name', 'email', 'message'];
+  const errorMsgBox = document.getElementById('contactFormError');
+
+  // Define required fields and their Hebrew names
+  const requiredFields = [
+    { id: 'firstName', name: 'שם פרטי' },
+    { id: 'lastName', name: 'שם משפחה' },
+    { id: 'birthDate', name: 'תאריך היום הולדת' },
+    { id: 'email', name: 'כתובת דואל אלקטרוני' },
+    { id: 'packageSelect', name: 'בחירת מסלול לשקית הפתעה' }
+  ];
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let isValid = true;
+    
+    let missingFieldNames = [];
+    let firstInvalidField = null;
 
-    fields.forEach(fieldId => {
-      const field = document.getElementById(fieldId);
-      const error = document.getElementById(`${fieldId}Error`);
-
-      if (!field.value.trim()) {
-        isValid = false;
-        field.classList.add('invalid');
-        error.classList.add('visible');
-        field.setAttribute('aria-invalid', 'true');
-      } else if (fieldId === 'email' && !validateEmail(field.value.trim())) {
-        isValid = false;
-        field.classList.add('invalid');
-        error.innerText = 'כתובת המייל שהזנת אינה תקינה';
-        error.classList.add('visible');
-        field.setAttribute('aria-invalid', 'true');
-      } else {
-        field.classList.remove('invalid');
-        error.classList.remove('visible');
-        field.setAttribute('aria-invalid', 'false');
+    // Reset previous errors
+    errorMsgBox.classList.remove('visible');
+    errorMsgBox.innerText = '';
+    requiredFields.forEach(field => {
+      const el = document.getElementById(field.id);
+      if (el) {
+        el.classList.remove('invalid-field');
+        el.setAttribute('aria-invalid', 'false');
       }
     });
 
-    if (isValid) {
-      const name = document.getElementById('name').value;
+    let emailInvalid = false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Check all required fields
+    requiredFields.forEach(field => {
+      const el = document.getElementById(field.id);
+      if (!el || !el.value.trim()) {
+        missingFieldNames.push(field.name);
+        if (el) {
+          el.classList.add('invalid-field');
+          el.setAttribute('aria-invalid', 'true');
+          if (!firstInvalidField) firstInvalidField = el;
+        }
+      } else if (field.id === 'email') {
+        const emailValue = el.value.trim();
+        if (!emailRegex.test(emailValue)) {
+          emailInvalid = true;
+          if (!missingFieldNames.includes(field.name)) {
+             missingFieldNames.push(field.name);
+          }
+          el.classList.add('invalid-field');
+          el.setAttribute('aria-invalid', 'true');
+          if (!firstInvalidField) firstInvalidField = el;
+        }
+      }
+    });
+
+    if (missingFieldNames.length > 0) {
+      // Play retro error beep
+      playRetroErrorBeep();
+
+      // Show specific error message
+      let errorText = `יש למלא את: ${missingFieldNames.join(', ')}`;
+      if (emailInvalid) {
+        errorText += `\nיש להזין כתובת דוא״ל תקינה הכוללת @ ונקודה`;
+      }
+      errorMsgBox.innerText = errorText;
+      errorMsgBox.classList.add('visible');
+      
+      // Focus the first invalid field for accessibility
+      if (firstInvalidField) firstInvalidField.focus();
+    } else {
+      // Success!
+      const name = document.getElementById('firstName').value;
       showSystemModal(
-        'הברכה נרשמה בהצלחה! ✉',
-        `תודה רבה לך <strong>${name}</strong>!<br><br>ברכת יום ההולדת והמשוב המקסים שלך נשמרו בספר האורחים הרשמי של 'אני לא בגיל לזה'!<br>אנו נשמח לקרוא אותה בהקדם האפשרי.`
+        'הטופס נשלח בהצלחה! ✉',
+        `תודה רבה לך <strong>${name}</strong>!<br><br>הפרטים שלך נשמרו בהצלחה במערכת. נחזור אליך בהקדם כדי לחגוג יום הולדת כמו שצריך!`
       );
       form.reset();
     }
   });
 
   // Realtime cleanup on focus/input
-  fields.forEach(fieldId => {
-    const field = document.getElementById(fieldId);
-    field.addEventListener('input', () => {
-      if (field.value.trim()) {
-        field.classList.remove('invalid');
-        document.getElementById(`${fieldId}Error`).classList.remove('visible');
-        field.setAttribute('aria-invalid', 'false');
-      }
-    });
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  requiredFields.forEach(field => {
+    const el = document.getElementById(field.id);
+    if (el) {
+      el.addEventListener('input', () => {
+        if (el.value.trim()) {
+          el.classList.remove('invalid-field');
+          el.setAttribute('aria-invalid', 'false');
+          // Hide global error message if user fixes a field to prevent lingering alerts
+          errorMsgBox.classList.remove('visible'); 
+        }
+
+        // Real-time email validation
+        if (field.id === 'email') {
+          const emailInlineError = document.getElementById('emailInlineError');
+          if (emailInlineError) {
+            const val = el.value.trim();
+            if (val === '') {
+              emailInlineError.classList.remove('visible');
+              emailInlineError.innerText = '';
+            } else {
+              if (!emailRegex.test(val)) {
+                emailInlineError.innerText = 'כתובת הדוא״ל צריכה לכלול @ ונקודה אחרי ה־@';
+                emailInlineError.classList.add('visible');
+              } else {
+                emailInlineError.classList.remove('visible');
+                emailInlineError.innerText = '';
+              }
+            }
+          }
+        }
+      });
+    }
   });
 }
 
