@@ -64,7 +64,7 @@ html {
 }
 
 body {
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   background-color: var(--bg-primary);
   color: var(--color-text);
   line-height: 1.6;
@@ -87,7 +87,7 @@ h1 h2 h3 {
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -123,7 +123,7 @@ img {
   border: 2px solid var(--color-border);
   padding: 10px 20px;
   z-index: 9999;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   transition: top var(--transition-fast);
 }
 
@@ -145,7 +145,7 @@ img {
 ::-webkit-scrollbar-thumb {
   background: var(--accent-gray);
   border: 2px solid var(--color-border);
-  box-shadow: inset 1.5px 1.5px 0px #fff, inset -1.5px -1.5px 0px var(--accent-gray-dark);
+  box-shadow: inset 1.5 px 1.5 px 0 px #fff, inset -1.5px -1.5px 0px var(--accent-gray-dark);
 }
 
 /* ==========================================
@@ -164,6 +164,7 @@ img {
   margin: 0 auto;
   padding: 100px 20px 40px 20px;
   position: relative;
+  border-bottom: 3px solid var(--color-border);
 }
 
 /* Semantic aside elements for advertisements */
@@ -175,7 +176,7 @@ aside.ad-sidebar {
   height: 500px;
   z-index: 100;
   border: 3px solid var(--color-border);
-  box-shadow: 4px 4px 0px var(--color-border);
+  box-shadow: 4px 4px 0 px var(--color-border);
   background-color: var(--accent-gray);
   padding: 4px;
 }
@@ -198,7 +199,7 @@ aside.ad-sidebar.ad-left {
 .ad-label {
   background-color: var(--color-border);
   color: var(--accent-yellow);
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.7rem;
   text-align: center;
   padding: 2px 0;
@@ -228,7 +229,7 @@ aside.ad-sidebar.ad-left {
   width: 120px;
   height: 240px;
   border: 2px solid var(--color-border);
-  box-shadow: 3px 3px 0px var(--color-border);
+  box-shadow: 3px 3px 0 px var(--color-border);
   background-color: var(--accent-gray);
   padding: 2px;
   display: flex;
@@ -281,7 +282,7 @@ header.site-header {
 }
 
 .site-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.4rem;
   color: var(--color-text);
   text-shadow: 1px 1px 0 var(--accent-pink);
@@ -299,7 +300,7 @@ header.site-header {
 }
 
 .nav-link {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-size: 0.95rem;
   color: var(--color-text);
   padding: 6px 12px;
@@ -312,7 +313,7 @@ header.site-header {
 .nav-link.active {
   background-color: var(--accent-yellow);
   border-color: var(--color-border);
-  box-shadow: 2px 2px 0px var(--color-border);
+  box-shadow: 2px 2px 0 px var(--color-border);
 }
 
 /* Mobile Nav Toggle Button */
@@ -321,7 +322,7 @@ header.site-header {
   border: 2px solid var(--color-border);
   box-shadow: 2px 2px 0 var(--color-border);
   padding: 8px 12px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.9rem;
   cursor: pointer;
   display: flex;
@@ -361,7 +362,7 @@ header.site-header {
 }
 
 .mobile-nav-link {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-size: 1.2rem;
   color: var(--color-text);
   display: block;
@@ -399,7 +400,7 @@ header.site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.9rem;
   border-bottom: 3px solid var(--color-border);
 }
@@ -462,7 +463,7 @@ header.site-header {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-weight: bold;
   font-size: 1rem;
   color: #000000;
@@ -517,7 +518,7 @@ header.site-header {
 }
 
 .retro-wordart-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -543,7 +544,7 @@ header.site-header {
 }
 
 .hero-subtitle {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.4rem;
   color: var(--accent-magenta);
   margin-bottom: 10px;
@@ -658,7 +659,7 @@ header.site-header {
 
 .section-tag {
   display: inline-block;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.9rem;
   background-color: var(--accent-magenta);
   color: #ffffff;
@@ -681,7 +682,7 @@ header.site-header {
 }
 
 .games-subtitle {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   color: var(--accent-dark-blue);
   font-size: 1.3rem;
   margin-bottom: 20px;
@@ -761,7 +762,7 @@ header.site-header {
 }
 
 .flip-card-hint {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.8rem;
   color: var(--accent-magenta);
   margin-top: 10px;
@@ -791,7 +792,7 @@ header.site-header {
   border-top: 1px dashed var(--color-border);
   padding-top: 8px;
   margin-top: 8px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.75rem;
 }
 
@@ -824,7 +825,7 @@ header.site-header {
 }
 
 .game-generator-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   color: #000000;
   font-size: 1.6rem;
   text-shadow: 2px 2px 0 var(--accent-cyan);
@@ -885,7 +886,7 @@ header.site-header {
   box-shadow: 4px 4px 0 var(--color-border);
   border-radius: 8px;
   padding: 20px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.3rem;
   cursor: pointer;
   display: flex;
@@ -979,7 +980,7 @@ header.site-header {
   direction: ltr;
   border: 2px solid var(--color-border);
   background-color: #ffffff;
-  box-shadow: inset 2.5px 2.5px 0px var(--accent-gray-dark), 1.5px 1.5px 0px #fff;
+  box-shadow: inset 2.5 px 2.5 px 0 px var(--accent-gray-dark), 1.5 px 1.5 px 0px #fff;
   padding: 8px;
 }
 
@@ -995,7 +996,7 @@ header.site-header {
   align-items: center;
   padding: 8px 12px;
   margin-bottom: 6px;
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   font-size: 0.95rem;
   font-weight: 500;
   border: 2px solid transparent;
@@ -1030,7 +1031,7 @@ header.site-header {
 }
 
 .song-item span:last-child {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.8rem;
   opacity: 0.8;
   white-space: nowrap;
@@ -1061,7 +1062,7 @@ header.site-header {
   background-color: var(--accent-gray);
   padding: 8px 12px;
   cursor: pointer;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.85rem;
   border-radius: 4px;
 }
@@ -1212,7 +1213,7 @@ header.site-header {
   bottom: 12px;
   left: 10px;
   right: 10px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif ;
   font-size: 1.1rem;
   color: #3e2211;
   /* Chocolate brown text */
@@ -1275,7 +1276,7 @@ header.site-header {
    10. About HIT Page & Vector Pixel HIT Logo
    ========================================== */
 .about-card-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif ;
   color: var(--accent-magenta);
   font-size: 1.25rem;
   margin-bottom: 10px;
@@ -1295,7 +1296,7 @@ header.site-header {
   border: 4px solid var(--color-border);
   box-shadow: 4px 4px 0 var(--color-border);
   padding: 10px 20px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.6rem;
   font-weight: bold;
   letter-spacing: 3px;
@@ -1571,7 +1572,7 @@ header.site-header {
 }
 
 .path-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.4rem;
   color: var(--accent-dark-blue);
   margin-top: 10px;
@@ -1584,7 +1585,7 @@ header.site-header {
 }
 
 .path-desc {
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--color-text-muted);
@@ -1606,10 +1607,10 @@ header.site-header {
 .pre-made-bags-title {
   text-align: center;
   margin-bottom: 35px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   color: var(--accent-dark-blue);
   font-size: 1.6rem;
-  text-shadow: 1.5px 1.5px 0px var(--accent-cyan);
+  text-shadow: 1.5px 1.5px 0 px var(--accent-cyan);
 }
 
 .pre-made-grid {
@@ -1648,7 +1649,7 @@ header.site-header {
   background-color: var(--accent-dark-blue);
   color: #ffffff;
   padding: 10px 15px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1rem;
   font-weight: bold;
   border-bottom: 3px solid var(--color-border);
@@ -1731,7 +1732,7 @@ header.site-header {
   text-align: center;
   grid-column: 1/-1;
   padding: 20px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
 }
 
 #builderItemsCount {
@@ -1850,7 +1851,7 @@ header.site-header {
 }
 
 .spot-popup-subtitle {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 0.95rem;
   color: var(--accent-magenta);
   display: block;
@@ -1946,7 +1947,7 @@ header.site-header {
 
 /* Congrats message inside spot popup */
 .spot-popup-congrats {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-size: 1.1rem;
   font-weight: 800;
   color: var(--accent-dark-blue);
@@ -2035,12 +2036,12 @@ header.site-header {
   box-shadow: 4px 4px 0 var(--color-border);
   border-radius: 8px;
   padding: 20px;
-  background-color: var(--accent-gray);
+  background-color: var(--accent-yellow);
   margin-top: 10px;
 }
 
 .selection-panel-instructions {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-size: 1rem;
   font-weight: bold;
   color: var(--color-text);
@@ -2058,8 +2059,8 @@ header.site-header {
 .product-item-btn {
   border: 2px solid var(--color-border);
   box-shadow: 2px 2px 0 var(--color-border);
+  background-color: var(--bg-secondary);
   border-radius: 6px;
-  background-color: transparent; /* Seamless transparent background! */
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -2068,7 +2069,7 @@ header.site-header {
   cursor: grab;
   transition: all var(--transition-fast);
   text-align: center;
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   font-size: 0.85rem;
   font-weight: 500;
   user-select: none;
@@ -2078,7 +2079,7 @@ header.site-header {
   transform: translateY(-2px);
   box-shadow: 3px 3px 0 var(--color-border);
   border-color: var(--accent-magenta);
-  background-color: var(--accent-yellow);
+  background-color: var(--accent-cyan);
 }
 
 .product-item-btn:active {
@@ -2287,7 +2288,7 @@ header.site-header {
 }
 
 .result-modal-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.2rem;
   color: #ffffff; /* Changed dark blue text to clean bright white! */
   text-shadow: 1.5px 1.5px 0 #000000; /* Added thick black shadow to be highly visible on blue background! */
@@ -2403,7 +2404,7 @@ header.site-header {
 .detail-item-name {
   font-size: 0.95rem;
   color: var(--accent-dark-blue);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-weight: bold;
 }
 
@@ -2538,7 +2539,7 @@ header.site-header {
   display: block;
   padding: 4px 10px;
   font-size: 0.75rem;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   background-color: var(--accent-yellow);
   border: 2px solid var(--color-border);
   box-shadow: 2px 2px 0 var(--color-border);
@@ -2585,7 +2586,7 @@ header.site-header {
 }
 
 .ad-paused-text {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-size: 0.85rem;
   font-weight: bold;
   color: var(--color-text);
@@ -2650,7 +2651,7 @@ header.site-header {
   text-align: center;
   margin-top: -10px;
   margin-bottom: 30px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-weight: 500;
   line-height: 1.5;
 }
@@ -2664,7 +2665,7 @@ header.site-header {
 
 /* Playful WordArt-style Title */
 .sitemap-main-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 3rem;
   color: var(--accent-dark-blue);
   text-shadow: 2px 2px 0 var(--accent-pink), 4px 4px 0 var(--color-border);
@@ -2676,7 +2677,7 @@ header.site-header {
 /* Friendly Intro Sentence */
 .sitemap-intro {
   text-align: center;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-size: 1.2rem;
   color: var(--color-text-muted);
   margin-bottom: 50px;
@@ -2708,7 +2709,7 @@ header.site-header {
 .sitemap-col-title {
   background-color: var(--accent-dark-blue);
   color: #ffffff;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-weight: bold;
   font-size: 1.05rem;
   padding: 4px 6px;
@@ -2757,7 +2758,7 @@ header.site-header {
 
 /* Clean Text Links (Sitemap Items) */
 .sitemap-col-list li a {
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   font-size: 0.95rem;
   font-weight: bold;
   color: #000000;
@@ -2842,7 +2843,7 @@ header.site-header {
   border: 2px solid var(--color-border);
   border-radius: 8px;
   padding: 8px 12px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.1rem;
   color: var(--color-text);
   box-shadow: 2px 2px 0 var(--color-border);
@@ -2884,7 +2885,7 @@ header.site-header {
 }
 
 .contact-form-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.8rem;
   color: var(--color-text);
   margin-bottom: 5px;
@@ -2892,7 +2893,7 @@ header.site-header {
 }
 
 .contact-form-intro {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-size: 1rem;
   margin-bottom: 5px;
 }
@@ -2918,7 +2919,7 @@ header.site-header {
   border: 2px solid var(--color-border);
   border-radius: 4px;
   padding: 6px 12px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-weight: bold;
   color: #000000;
   box-shadow: 3px 3px 0 var(--color-border);
@@ -2934,7 +2935,7 @@ header.site-header {
   border: 2px solid var(--color-border);
   padding: 10px;
   margin-bottom: 15px;
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   font-weight: bold;
   color: #000000;
   border-radius: 4px;
@@ -2952,7 +2953,7 @@ header.site-header {
   border: 1px solid var(--color-border);
   padding: 4px 8px;
   margin-top: 5px;
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   font-size: 0.85rem;
   color: #cc0000;
   border-radius: 4px;
@@ -2975,7 +2976,7 @@ header.site-header {
   padding: 8px 10px;
   border: 2px solid var(--color-border);
   border-radius: 4px;
-  font-family: var(--font-main);
+  font-family: var(--font-main), serif;
   background-color: #fff;
   transition: all var(--transition-fast);
 }
@@ -2995,8 +2996,24 @@ header.site-header {
   .contact-form-layout {
     flex-direction: column-reverse; /* Stacks image below form, or column for image above */
   }
+
   .contact-form .form-row {
     flex-direction: column;
     gap: 0;
   }
 }
+  .logo-HiT
+  {
+      background: var(--bg-secondary);
+      border: 3px solid var(--color-border);
+      box-shadow: 4px 4px 0 var(--color-border);
+      border-radius: 25px;
+      padding: 25px 30px;
+      margin-bottom: 25px;
+      line-height: 1.7;
+}
+  .logo-HiT img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
