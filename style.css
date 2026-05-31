@@ -106,11 +106,14 @@ body {
 
 h1{
   color: var(--accent-magenta);
-  font-weight: 700;
+  font-weight: 500;
+  font-family: var(--font-pixel), serif;
+  
 }
 /* Typography Defaults */
 h1 h2 h3 {
   text-align: center;
+
 }
 
 h4,
@@ -282,6 +285,7 @@ header.site-header {
   background-color: rgba(255, 253, 240, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 3px solid var(--color-border);
+  border-bottom-style: dashed;
   z-index: 1000;
   transition: all var(--transition-normal);
 }
@@ -303,9 +307,8 @@ header.site-header {
 }
 
 .site-logo-img {
-  height: 70px;
+  height: 60px;
   width: 70px;
-  border: 2px solid var(--color-border);
   border-radius: 2px;
 }
 
