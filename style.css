@@ -60,6 +60,13 @@
 /* ==========================================
    2. Base Reset & Accessibility Styles
    ========================================== */
+@font-face {
+  font-family: 'Chava'; /* השם שבו תשתמש כדי לקרוא לפונט */
+  src: url('images/fonts/font_hava.ttf') format('truetype'); /* הנתיב לקובץ */
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -97,6 +104,10 @@ body {
   outline-offset: 4px;
 }
 
+h1{
+  color: var(--accent-magenta);
+  font-weight: 700;
+}
 /* Typography Defaults */
 h1 h2 h3 {
   text-align: center;
@@ -110,9 +121,8 @@ h6 {
   margin-bottom: 1rem;
 }
 p{
-  color: var(--accent-magenta);
+  color: var(--accent-dark-blue);
   font-weight: 700;
-;
 }
 a {
   color: var(--accent-dark-blue);
