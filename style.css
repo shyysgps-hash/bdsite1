@@ -416,7 +416,7 @@ header.site-header {
   color: var(--accent-titlebar-text);
   padding: 8px 12px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /*תפקידו לקבוע כיצד המרחב הפנוי בתוך המכולה (container) יחולק בין הפריטים השונים וסביבם*/
   align-items: center;
   font-family: var(--font-pixel), serif;
   font-size: 0.9rem;
@@ -457,7 +457,7 @@ header.site-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: relative;/*ימוקם ביחס לגבולות של האב*/
   transition: all var(--transition-fast);
 }
 
@@ -535,7 +535,7 @@ header.site-header {
 }
 
 .retro-window-content {
-  padding: 25px;
+  padding: 25px; /*המרווח שנמצא בתוך הגבולות של האלמנט*/
   background-color: var(--bg-secondary);
 }
 
@@ -618,10 +618,10 @@ header.site-header {
     3px 3px 0 var(--accent-pink),
     6px 6px 0 var(--accent-yellow),
     9px 9px 0 #000000;
-  transform: skew(-10deg) rotate(-2deg);
+  transform: skew(-10deg) rotate(-2deg);/*הפעולה השנייה מסובבת את האלמנט סביב נקודת המרכז שלו ,הפעולה הראשונה "מותחת" את האלמנט בזווית מסוימת*/
   display: inline-block;
   letter-spacing: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 20px;/*המרווח שנמצא מחוץ לגבולות של האלמנט*/
 }
 
 .hero-speech-bubble {
@@ -678,7 +678,7 @@ header.site-header {
 /* Quick Navigation Cards */
 .quick-nav-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr;/*fr היא יחידה גמישה שמתייחסת למרחב הפנוי שנותר בתוך המכולה*/
   gap: 25px;
   margin-bottom: 60px;
 }
@@ -699,7 +699,7 @@ header.site-header {
 }
 
 .quick-nav-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px);/*הזז את האלמנט 5 פיקסלים למעלה מהמיקום הנוכחי שלו*/
   box-shadow: 7px 7px 0 var(--color-border);
 }
 
@@ -725,7 +725,7 @@ header.site-header {
 }
 
 .quick-nav-card:hover .quick-nav-icon {
-  transform: scale(1.15) rotate(5deg);
+  transform: scale(1.15) rotate(5deg);/*הגדלה וסיבוב*/
 }
 
 /* Home Page specific paragraph color */
@@ -794,7 +794,7 @@ header.site-header {
   padding: 30px 20px;
 }
 #entryWarningModalOverlay .modal-body p {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   font-size: 1.35rem;
   line-height: 1.6;
   color: var(--color-text);
@@ -808,7 +808,7 @@ header.site-header {
   margin-top: 15px;
 }
 .warning-buttons-container .retro-btn {
-  flex-grow: 1;
+  flex-grow: 1; /*מגדיר כמה "מקום פנוי" רכיב בתוך מכולת Flex אמור לתפוס ביחס לשאר הרכיבים*/
 }
 
 /* סגנונות כלליים שהוצאו מהפוטר והחלוניות */
@@ -898,7 +898,7 @@ header.site-header {
 
 /* 3D Flipping Card Styles */
 .flip-card {
-  perspective: 1000px;
+  perspective: 1000px;/*יצירת אפקטים של תלת-ממד (3D) בדפדפן.*/
   height: 280px;
 }
 
@@ -908,7 +908,7 @@ header.site-header {
   height: 100%;
   text-align: center;
   transition: transform var(--transition-slow);
-  transform-style: preserve-3d;
+  transform-style: preserve-3d;/*שהכרטיסייה בעת ההתהפכות לא תראה שטוחה או מעוותות */
 }
 
 .flip-card.flipped .flip-card-inner {
@@ -947,7 +947,7 @@ header.site-header {
 .flip-card-front-icon {
   width: 200px;
   height: 100px;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /*הגדרה של תמונה , מגדיר לו שהתמונה בכוונה מפוקסלת */
 }
 
 .flip-card-hint {
@@ -1111,10 +1111,10 @@ header.site-header {
 }
 .recipe-steps h5 {
   margin-bottom: 10px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
 }
 .cake-decorator-title {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   color: var(--accent-dark-blue);
   font-size: 1.5rem;
   text-align: center;
@@ -1132,7 +1132,7 @@ header.site-header {
   gap: 10px;
 }
 .pixel-font {
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
 }
 .sugar-upload-btn {
   margin-top: 8px;
@@ -1158,7 +1158,7 @@ header.site-header {
 }
 .color-picker-row .form-label {
   margin-bottom: 0;
-  flex-shrink: 0;
+  flex-shrink: 0;/*מנוע מפריט ב-Flexbox להתכווץ*/
 }
 .color-picker-row .color-circles-picker {
   flex-grow: 1;
@@ -1188,7 +1188,7 @@ header.site-header {
 .sugar-sheet-overlay span {
   font-size: 0.7rem;
   color: var(--color-text-muted);
-  font-family: var(--font-pixel);
+  font-family: var(--font-pixel), serif;
   text-align: center;
   padding: 10px;
 }
@@ -1278,7 +1278,7 @@ header.site-header {
   background-color: #000000;
   border: 4px solid #1a1a1a;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: hidden;/*כל תוכן ש"בורח" מגבולות המיכל פשוט נחתך ולא יוצג.*/
   position: relative;
   width: 100%;
   padding-top: 56.25%;
