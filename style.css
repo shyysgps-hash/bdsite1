@@ -3755,8 +3755,10 @@ header.site-header {
   font-size: 0.95rem;
   font-weight: bold;
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
   gap: 6px;
+  direction: ltr;
   cursor: pointer;
   transition: all var(--transition-normal);
   user-select: none;
@@ -3800,10 +3802,11 @@ header.site-header {
   font-weight: bold;
   cursor: pointer;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 8px;
   transition: all var(--transition-normal);
-  direction: rtl;
+  direction: ltr;
   user-select: none;
 }
 
