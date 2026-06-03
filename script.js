@@ -15,7 +15,7 @@ const PRODUCTS_METADATA = [
   { id: 'face_mask', name: 'מסכת פנים', image: 'images/Frame 3.png' },
   { id: 'gummy', name: 'נחשי גומי', image: 'images/Frame 4.png' },
   { id: 'tattoos', name: 'קעקועי מים', image: 'images/Frame 5.png' },
-  { id: 'gum', name: 'קופסת מסטיקים בצורת סיגריות', image: 'images/Frame 6.png' },
+  { id: 'gum', name: 'סיגריות מסטיקים', image: 'images/Frame 6.png' },
   { id: 'coffee', name: 'קפה', image: 'images/Frame 7.png' },
   { id: 'socks', name: 'גרביים', image: 'images/Frame 8.png' },
   { id: 'opener', name: 'פותחן', image: 'images/Frame 9.png' },
@@ -640,29 +640,6 @@ function initKaraokeCakePage() {
 
       // Clear persisted state
       localStorage.removeItem('savedBirthdayCake');
-    });
-  }
-
-  // Save Cake
-  const btnSaveDecor = document.getElementById('btnSaveDecor');
-  if (btnSaveDecor) {
-    btnSaveDecor.addEventListener('click', () => {
-      const candlesCount = placedDecorations.querySelectorAll('.placed-candle').length;
-      const sprinklesCount = placedDecorations.querySelectorAll('.placed-sprinkle').length;
-      const hasImage = sugarSheetUploadedImg.style.display === 'block';
-
-      // Save cake state to localStorage
-      const cakeState = {
-        frostingColor: cakeFrosting.style.backgroundColor || 'var(--accent-pink)',
-        candlesCount: candlesCount,
-        sprinklesCount: sprinklesCount,
-        icingText: icingInput.value || '',
-        sugarSheetSrc: hasImage ? sugarSheetUploadedImg.src : ''
-      };
-      localStorage.setItem('savedBirthdayCake', JSON.stringify(cakeState));
-
-      const summary = `איזו עוגת פאר נוסטלגית!<br><br><strong>ציפוי:</strong> ${cakeFrosting.style.backgroundColor || 'ורוד פסטל'}<br><strong>כמות נרות גיל:</strong> ${candlesCount}<br><strong>סוכריות צבעוניות:</strong> ${sprinklesCount > 0 ? sprinklesCount : 'אין'}<br><strong>דף סוכר אישי:</strong> ${hasImage ? 'הועלה בהצלחה' : 'ללא תמונה'}<br><strong>כיתוב השוקולד שלך:</strong> "${icingInput.value || 'הכיתוב שלכם כאן'}"<br><br>העוגה נשמרה בגלריה בהצלחה! היא מוכנה כעת להגשה במרכז השולחן!<br><br><small style="color:var(--color-text-muted);">*העוגה נשמרה גם בזיכרון המקומי של הדפדפן (localStorage) ותיטען מחדש אוטומטית אם תרענן את הדף!</small>`;
-      showSystemModal('עוגת גן נוסטלגית מוכנה! 🍰', summary);
     });
   }
 
@@ -1509,7 +1486,7 @@ function showCustomBagResultModal(bagStyle, items) {
     cloth: "מטלית ניקוי למשקפיים — לראות את החיים בבהירות, גם כשמתחילים להזדקן.",
     glasses: "משקפיים שחורות — להסתיר את עיגולי העייפות בסטייל בלתי מתפשר.",
     chocolate: "שוקולד מריר — זריקת אנרגיה מרירה ואיכותית ברגעים קשים.",
-    gum_cigs: "מסטיקים בקופסת סיגריות של פעם — הנוסטלגיה הכי מתוקה והכי שנויה במחלוקת."
+    gum_cigs: "סיגריות מסטיקים — הנוסטלגיה הכי מתוקה והכי שנויה במחלוקת."
   };
 
   // Get items list for detailed side panel

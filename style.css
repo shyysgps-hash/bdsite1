@@ -2448,9 +2448,15 @@ header.site-header {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
   width: 100%;
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .product-item-btn {
