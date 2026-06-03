@@ -608,6 +608,10 @@ header.site-header {
   text-shadow: none;
 }
 
+.retro-btn.blue-text-hover:hover {
+  color: var(--accent-dark-blue);
+}
+
 /* ==========================================================================
    דף הבית (index.html) - WordArt, Hero & Quick Navigation
    ========================================================================== */
@@ -724,8 +728,15 @@ header.site-header {
   border-color: var(--accent-cyan);
 }
 
+  min-height: 500px;
 .quick-nav-card.card-bags {
   border-color: var(--accent-pink);
+.quick-nav-card h4 {
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 }
 
 .quick-nav-icon {
@@ -794,6 +805,10 @@ header.site-header {
 .quick-nav-card p {
   font-size: 0.9rem;
   margin-top: 8px;
+  min-height: 2.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* התראת כניסה (גיל וגב) בדף הבית */
@@ -3714,7 +3729,7 @@ header.site-header {
 }
 
 .footer-nav a:hover {
-  color: var(--accent-magenta);
+  color: var(--accent-yellow);
   background-color: rgba(0, 0, 128, 0.05);
   transform: scale(1.05) translateY(-1px);
 }
