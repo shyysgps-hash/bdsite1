@@ -88,7 +88,7 @@
     </div>
 
     <!-- Card 1: Project Description -->
-    <article class="retro-window about-window" aria-label="תיאור הפרויקט">
+    <article class="retro-window about-window" id="aboutProject" aria-label="תיאור הפרויקט">
       <div class="retro-titlebar">
         <div class="retro-window-title">
           <span class="retro-window-icon">ℹ️</span>
@@ -107,7 +107,7 @@
     </article>
 
     <!-- Card 2: Academic Challenges Faced -->
-    <article class="retro-window about-window" aria-label="אתגרים טכנולוגיים">
+    <article class="retro-window about-window" id="aboutChallenges" aria-label="אתגרים טכנולוגיים">
       <div class="retro-titlebar">
         <div class="retro-window-title">
           <span class="retro-window-icon">🛠️</span>
@@ -122,8 +122,7 @@
       <div class="retro-window-content">
         <h3 class="about-card-title">האתגרים שנתקלנו בהם בזמן בניית האתר הם:</h3>
         <ul>
-          <li><strong>חיתוך Spritesheet דינמי ב-Canvas:</strong> במקום לטעון 15 קבצי תמונות נפרדים למוצרים, האתר טוען קובץ תמונה מאוחד (`products.png`) וחותך אותו ב-JavaScript בזמן אמת בצורה נגישה ומהירה.</li>
-          <li><strong>רספונסיביות הפרסומות הצידיות (`aside`):</strong> הנדסת פריסה גמישה הממקמת את הבאנירים הצידיים בצדדים ב-Desktop, ומקפלת אותם כבאנרים רוחביים אלגנטיים בתחתית במובייל למניעת הפרעה לתוכן.</li>
+          <li><strong>רספונסיביות הפרסומות הצידיות :</strong> הנדסת פריסה גמישה הממקמת את הפרסומות הצדדיות בצדדים ב-Desktop, ומקפלת אותן כבאנרים רוחביים בתחתית העמוד במובייל למניעת הפרעה לתוכן.</li>
           <li><strong>שמירה על תקן נגישות מחמיר WCAG 2.1 AA:</strong> בניית כרטיסיות מתהפכות, נגנים ומשחקים דינמיים הניתנים לשליטה מלאה במקלדת, עם סימוני פוקוס מובלטים והיזון קולי לקוראי מסך.</li>
           <li><strong>פיתוח משחק אפייה ומקשט עוגה (נוסטלעוגן) ב-Vanilla JS:</strong> פיתוח מלא ומתוחכם של אינטראקטיביות העלאת תמונה אישית כדף סוכר, גרירת נרות וסוכריות וכיתוב שוקולד חי ללא ספריות חיצוניות!</li>
         </ul>
@@ -133,7 +132,7 @@
     <!-- Row of Credits Cards (Side-by-side on tablet/desktop) -->
     <div class="contact-faq-layout about-layout-row-medium">
       <!-- Developed By -->
-      <article class="retro-window about-window credit-window" aria-label="פיתוח וצוות">
+      <article class="retro-window about-window credit-window" id="aboutTeam" aria-label="פיתוח וצוות">
         <div class="retro-titlebar">
           <div class="retro-window-title">
             <span class="retro-window-icon">👥</span>
@@ -170,7 +169,7 @@
       </article>
 
       <!-- Design Methodology -->
-      <article class="retro-window about-window credit-window" aria-label="מתודולוגיית עיצוב">
+      <article class="retro-window about-window credit-window" id="aboutMethodology" aria-label="מתודולוגיית עיצוב">
         <div class="retro-titlebar">
           <div class="retro-window-title">
             <span class="retro-window-icon">🎨</span>
@@ -192,7 +191,7 @@
     <!-- Row of Documents and Sitemap links -->
     <div class="contact-faq-layout about-layout-row-large">
       <!-- Developed Documents list -->
-      <article class="retro-window about-window" aria-label="מסמכים שפותחו">
+      <article class="retro-window about-window" id="aboutDocuments" aria-label="מסמכים שפותחו">
         <div class="retro-titlebar">
           <div class="retro-window-title">
             <span class="retro-window-icon">📂</span>
@@ -219,7 +218,7 @@
       </article>
 
       <!-- Sitemap Link -->
-      <article class="retro-window about-window sitemap-window" aria-label="קישור למפת האתר">
+      <article class="retro-window about-window sitemap-window" id="aboutSitemapLink" aria-label="קישור למפת האתר">
         <div class="retro-titlebar">
           <div class="retro-window-title">
             <span class="retro-window-icon">🗺️</span>
