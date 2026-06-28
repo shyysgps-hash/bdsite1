@@ -106,11 +106,14 @@ body {
 
 h1{
   color: var(--accent-magenta);
-  font-weight: 700;
+  font-weight: 500;
+  font-family: var(--font-pixel), serif;
+  
 }
 /* Typography Defaults */
 h1 h2 h3 {
   text-align: center;
+
 }
 
 h4,
@@ -282,6 +285,7 @@ header.site-header {
   background-color: rgba(255, 253, 240, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 3px solid var(--color-border);
+  border-bottom-style: dashed;
   z-index: 1000;
   transition: all var(--transition-normal);
 }
@@ -303,9 +307,8 @@ header.site-header {
 }
 
 .site-logo-img {
-  height: 70px;
+  height: 60px;
   width: 70px;
-  border: 2px solid var(--color-border);
   border-radius: 2px;
 }
 
@@ -541,7 +544,7 @@ header.site-header {
 .retro-control-btn[onclick]:active,
 .retro-control-btn.modal-close-trigger:active {
   transform: scale(0.95);
-  box-shadow: 0px 0px 0 var(--color-border);
+  box-shadow: 0 px 0 px 0 var(--color-border);
 }
 
 .retro-window-content {
@@ -603,6 +606,10 @@ header.site-header {
   background-color: var(--accent-yellow);
   color: #000000;
   text-shadow: none;
+}
+
+.retro-btn.blue-text-hover:hover {
+  color: var(--accent-dark-blue);
 }
 
 /* ==========================================================================
@@ -721,8 +728,15 @@ header.site-header {
   border-color: var(--accent-cyan);
 }
 
+ 
 .quick-nav-card.card-bags {
   border-color: var(--accent-pink);
+.quick-nav-card h4 {
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 }
 
 .quick-nav-icon {
@@ -791,6 +805,10 @@ header.site-header {
 .quick-nav-card p {
   font-size: 0.9rem;
   margin-top: 8px;
+  min-height: 2.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* התראת כניסה (גיל וגב) בדף הבית */
@@ -847,9 +865,16 @@ header.site-header {
 }
 
 .section-title-container h1 {
-  font-size: 4rem;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
   margin-top: 40px;
   margin-bottom: 30px;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .section-title-container h1 {
+    white-space: normal;
+  }
 }
 
 .section-title-container p {
@@ -2182,6 +2207,8 @@ header.site-header {
 
 /* Section Subtitle refinement */
 .section-title-container p {
+  font-family: var(--font-pixel), serif;
+  color: var(--accent-dark-blue);
   font-size: 1.1rem;
   max-width: 800px;
   margin: 0 auto 17px auto;
@@ -2430,9 +2457,15 @@ header.site-header {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
   width: 100%;
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .product-item-btn {
@@ -3711,7 +3744,7 @@ header.site-header {
 }
 
 .footer-nav a:hover {
-  color: var(--accent-magenta);
+  color: var(--accent-yellow);
   background-color: rgba(0, 0, 128, 0.05);
   transform: scale(1.05) translateY(-1px);
 }
@@ -3731,8 +3764,10 @@ header.site-header {
   font-size: 0.95rem;
   font-weight: bold;
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
   gap: 6px;
+  direction: ltr;
   cursor: pointer;
   transition: all var(--transition-normal);
   user-select: none;
@@ -3776,10 +3811,11 @@ header.site-header {
   font-weight: bold;
   cursor: pointer;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 8px;
   transition: all var(--transition-normal);
-  direction: rtl;
+  direction: ltr;
   user-select: none;
 }
 

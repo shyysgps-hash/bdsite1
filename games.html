@@ -51,6 +51,7 @@
           <li><a href="games.html" class="nav-link active">משחקים ונהנים</a></li>
           <li><a href="karaoke-cake.html" class="nav-link">עוגה וקריוקי</a></li>
           <li><a href="goodie-bags.html" class="nav-link">שקיות הפתעה +18</a></li>
+          <li><a href="brakhot.html" class="nav-link">ברכות ואיחולים</a></li>
           <li><a href="about.html" class="nav-link">אודות</a></li>
           <li><a href="contact.html" class="nav-link">צור קשר</a></li>
           <li><a href="sitemap.html" class="nav-link">מפת אתר</a></li>
@@ -72,6 +73,7 @@
       <li><a href="games.html" class="mobile-nav-link active">משחקים ונהנים</a></li>
       <li><a href="karaoke-cake.html" class="mobile-nav-link">עוגה וקריוקי</a></li>
       <li><a href="goodie-bags.html" class="mobile-nav-link">שקיות הפתעה +18</a></li>
+      <li><a href="brakhot.html" class="mobile-nav-link">ברכות ואיחולים</a></li>
       <li><a href="about.html" class="mobile-nav-link">אודות</a></li>
       <li><a href="contact.html" class="mobile-nav-link">צור קשר</a></li>
       <li><a href="sitemap.html" class="mobile-nav-link">מפת אתר</a></li>
@@ -90,13 +92,13 @@
     </div>
 
     <!-- A. CLASSICS SECTION -->
-    <section class="games-container" aria-label="המשחקים הקלאסיים">
+    <section class="games-container" id="classicsSection" aria-label="המשחקים הקלאסיים">
       <h3 class="games-subtitle">קלאסיקות</h3>
       <p class="games-category-desc">הנה משחקים בגרסתם המקורית כי מי אנחנו שנשנה את יצירות המופת האלה.</p>
 
       <div class="games-grid">
         <!-- Card 1 -->
-        <div class="flip-card">
+        <div class="flip-card" id="gameBalloon">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/balloon.png" alt="אייקון בלון פיקסלי" class="flip-card-front-icon">
@@ -116,7 +118,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="flip-card">
+        <div class="flip-card" id="gameChairs">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/music.png" alt="אייקון מיקרופון פיקסלי" class="flip-card-front-icon">
@@ -137,7 +139,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="flip-card">
+        <div class="flip-card" id="gameWhoAmI">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/q.png" alt="אייקון סימן שאלה פיקסלי" class="flip-card-front-icon">
@@ -157,7 +159,7 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="flip-card">
+        <div class="flip-card" id="gameRace">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/spoon.png" alt="אייקון כף פיקסלי" class="flip-card-front-icon">
@@ -180,13 +182,13 @@
     </section>
 
     <!-- B. ADAPTED SECTION -->
-    <section class="games-container" aria-label="המשחקים המותאמים">
+    <section class="games-container" id="adaptedSection" aria-label="המשחקים המותאמים">
       <h3 class="games-subtitle">מותאמים</h3>
       <p class="games-category-desc">אין מה לעשות הגיל עושה את שלו. מגיע לנו להנות אבל בהתאמה.</p>
 
       <div class="games-grid">
         <!-- Card 5 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gameDrinking">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/beer.png" alt="אייקון כוס בירה פיקסלי" class="flip-card-front-icon">
@@ -206,7 +208,7 @@
         </div>
 
         <!-- Card 6 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gamePackage">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/box.png" alt="אייקון ארגז קרטון פיקסלי" class="flip-card-front-icon">
@@ -227,7 +229,7 @@
         </div>
 
         <!-- Card 7 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gameCandle">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/lemon.png" alt="אייקון פלח לימון פיקסלי" class="flip-card-front-icon">
@@ -248,7 +250,7 @@
         </div>
 
         <!-- Card 8 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gameMummy">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/paper.png" alt="אייקון גליל נייר פיקסלי" class="flip-card-front-icon">
@@ -270,7 +272,7 @@
         </div>
 
         <!-- Card 9 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gameFinger">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/hand.png" alt="אייקון כף יד פיקסלי" class="flip-card-front-icon">
@@ -291,7 +293,7 @@
         </div>
 
         <!-- Card 10 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gameBeerPong">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/pong.png" alt="אייקון כוס בירה חד פעמית אדומה פיקסלי" class="flip-card-front-icon">
@@ -312,7 +314,7 @@
         </div>
 
         <!-- Card 11 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gameCotton">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/wind.png" alt="אייקון רוח פיקסלי" class="flip-card-front-icon">
@@ -334,7 +336,7 @@
         </div>
 
         <!-- Card 12 -->
-        <div class="flip-card upgraded-card">
+        <div class="flip-card upgraded-card" id="gameTruthOrDare">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="images/bottle.png" alt="אייקון בקבוק מים פיקסלי" class="flip-card-front-icon">
@@ -389,6 +391,7 @@
         <a href="games.html">משחקים ונהנים | </a>
         <a href="karaoke-cake.html">עוגה וקריוקי | </a>
         <a href="goodie-bags.html">שקיות הפתעה +18 | </a>
+        <a href="brakhot.html">ברכות ואיחולים | </a>
         <a href="about.html">אודות | </a>
         <a href="contact.html">צור קשר | </a>
         <a href="sitemap.html">מפת אתר </a>

@@ -10,6 +10,22 @@
 
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
+  <style>
+    .sitemap-grid {
+      grid-template-columns: repeat(6, 1fr) !important;
+    }
+    @media (max-width: 1200px) {
+      .sitemap-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .sitemap-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -49,6 +65,7 @@
           <li><a href="games.html" class="nav-link">משחקים ונהנים</a></li>
           <li><a href="karaoke-cake.html" class="nav-link">עוגה וקריוקי</a></li>
           <li><a href="goodie-bags.html" class="nav-link">שקיות הפתעה +18</a></li>
+          <li><a href="brakhot.html" class="nav-link">ברכות ואיחולים</a></li>
           <li><a href="about.html" class="nav-link">אודות</a></li>
           <li><a href="contact.html" class="nav-link">צור קשר</a></li>
           <li><a href="sitemap.html" class="nav-link active">מפת אתר</a></li>
@@ -61,86 +78,115 @@
        3. Main Content
        ========================================== -->
   <main id="mainSitemap" class="main-content">
+    <div class="section-title-container" id="gamesSection">
+    <h1>מפת אתר</h1>
+    <p class="games-intro">נווטו בקלות בין כל ההפתעות, המשחקים והנוסטלגיה שהכנו לכם!</p>
+    </div>
     <div class="sitemap-new-container">
-      <h1 class="sitemap-main-title">מפת אתר</h1>
-      <p class="sitemap-intro">נווטו בקלות בין כל ההפתעות, המשחקים והנוסטלגיה שהכנו לכם!</p>
-      
       <div class="sitemap-grid">
-        <!-- Column 1 -->
+        <!-- Column 1: עמוד הבית -->
         <div class="sitemap-column">
-          <div class="sitemap-col-title">עמודים כלליים</div>
+          <div class="sitemap-col-title">עמוד הבית</div>
           <ul class="sitemap-col-list">
-            <li><a href="index.html">עמוד בית</a></li>
-            <li><a href="index.html">הירו</a></li>
-            <li><a href="index.html#nostalgiaText">קטע תוכן נוסטלגי</a></li>
-            <li><a href="index.html">כרטיסיות ניווט</a></li>
-            <li><a href="contact.html">צור קשר</a></li>
-            <li><a href="sitemap.html">מפת אתר</a></li>
+            <li><a href="index.html#homePage">עמוד הבית (ראשי)</a></li>
+            <li><a href="index.html#mainContent">פתיחה והירו</a></li>
+            <li><a href="index.html#retroVideoWindow">סרטון נוסטלגיה מונפש</a></li>
+            <li><a href="index.html#quickNavSection">בחירת שלב בהכנות (3 כרטיסיות)</a></li>
           </ul>
         </div>
 
-        <!-- Column 2 -->
+        <!-- Column 2: משחקים -->
         <div class="sitemap-column">
           <div class="sitemap-col-title">משחקים</div>
           <ul class="sitemap-col-list">
-            <li><a href="games.html">משחקים למבוגרים לא בוגרים</a></li>
-            <li><a href="games.html">הקדמה קצרה</a></li>
-            <li><a href="games.html">קלאסיקות</a></li>
-            <li><a href="games.html">לפוצץ בלונים בזוגות</a></li>
-            <li><a href="games.html">כיסאות מוזיקליים</a></li>
-            <li><a href="games.html">מי אני</a></li>
-            <li><a href="games.html">מרוץ שקים / כף וביצה</a></li>
-            <li><a href="games.html">מי שותה יותר מהר</a></li>
-            <li><a href="games.html">חבילה עוברת</a></li>
-            <li><a href="games.html">אמת או חובה</a></li>
-            <li><a href="games.html">ביר פונג</a></li>
+            <li><a href="games.html#gamesSection">משחקים למבוגרים (ראשי)</a></li>
+            <li><a href="games.html#gamesSection">הקדמה ומידע</a></li>
+            <li><a href="games.html#classicsSection">קלאסיקות ילדות</a></li>
+            <li><a href="games.html#gameBalloon">לפוץ בלונים בזוגות</a></li>
+            <li><a href="games.html#gameChairs">כיסאות מוזיקליים</a></li>
+            <li><a href="games.html#gameWhoAmI">מי אני?</a></li>
+            <li><a href="games.html#gameRace">מרוץ שקים / כף וביצה</a></li>
+            <li><a href="games.html#adaptedSection">מותאמים (משודרגים)</a></li>
+            <li><a href="games.html#gameDrinking">מי שותה יותר מהר?</a></li>
+            <li><a href="games.html#gamePackage">חבילה עוברת</a></li>
+            <li><a href="games.html#gameCandle">להכניס נר לבקבוק</a></li>
+            <li><a href="games.html#gameMummy">מומייה</a></li>
+            <li><a href="games.html#gameFinger">תוריד אצבע אם...</a></li>
+            <li><a href="games.html#gameBeerPong">קלאסי קולג׳ ביר פונג</a></li>
+            <li><a href="games.html#gameCotton">לנשוף על צמר גפן</a></li>
+            <li><a href="games.html#gameTruthOrDare">אמת או חובה</a></li>
+            <li><a href="games.html#btnDrawGame">מחולל משחקים אקראי</a></li>
           </ul>
         </div>
 
-        <!-- Column 3 -->
+        <!-- Column 3: עוגה וקריוקי -->
         <div class="sitemap-column">
-          <div class="sitemap-col-title">קריוקי ועוגה</div>
+          <div class="sitemap-col-title">עוגה וקריוקי</div>
           <ul class="sitemap-col-list">
-            <li><a href="karaoke-cake.html">החגיגה מתחילה</a></li>
-            <li><a href="karaoke-cake.html">קריוקי</a></li>
-            <li><a href="karaoke-cake.html">מוכנים להרים את האווירה גם בישיבה?</a></li>
-            <li><a href="karaoke-cake.html">עוגה</a></li>
-            <li><a href="karaoke-cake.html">אתם השפים של המסיבה</a></li>
-            <li><a href="karaoke-cake.html">מצרכים והוראות הכנה</a></li>
-            <li><a href="karaoke-cake.html">נסו בעצמכם</a></li>
-            <li><a href="karaoke-cake.html">פינת ה"נוסטלגיה"</a></li>
+            <li><a href="karaoke-cake.html#mainContent">החגיגה מתחילה</a></li>
+            <li><a href="karaoke-cake.html#tabToKaraoke">בחירת מדור (קריוקי/עוגה)</a></li>
+            <li><a href="karaoke-cake.html#sectionKaraoke">מדור קריוקי</a></li>
+            <li><a href="karaoke-cake.html#playerSongTitle">רשימת השירים הנוסטלגית</a></li>
+            <li><a href="karaoke-cake.html#crtVideoFrame">נגן טלוויזיה וינטג' CRT</a></li>
+            <li><a href="karaoke-cake.html#sectionCake">מדור עוגת גן</a></li>
+            <li><a href="karaoke-cake.html#sectionCake">מתכון לעוגת גן</a></li>
+            <li><a href="karaoke-cake.html#start-overlay">משחק הבחישה והאפייה</a></li>
+            <li><a href="karaoke-cake.html#cakeDecoratorWorkspace">מקשט עוגה (נוסטלעוגן)</a></li>
+            <li><a href="karaoke-cake.html#cakeDecoratorWorkspace">העלאת תמונת דף סוכר</a></li>
+            <li><a href="karaoke-cake.html#cakeDecoratorWorkspace">בחירת קרם וכיתוב שוקולד</a></li>
           </ul>
         </div>
 
-        <!-- Column 4 -->
+        <!-- Column 4: שקיות הפתעה 18+ -->
         <div class="sitemap-column">
           <div class="sitemap-col-title">שקיות הפתעה 18+</div>
           <ul class="sitemap-col-list">
-            <li><a href="goodie-bags.html">מי רוצה שקית הפתעה ולא קיבל?</a></li>
-            <li><a href="goodie-bags.html">פסקת פתיחה</a></li>
-            <li><a href="goodie-bags.html">בחירת מסלול</a></li>
-            <li><a href="goodie-bags.html">מסלול א׳: הצללן האחראי</a></li>
-            <li><a href="goodie-bags.html">ערכת ההתמרמרות</a></li>
-            <li><a href="goodie-bags.html">ערכת הילד הנצחי</a></li>
-            <li><a href="goodie-bags.html">ערכת הבורגני המפונק</a></li>
-            <li><a href="goodie-bags.html">מסלול ב׳: ההרפתקן</a></li>
-            <li><a href="goodie-bags.html">בחירת שקית</a></li>
-            <li><a href="goodie-bags.html">מילוי שקית</a></li>
+            <li><a href="goodie-bags.html#mainContent">מי רוצה שקית הפתעה?</a></li>
+            <li><a href="goodie-bags.html#mainContent">הקדמה וכללי ימי הולדת</a></li>
+            <li><a href="goodie-bags.html#btnPathLazy">בחירת מסלול שקית</a></li>
+            <li><a href="goodie-bags.html#pathContainerLazy">מסלול א׳: שקיות מוכנות</a></li>
+            <li><a href="goodie-bags.html#pathContainerLazy">ערכת החמרמורת</a></li>
+            <li><a href="goodie-bags.html#pathContainerLazy">ערכת הילד הנצחי</a></li>
+            <li><a href="goodie-bags.html#pathContainerLazy">ערכת הבורגני המפונק</a></li>
+            <li><a href="goodie-bags.html#pathContainerAdventure">מסלול ב׳: הרכבה עצמית</a></li>
+            <li><a href="goodie-bags.html#pathContainerAdventure">שלב 1: בחירת סוג שקית</a></li>
+            <li><a href="goodie-bags.html#dropZoneBag">שלב 2: מילוי מוצרים</a></li>
+            <li><a href="goodie-bags.html#btnSaveBag">שמירת השקית וקבלת תוצאה</a></li>
           </ul>
         </div>
 
-        <!-- Column 5 -->
+        <!-- Column 5: אודות -->
+        <div class="sitemap-column">
+          <div class="sitemap-col-title">אודות</div>
+          <ul class="sitemap-col-list">
+            <li><a href="about.html#aboutHITPage">עמוד אודות (ראשי)</a></li>
+            <li><a href="about.html#aboutProject">אודות הפרויקט והרעיון</a></li>
+            <li><a href="about.html#aboutChallenges">אתגרים אקדמיים וטכנולוגיים</a></li>
+            <li><a href="about.html#aboutTeam">צוות פיתוח האתר</a></li>
+            <li><a href="about.html#aboutMethodology">אפיון ועיצוב הממשק (UI/UX)</a></li>
+            <li><a href="about.html#aboutDocuments">המסמכים והדפים שפותחו</a></li>
+            <li><a href="brakhot.html">ברכות ואיחולים</a></li>
+            <li><a href="about.html#aboutSitemapLink">מעבר מהיר למפת האתר</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 6: צור קשר -->
         <div class="sitemap-column">
           <div class="sitemap-col-title">צור קשר</div>
           <ul class="sitemap-col-list">
-            <li><a href="contact.html">פרטי יצירת קשר</a></li>
-            <li><a href="contact.html">טופס יצירת קשר</a></li>
+            <li><a href="contact.html#contactPage">עמוד צור קשר (ראשי)</a></li>
+            <li><a href="contact.html#contactForm">טופס יצירת קשר רטרו</a></li>
+            <li><a href="contact.html#faq1">שאלות נפוצות (FAQ)</a></li>
+            <li><a href="contact.html#faq1">האם המשחקים מסוכנים לגב?</a></li>
+            <li><a href="contact.html#faq2">למה השקיות מוגדרות כ-18+?</a></li>
+            <li><a href="contact.html#faq3">איך מפעילים את נגן הקריוקי?</a></li>
+            <li><a href="sitemap.html#mainSitemap">עמוד מפת האתר</a></li>
           </ul>
         </div>
       </div>
 
       <div class="sitemap-footer-nav">
-        <a href="index.html" class="retro-btn">➔ חזרה לעמוד הבית</a>
+        <a href="index.html" class="retro-btn blue-text-hover">➔ חזרה לעמוד הבית</a>
       </div>
     </div>
   </main>
@@ -155,6 +201,7 @@
         <a href="games.html">משחקים ונהנים | </a>
         <a href="karaoke-cake.html">עוגה וקריוקי | </a>
         <a href="goodie-bags.html">שקיות הפתעה +18 | </a>
+        <a href="brakhot.html">ברכות ואיחולים | </a>
         <a href="about.html">אודות | </a>
         <a href="contact.html">צור קשר | </a>
         <a href="sitemap.html">מפת אתר </a>
