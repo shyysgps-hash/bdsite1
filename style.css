@@ -544,7 +544,7 @@ header.site-header {
 .retro-control-btn[onclick]:active,
 .retro-control-btn.modal-close-trigger:active {
   transform: scale(0.95);
-  box-shadow: 0px 0px 0 var(--color-border);
+  box-shadow: 0 px 0 px 0 var(--color-border);
 }
 
 .retro-window-content {
@@ -728,7 +728,7 @@ header.site-header {
   border-color: var(--accent-cyan);
 }
 
-  min-height: 500px;
+ 
 .quick-nav-card.card-bags {
   border-color: var(--accent-pink);
 .quick-nav-card h4 {
@@ -865,9 +865,16 @@ header.site-header {
 }
 
 .section-title-container h1 {
-  font-size: 3.5rem;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
   margin-top: 40px;
   margin-bottom: 30px;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .section-title-container h1 {
+    white-space: normal;
+  }
 }
 
 .section-title-container p {
@@ -2200,6 +2207,8 @@ header.site-header {
 
 /* Section Subtitle refinement */
 .section-title-container p {
+  font-family: var(--font-pixel), serif;
+  color: var(--accent-dark-blue);
   font-size: 1.1rem;
   max-width: 800px;
   margin: 0 auto 17px auto;

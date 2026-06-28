@@ -10,6 +10,10 @@
 
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="brachot.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@100..800&display=swap" rel="stylesheet">
 </head>
 
 <body id="blessingsPage">
@@ -87,7 +91,7 @@
 
     <div class="section-title-container">
       <h1>שתלך בדרך הפרחים ולא בדרך הקוצים</h1>
-      <p class="games-intro">מחולל הברכות הרשמי בסגנון שנות ה-2000 — כל הברכה המושלמת להתחלה של מסיבה נוסטלגית.</p>
+      <p>מחולל הברכות הרשמי בסגנון שנות ה-2000 — כל הברכה המושלמת להתחלה של מסיבה נוסטלגית.</p>
     </div>
 
     <article class="retro-window about-window" aria-label="כותרת וחלונית תוכן לברכות">
@@ -103,11 +107,142 @@
         </div>
       </div>
       <div class="retro-window-content">
-        <h3 class="about-card-title">ברוכים הבאים למחולל הברכות</h3>
-        <p>כאן תוכלו למצוא משפטי ברכה חמים, איחולים נוסטלגיים וסגנון שנות ה-2000 שמזכיר לכולנו את המסיבות של פעם.</p>
-        <p>העמוד בשלב זה מוכן למלא תוכן נוסף בעתיד, וממשיך את העיצוב הרטרו-מודרני של אתר "אני לא בגיל לזה".</p>
+        <h3 class="about-card-title">מחולל הברכות הנוסטלגיות</h3>
+        <p>כאן תוכלו לעצב כרטיס ברכה מותאם אישית בסגנון שנות ה-2000, לבחור צבע רקע, להוסיף מסגרת ומדבקות ולראות תצוגה מקדימה חיה.</p>
+        <hr style="margin: 20px 0; border: 1px dashed var(--color-border);">
+
+        <div class="blessings-generator">
+          <div class="flex-container">
+              <fieldset class="toppage colorPage">
+                  <legend>בחר צבע לדף:</legend>
+                  <div>
+                      <input type="radio" id="blue" name="colors" value="תכלת פסטל" onclick="changeBackground('images/light blue.png')"/>
+                      <label for="blue">תכלת</label> <br>
+                      <img src="images/light%20blue.png" alt="דף תכלת פסטל" width="30" height="40">
+                  </div>
+
+                  <div>
+                      <input type="radio" id="pink" name="colors" value="ורוד פסטל" onclick="changeBackground('images/light pink.png')"/>
+                      <label for="pink">ורוד</label> <br>
+                      <img src="images/light%20pink.png" alt="דף ורוד פסטל" width="30" height="40">
+                  </div>
+
+                  <div>
+                      <input type="radio" id="green" name="colors" value="ירוק פסטל" onclick="changeBackground('images/light green.png')"/>
+                      <label for="green">ירוק</label> <br>
+                      <img src="images/light%20green.png" alt="דף ירוק פסטל" width="30" height="40">
+                  </div>
+
+                  <div>
+                      <input type="radio" id="yellow" name="colors" value="צהוב פסטל" onclick="changeBackground('images/light yellow.png')"/>
+                      <label for="yellow">צהוב</label> <br>
+                      <img src="images/light%20yellow.png" alt="דף צהוב פסטל" width="30" height="40">
+                  </div>
+
+                  <div>
+                      <input type="radio" id="lilach" name="colors" value="סגול פסטל" onclick="changeBackground('images/lilach.png')"/>
+                      <label for="lilach">סגול</label> <br>
+                      <img src="images/lilach.png" alt="דף סגול פסטל" width="30" height="40">
+                  </div>
+              </fieldset>
+
+              <fieldset class="toppage framePage">
+                  <legend>בחר מסגרת לדף:</legend>
+                  <div>
+                      <input type="radio" id="balloons" name="frames" value="בלונים" onclick="changeFrame('images/balloons.png')"/>
+                      <label for="balloons">בלונים</label> <br>
+                      <img src="images/balloonsEXM.png" alt="דוגמה מסגרת בלונים" width="50" height="30">
+                  </div>
+
+                  <div>
+                      <input type="radio" id="flowers" name="frames" value="פרחים" onclick="changeFrame('images/flowers.png')"/>
+                      <label for="flowers">פרחים</label> <br>
+                      <img src="images/flowersEXM.png" alt="דוגמה מסגרת פרחים" width="50" height="30">
+                  </div>
+
+                  <div>
+                      <input type="radio" id="hearts" name="frames" value="לבבות" onclick="changeFrame('images/hearts.png')"/>
+                      <label for="hearts">לבבות</label> <br>
+                      <img src="images/heartsEXM.png" alt="דוגמה מסגרת לבבות" width="50" height="30">
+                  </div>
+              </fieldset>
+
+              <fieldset class="toppage stickerSet">
+                  <legend>בחר סט מדבקות:</legend>
+                  <div>
+                      <input type="checkbox" id="space" name="space" value="חלל" onclick="toggleSticker('space', 'img-space')"/>
+                      <label for="space">חלל</label> <br>
+                  </div>
+
+                  <div>
+                      <input type="checkbox" id="smiley" name="smiley" value="סמיילים" onclick="toggleSticker('smiley', 'img-smiley')"/>
+                      <label for="smiley">סמיילים</label><br>
+                  </div>
+
+                  <div>
+                      <input type="checkbox" id="glitters" name="glitters" value="נצנצים" onclick="toggleSticker('glitters', 'img-glitters')"/>
+                      <label for="glitters">נצנצים</label> <br>
+                  </div>
+
+                  <div>
+                      <input type="checkbox" id="dinosaur" name="dinosaur" value="דינוזאורים" onclick="toggleSticker('dinosaur', 'img-dinosaur')"/>
+                      <label for="dinosaur">דינוזאורים</label> <br>
+                  </div>
+
+                  <div>
+                      <input type="checkbox" id="animals" name="animals" value="חיות" onclick="toggleSticker('animals', 'img-animals')"/>
+                      <label for="animals">חיות</label> <br>
+                  </div>
+              </fieldset>
+          </div>
+          <br>
+          <div class="btm">
+              <div class="flex-container textPart">
+                  <div>
+                      <label for="nameGet">שם מקבל הברכה:</label>
+                      <input type="text" id="nameGet" name="text" placeholder="שם מקבל הברכה" oninput="checkFields()"/>
+                  </div>
+
+                  <div>
+                      <label for="greetingCard">הכנס ברכה כאן (עד 320 תווים)</label>
+                      <textarea id="greetingCard" maxlength="320" name="text" oninput="checkFields()" placeholder="הכנס ברכה כאן עד 320 תווים"
+                                rows="5" cols="25"></textarea>
+                  </div>
+
+                  <div>
+                      <label for="nameGive">שם המברך:</label>
+                      <input type="text" id="nameGive" name="text" placeholder="שם המברך" oninput="checkFields()"/>
+                  </div>
+
+                  <div>
+                      <label for="chekAndPrint"></label>
+                      <input type="button" id="chekAndPrint" name="chekAndPrint" value="הוסף את הברכה" class="button" onclick="blessText()" disabled/>
+                  </div>
+              </div>
+              
+              <div id="designSummary"></div>
+              
+              <div id="result" class="bless">
+                  <div class="card-preview">
+                      <img id="card-bg" src="images/bgdefult.png" class="layer layer-bg" alt="">
+                      <img id="card-frame" src="images/bgdefult.png" class="layer layer-frame" alt="">
+                      <div id="text">
+                          <h2>הברכה שלי</h2>
+                          <p></p>
+                          <h3></h3>
+                      </div>
+                      <img id="img-space" src="images/space.png" class="layer layer-sticker" alt="מדבקות חלל">
+                      <img id="img-smiley" src="images/smiley.png" class="layer layer-sticker" alt="מדבקות סמיילים">
+                      <img id="img-glitters" src="images/glitters.png" class="layer layer-sticker" alt="מדבקות נצנצים">
+                      <img id="img-dinosaur" src="images/dinosaur.png" class="layer layer-sticker" alt="מדבקות דינוזאורים">
+                      <img id="img-animals" src="images/animals.png" class="layer layer-sticker" alt="מדבקות חיות">
+                  </div>
+              </div>
+          </div>
+        </div>
       </div>
     </article>
+    
 
   </main>
 
@@ -136,6 +271,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="brachot.js"></script>
 </body>
 
 </html>
