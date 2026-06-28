@@ -1,21 +1,83 @@
 
-.flex-container {
+#blessingsPage .flex-container {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: stretch; /* כל ה-fieldsets יגיעו לאותו גובה */
+    gap: 20px;
 }
 
-.toppage {
+#blessingsPage .toppage {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 330px;
+    justify-content: space-evenly; /* מרווחים שווים בין כל הבחירות */
+    height: 380px;           /* גובה אחיד זהה לשלושתם */
+    flex: 1;                 /* כל fieldset תופס רוחב שווה */
 }
 
-fieldset {
-    width: 100px;
+#blessingsPage fieldset {
+    width: 100%;             /* ממלא את הרוחב שהוקצה */
+    height: 380px;           /* גובה אחיד זהה לשלושתם */
     font-weight: bold;
     border: 3px solid black;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* מרווחים שווים בין כל הבחירות */
+    gap: 0;
+}
+
+#blessingsPage fieldset > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;                 /* כל שורת בחירה תופסת גובה שווה */
+    gap: 4px;
+}
+
+/* --- צבעים: 2 טורים מסודרים בתוך הקופסא ---
+   ספציפיות גבוהה כדי לנצח את display:flex מה-fieldset הכללי --- */
+#blessingsPage .colorPage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;      /* 2 טורים שווים */
+    grid-template-rows: repeat(3, 1fr);  /* 3 שורות: 2+2+1 צבעים */
+    align-items: center;
+    justify-items: center;
+    gap: 0;
+    padding-top: 22px;                   /* רווח מתחת ל-legend שלא ידרוס */
+    overflow: hidden;                    /* לא יוצא מהקופסא */
+    box-sizing: border-box;
+}
+
+/* כל בחירת צבע — ממלאת את התא ומרכזת את התוכן */
+#blessingsPage .colorPage > div {
+    flex: unset;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 2px;
+}
+
+/* מסתירים את ה-br — אנחנו שולטים ברווחים דרך gap */
+.colorPage br {
+    display: none;
+}
+
+/* תמונות דוגמה — גודל נוח שמתאים ל-2 טורים */
+.colorPage img {
+    height: 26px;
+    width: auto;
+    display: block;
+}
+
+/* --- רקע אפור לתוכן הפנימי של גנרטור הברכות --- */
+#blessingsPage .retro-window-content {
+    background-color: #f4f4f4;
 }
 
 /* --- האזור התחתון והגריד היציב --- */
@@ -67,7 +129,7 @@ fieldset {
     border: 2px solid #aae0fa;
     border-radius: 15px;
     font-size: 15px;
-    color: #333333;
+    color: #353535;
     line-height: 1.6;
     text-align: right;
     width: 100%;
@@ -111,9 +173,10 @@ fieldset {
     gap: 10px;
 }
 
-h2 { font-size: 24px; font-weight: bold; margin: 0; }
-p { font-size: 16px; font-weight: normal; margin: 0; word-wrap: break-word; }
-h3 { font-size: 22px; font-weight: bold; margin: 0; }
+/* צמצום לתוך כרטיס הברכה בלבד כדי לא לדרוס את השאר */
+#text h2 { font-size: 24px; font-weight: bold; margin: 0; }
+#text p  { font-size: 16px; font-weight: normal; margin: 0; word-wrap: break-word; }
+#text h3 { font-size: 22px; font-weight: bold; margin: 0; }
 
 /* --- כפתורים --- */
 .button {
