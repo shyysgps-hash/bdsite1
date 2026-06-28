@@ -92,7 +92,11 @@ function blessText() {
         "<strong>סיכום עיצוב:</strong><br>" +
         "צבע רקע: " + selectedColor + "<br>" +
         "מסגרת: " + selectedFrame + "<br>" +
-        "מדבקות שנבחרו: " + selectedStickers;
+        "מדבקות שנבחרו: " + selectedStickers + "<br>" +
+        "<strong>תוכן הברכה:</strong><br>" +
+        "לכבוד: " + get + "<br>" +
+        bless + "<br>" +
+        "מימני: " + give;
 
     // לולאת עזר שעוברת על כל המדבקות ומעלימה את אלו שלא סומנו ב-V
     for (let i = 0; i < stickerIds.length; i++) {
