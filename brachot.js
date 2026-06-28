@@ -22,7 +22,7 @@ function toggleSticker(checkboxId, imageId) {
     if (checkbox.checked === true) {
         stickerImage.style.opacity = "1";   /* נדלק! צבע מלא בלי שקיפות */
     } else {
-        stickerImage.style.opacity = "0.25"; /* נכבה! חוזר לחצי שקיפות */
+        stickerImage.style.opacity = "0.5"; /* נכבה! חוזר לחצי שקיפות */
     }
 }
 
@@ -55,8 +55,55 @@ function checkFields() {
     }
 }
 
+
 // ==========================================
-// חלק ג': פונקציות חיצוניות גנריות למניעת כפילויות (לולאות ומערכים)
+// חלק ג': פונקציית ההדפסה הראשית והפקת הסיכום
+// ==========================================
+
+// 8. פונקציית ההדפסה הראשית - מדפיסה לכרטיס ויוצרת סיכום במיקום נפרד בדף
+function blessText() {
+    const give = document.getElementById("nameGive").value;
+    const bless = document.getElementById("greetingCard").value;
+    const get = document.getElementById("nameGet").value;
+
+    // הגדרת מערכים של ה-ID והטקסטים מתוך ה-HTML לצורך בדיקת העיצובים
+    let colorIds = ["blue", "pink", "green", "yellow", "lilach"];
+    let colorTexts = ["תכלת", "ורוד", "ירוק", "צהוב", "סגול"];
+
+    let frameIds = ["balloons", "flowers", "hearts"];
+    let frameTexts = ["בלונים", "פרחים", "לבבות"];
+
+    let stickerIds = ["space", "smiley", "glitters", "dinosaur", "animals"];
+    let stickerTexts = ["חלל", "סמיילים", "נצנצים", "דינוזאורים", "חיות"];
+
+    // קריאה לפונקציות החיצוניות הגנריות שאוספות את הנתונים ומסכמות אותם
+    let selectedColor = getSelectedRadio(colorIds, colorTexts);
+    let selectedFrame = getSelectedRadio(frameIds, frameTexts);
+    let selectedStickers = getSelectedCheckboxes(stickerIds, stickerTexts);
+
+    // 1. הדפסת הברכה עצמה לתוך ה-div של ה-text (בתוך כרטיס הברכה במסך)
+    document.getElementById("text").innerHTML =
+        "<h2>לכבוד: " + get + "</h2>" +
+        "<p>" + bless + "</p>" +
+        "<h3>מימני: " + give + "</h3>";
+
+    // 2. הדפסת הסיכום הטקסטואלי לתוך ה-div הריק שנמצא במקום אחר בדף
+    document.getElementById("designSummary").innerHTML =
+        "<strong>סיכום עיצוב:</strong><br>" +
+        "צבע רקע: " + selectedColor + "<br>" +
+        "מסגרת: " + selectedFrame + "<br>" +
+        "מדבקות שנבחרו: " + selectedStickers;
+
+    // לולאת עזר שעוברת על כל המדבקות ומעלימה את אלו שלא סומנו ב-V
+    for (let i = 0; i < stickerIds.length; i++) {
+        hideIfUnchecked(stickerIds[i], "img-" + stickerIds[i]);
+    }
+    document.getElementById("designSummary").style.display = "block";
+}
+
+
+// ==========================================
+// חלק ד': פונקציות חיצוניות למניעת כפילויות (לולאות ומערכים)
 // ==========================================
 
 // 6. פונקציה חיצונית שבודקת כפתורי רדיו ומחזירה את הטקסט של מה שמסומן
@@ -94,49 +141,4 @@ function getSelectedCheckboxes(checkboxIds, checkboxTexts) {
     } else {
         return resultText;
     }
-}
-
-// ==========================================
-// חלק ד': פונקציית ההדפסה הראשית והפקת הסיכום
-// ==========================================
-
-// 8. פונקציית ההדפסה הראשית - מדפיסה לכרטיס ויוצרת סיכום במיקום נפרד בדף
-function blessText() {
-    const give = document.getElementById("nameGive").value;
-    const bless = document.getElementById("greetingCard").value;
-    const get = document.getElementById("nameGet").value;
-
-    // הגדרת מערכים של ה-ID והטקסטים מתוך ה-HTML לצורך בדיקת העיצובים
-    let colorIds = ["blue", "pink", "green", "yellow", "lilach"];
-    let colorTexts = ["תכלת", "ורוד", "ירוק", "צהוב", "סגול"];
-
-    let frameIds = ["balloons", "flowers", "hearts"];
-    let frameTexts = ["בלונים", "פרחים", "לבבות"];
-
-    let stickerIds = ["space", "smiley", "glitters", "dinosaur", "animals"];
-    let stickerTexts = ["חלל", "סמיילים", "נצנצים", "דינוזאורים", "חיות"];
-
-    // קריאה לפונקציות החיצוניות הגנריות שאוספות את הנתונים ומסכמות אותם
-    let selectedColor = getSelectedRadio(colorIds, colorTexts);
-    let selectedFrame = getSelectedRadio(frameIds, frameTexts);
-    let selectedStickers = getSelectedCheckboxes(stickerIds, stickerTexts);
-
-    // 1. הדפסת הברכה עצמה לתוך ה-div של ה-text (בתוך כרטיס הברכה במסך)
-    document.getElementById("text").innerHTML =
-        "<h2>לכבוד: " + get + "</h2>" +
-        "<p>" + bless + "</p>" +
-        "<h3>ממני: " + give + "</h3>";
-
-    // 2. הדפסת הסיכום הטקסטואלי לתוך ה-div הריק שנמצא במקום אחר בדף
-    document.getElementById("designSummary").innerHTML =
-        "<strong>סיכום עיצוב:</strong><br>" +
-        "צבע רקע: " + selectedColor + "<br>" +
-        "מסגרת: " + selectedFrame + "<br>" +
-        "מדבקות שנבחרו: " + selectedStickers;
-
-    // לולאת עזר שעוברת על כל המדבקות ומעלימה את אלו שלא סומנו ב-V
-    for (let i = 0; i < stickerIds.length; i++) {
-        hideIfUnchecked(stickerIds[i], "img-" + stickerIds[i]);
-    }
-    document.getElementById("designSummary").style.display = "block";
 }

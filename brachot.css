@@ -175,7 +175,7 @@
 
 /* צמצום לתוך כרטיס הברכה בלבד כדי לא לדרוס את השאר */
 #text h2 { font-size: 24px; font-weight: bold; margin: 0; }
-#text p  { font-size: 16px; font-weight: normal; margin: 0; word-wrap: break-word; }
+#text p  { font-size: 10px; font-weight: normal; margin: 20px 20px; word-wrap: break-word; }
 #text h3 { font-size: 22px; font-weight: bold; margin: 0; }
 
 /* --- כפתורים --- */
