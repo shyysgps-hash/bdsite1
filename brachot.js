@@ -42,10 +42,10 @@ function hideIfUnchecked(checkboxId, imageId) {
 
 // 5. פונקציית הבדיקה האוטומטית (מופעלת ב-oninput ב-HTML בזמן הקלדה) כלומר בדיקה שתיבת הטקסט מכילה תווים לפחות אות אחת על מנת להמשיך לשלב הבא והפעלת הכפתור. בדיקה זו מתבצעת תוך כדי שהמשתמש מבצע לחיצה על תיבת הטקסט 
 function checkFields() {
-    let get = document.getElementById("nameGet").value;
-    let bless = document.getElementById("greetingCard").value;
-    let give = document.getElementById("nameGive").value;
-    let printButton = document.getElementById("chekAndPrint");
+    const get = document.getElementById("nameGet").value;
+    const bless = document.getElementById("greetingCard").value;
+    const give = document.getElementById("nameGive").value;
+    const printButton = document.getElementById("chekAndPrint");
 
     // אם שלושת השדות מלאים - משחררים את הכפתור ללחיצה מענה על תנאי הפעלת הכפתור למשתמש
     if (get !== "" && bless !== "" && give !== "") {
@@ -76,7 +76,7 @@ function blessText() {
     let stickerIds = ["space", "smiley", "glitters", "dinosaur", "animals"];
     let stickerTexts = ["חלל", "סמיילים", "נצנצים", "דינוזאורים", "חיות"];
 
-    // קריאה לפונקציות החיצוניות שיחזירו שמות של הבחירות, לצורכי הדפסת סיכום למשתמש
+    // קריאה לפונקציות החיצוניות שקליטה של שמות הבחירות לתוך משתנים, לצורכי הדפסת וסיכום למשתמש
     let selectedColor = getSelectedRadio(colorIds, colorTexts);
     let selectedFrame = getSelectedRadio(frameIds, frameTexts);
     let selectedStickers = getSelectedCheckboxes(stickerIds, stickerTexts);
@@ -96,7 +96,7 @@ function blessText() {
         "<strong>תוכן הברכה:</strong><br>" +
         "לכבוד: " + get + "<br>" +
         bless + "<br>" +
-        "מימני: " + give; ////שגיאת הכתיב ״מימני״ היא בכוונה כחלק מהשפה הצינית של האתר שלנו ותזכורת לאיך היינו כותבים ברכות כשהיינו 
+        "מימני: " + give; ////שגיאת הכתיב ״מימני״ היא בכוונה כחלק מהשפה הצינית של האתר שלנו ותזכורת לאיך היינו כותבים ברכות כשהיינו קטנים
 
      ////  לולאת עזר שעוברת על כל המדבקות ומעלימה את אלו שלא סומנו ב-V כדי למנוע בהדפסה הסופית מדבקות שבחצי שקיפות
     for (let i = 0; i < stickerIds.length; i++) {
