@@ -2,32 +2,23 @@
 #blessingsPage .flex-container {
     display: flex;
     justify-content: space-evenly;
-    align-items: stretch; /* כל ה-fieldsets יגיעו לאותו גובה */
+    align-items: stretch;   /*גורמת לכל תיבות הכפתורים להיות באותו גובה*/
     gap: 20px;
 }
 
-#blessingsPage .toppage {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; /* מרווחים שווים בין כל הבחירות */
-    height: 380px;           /* גובה אחיד זהה לשלושתם */
-    flex: 1;                 /* כל fieldset תופס רוחב שווה */
-}
-
 #blessingsPage fieldset {
-    width: 100%;             /* ממלא את הרוחב שהוקצה */
-    height: 380px;           /* גובה אחיד זהה לשלושתם */
+    width: 100%;             /* מתאים את גודל תיבות הכפתורים לשטח שהוקצה לחלק הזה בעמוד */
     font-weight: bold;
     border: 3px solid black;
     padding: 10px 8px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly; /* מרווחים שווים בין כל הבחירות */
+    justify-content: space-evenly; /* מרווחים שווים בין כל אפשרויות הבחירה */
     gap: 0;
 }
 
-#blessingsPage fieldset > div {
+#blessingsPage fieldset > div {  /*המשמעות היא שתהיה השפעה רק על הdiv ששהם ״צאצאים של fieldset*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,16 +28,16 @@
 }
 
 /* --- צבעים: 2 טורים מסודרים בתוך הקופסא ---
-   ספציפיות גבוהה כדי לנצח את display:flex מה-fieldset הכללי --- */
-#blessingsPage .colorPage {
+   ספציפיות גבוהה כדי לעקוף את display:flex מה-fieldset הכללי בהיררכיה --- */
+#blessingsPage .colorPage {  /*על מנת לגרום לזה להירראות טוב בחרנו בגריד מסודר*/
     display: grid;
     grid-template-columns: 1fr 1fr;      /* 2 טורים שווים */
-    grid-template-rows: repeat(3, 1fr);  /* 3 שורות: 2+2+1 צבעים */
+    grid-template-rows: repeat(3, 1fr);  /* 3 שורות: 2+2+1 צבעים סידור של הצבעים בגלל שזה 5 אז יש צבע אחד שלבד */
     align-items: center;
     justify-items: center;
     gap: 0;
-    padding-top: 22px;                   /* רווח מתחת ל-legend שלא ידרוס */
-    overflow: hidden;                    /* לא יוצא מהקופסא */
+    padding-top: 22px;                   /* רווח מתחת ל-legend שלא ידרוס את התוכן שיש מתחת לשם התיבה */
+    overflow: hidden;                    /* תוכן שיוצא מגבולות התיבה לא יוצג */
     box-sizing: border-box;
 }
 
@@ -63,40 +54,31 @@
     padding: 2px;
 }
 
-/* מסתירים את ה-br — אנחנו שולטים ברווחים דרך gap */
-.colorPage br {
-    display: none;
-}
-
-/* תמונות דוגמה — גודל נוח שמתאים ל-2 טורים */
+/* תמונות דוגמה לבחירת צבע דף, תואם את גדול התיבה */
 .colorPage img {
     height: 26px;
     width: auto;
     display: block;
 }
 
-/* --- רקע אפור לתוכן הפנימי של גנרטור הברכות --- */
+/* --- רקע אפור לתוכן הפנימי של המחולל שיהיה תואם לסגנון האתר --- */
 #blessingsPage .retro-window-content {
     background-color: #f4f4f4;
 }
 
-/* --- האזור התחתון והגריד היציב --- */
+/* החלק התחתון בגריד */
 .btm {
     display: grid;
-    /* הגדרנו עמודות בגודל קבוע (280px לטופס, 320px לכרטיס, 220px לבועה) */
+    /* הגדרנו עמודות בגודל קבוע (280px לטופס, 320px לכרטיס, 220px לבועת סיכום שמופיעה) */
     grid-template-columns: 280px 320px 220px;
 
-    /* 🌟 פה קורה הקסם: פיזור שווה של הרווחים בין ובצדדי העמודות */
+    /* פיזור שווה של הרווחים בין ובצדדי העמודות */
     justify-content: space-evenly;
-
-    /* מרווח אנכי אם יש צורך ביותר משורה אחת */
     align-items: center;
-
-    /* רווח פנימי מהמסגרת השחורה */
-    padding: 20px;
+    padding: 20px;   /* רווח פנימי מהמסגרת השחורה */
     border: 3px solid black;
 }
-/* קביעת סדר ויזואלי קבוע שלא יקפוץ לעולם */
+/* קביעת סדר ויזואלי קבוע של כל חלק בתחתית המחולל */
 .textPart {
     order: 1; /* עמודה ראשונה (ימין) */
     display: flex;
@@ -109,7 +91,7 @@
 }
 
 .bless {
-    order: 2; /* עמודה שנייה (מרכז) - הכרטיס נעול פה תמיד! */
+    order: 2; /* עמודה שנייה (מרכז)  */
     width: 300px;
     height: 380px;
     border: 2px black solid;
@@ -122,8 +104,8 @@
 }
 
 #designSummary {
-    order: 3; /* עמודה שלישית (שמאל) - נפתחת בצד השני בלי להזיז את הברכה */
-    display: none; /* מוסתר כברירת מחדל עד ללחיצה */
+    order: 3; /* עמודה שלישית (שמאל) - הודעת סיכום שקופצת בעת לחיצה על כפתור, אינה מזיזה את העמודות האחרות */
+    display: none; /* מוסתר כברירת מחדל עד ללחיצה על כפתור הדפסה, מציג סיכום */
     padding: 15px;
     background-color: #f0f7ff;
     border: 2px solid #aae0fa;
@@ -136,7 +118,7 @@
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* --- רכיבי הכרטיס הפנימיים --- */
+/* עמודה שנייה הצגת הברכה והשינויים בלחיצה על כפתורים */
 .card-preview {
     position: relative;
     width: 100%;
@@ -144,6 +126,7 @@
     margin: 0;
 }
 
+/*שליטה על שכבות הטקסט מדבקות מסגרות וצבע הדף*/
 .layer {
     position: absolute;
     top: 0;
@@ -157,7 +140,7 @@
 .layer-frame { z-index: 2; }
 .layer-sticker { z-index: 3; opacity: 0.25; }
 
-/* --- הטקסטים בתוך הכרטיס --- */
+/* הברכה שנכתבת על גבי הכרטיס */
 #text {
     position: absolute;
     z-index: 4;
@@ -173,12 +156,12 @@
     gap: 10px;
 }
 
-/* צמצום לתוך כרטיס הברכה בלבד כדי לא לדרוס את השאר */
+/* התאמת לגודל כרטיס הברכה כדי לא לדרוס דברים בדף */
 #text h2 { font-size: 24px; font-weight: bold; margin: 0; }
 #text p  { font-size: 10px; font-weight: normal; margin: 20px 20px; word-wrap: break-word; }
 #text h3 { font-size: 22px; font-weight: bold; margin: 0; }
 
-/* --- כפתורים --- */
+/* כפתור ״הוסף את הברכה״ */
 .button {
     cursor: pointer;
     width: 200px;
@@ -187,17 +170,17 @@
     color: #000000;
     transition: background-color 0.3s ease;
 }
-
+/*מצב הכפתור במעבר עכבר*/
 .button:hover {
     background-color: #d628ec;
     box-shadow: 1px 1px 1px #272727;
 }
-
+/*מצב הכפתור כשהוא חסום ללחיצה עד שהמשתמש מזין תוכן*/
 #chekAndPrint:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
-
+/*מצב הכפתור כשהוא פתוח ללחיצה עבור המשתמש*/
 #chekAndPrint {
     opacity: 1;
     cursor: pointer;
